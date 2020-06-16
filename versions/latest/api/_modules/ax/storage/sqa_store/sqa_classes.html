@@ -81,27 +81,48 @@ src="/js/documentation_options.js">
 <div class="viewcode-block" id="SQAParameter"><a class="viewcode-back" href="../../../../storage.html#ax.storage.sqa_store.sqa_classes.SQAParameter">[docs]</a><span class="k">class</span> <span class="nc">SQAParameter</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
     <span class="n">__tablename__</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"parameter_v2"</span>
 
+    <span class="c1"># pyre-fixme[8]: Attribute has type `DomainType`; used as `Column[typing.Any]`.</span>
     <span class="n">domain_type</span><span class="p">:</span> <span class="n">DomainType</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">(</span><span class="n">DomainType</span><span class="p">),</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `Optional[int]`; used as `Column[int]`.</span>
     <span class="n">experiment_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="s2">"experiment_v2.id"</span><span class="p">))</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `int`; used as `Column[int]`.</span>
     <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `Optional[int]`; used as `Column[int]`.</span>
     <span class="n">generator_run_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="s2">"generator_run_v2.id"</span><span class="p">))</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `str`; used as `Column[str]`.</span>
     <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="n">NAME_OR_TYPE_FIELD_LENGTH</span><span class="p">),</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `ParameterType`; used as `Column[typing.Any]`.</span>
     <span class="n">parameter_type</span><span class="p">:</span> <span class="n">ParameterType</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">(</span><span class="n">ParameterType</span><span class="p">),</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `Optional[bool]`; used as `Column[bool]`.</span>
     <span class="n">is_fidelity</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Boolean</span><span class="p">)</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `Union[None, bool, float, int, str]`; used</span>
+    <span class="c1">#  as `Column[typing.Any]`.</span>
     <span class="n">target_value</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">TParamValue</span><span class="p">]</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">JSONEncodedObject</span><span class="p">)</span>
 
     <span class="c1"># Attributes for Range Parameters</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `Optional[int]`; used as `Column[int]`.</span>
     <span class="n">digits</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">)</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `Optional[bool]`; used as `Column[bool]`.</span>
     <span class="n">log_scale</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Boolean</span><span class="p">)</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `Optional[float]`; used as</span>
+    <span class="c1">#  `Column[decimal.Decimal]`.</span>
     <span class="n">lower</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Float</span><span class="p">)</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `Optional[float]`; used as</span>
+    <span class="c1">#  `Column[decimal.Decimal]`.</span>
     <span class="n">upper</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Float</span><span class="p">)</span>
 
     <span class="c1"># Attributes for Choice Parameters</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `Optional[List[typing.Union[None, bool,</span>
+    <span class="c1">#  float, int, str]]]`; used as `Column[typing.Any]`.</span>
     <span class="n">choice_values</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">TParamValue</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">JSONEncodedList</span><span class="p">)</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `Optional[bool]`; used as `Column[bool]`.</span>
     <span class="n">is_ordered</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Boolean</span><span class="p">)</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `Optional[bool]`; used as `Column[bool]`.</span>
     <span class="n">is_task</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Boolean</span><span class="p">)</span>
 
     <span class="c1"># Attributes for Fixed Parameters</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `Union[None, bool, float, int, str]`; used</span>
+    <span class="c1">#  as `Column[typing.Any]`.</span>
     <span class="n">fixed_value</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">TParamValue</span><span class="p">]</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">JSONEncodedObject</span><span class="p">)</span>
 
     <span class="n">immutable_fields</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"name"</span><span class="p">]</span>
@@ -111,11 +132,18 @@ src="/js/documentation_options.js">
 <div class="viewcode-block" id="SQAParameterConstraint"><a class="viewcode-back" href="../../../../storage.html#ax.storage.sqa_store.sqa_classes.SQAParameterConstraint">[docs]</a><span class="k">class</span> <span class="nc">SQAParameterConstraint</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
     <span class="n">__tablename__</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"parameter_constraint_v2"</span>
 
+    <span class="c1"># pyre-fixme[8]: Attribute has type `float`; used as `Column[decimal.Decimal]`.</span>
     <span class="n">bound</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Float</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `Dict[str, float]`; used as</span>
+    <span class="c1">#  `Column[typing.Any]`.</span>
     <span class="n">constraint_dict</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">JSONEncodedDict</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `Optional[int]`; used as `Column[int]`.</span>
     <span class="n">experiment_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="s2">"experiment_v2.id"</span><span class="p">))</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `int`; used as `Column[int]`.</span>
     <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `Optional[int]`; used as `Column[int]`.</span>
     <span class="n">generator_run_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="s2">"generator_run_v2.id"</span><span class="p">))</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `IntEnum`; used as `Column[typing.Any]`.</span>
     <span class="nb">type</span><span class="p">:</span> <span class="n">IntEnum</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">(</span><span class="n">ParameterConstraintType</span><span class="p">),</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
     <span class="c1"># ParameterConstraints should never be updated; since they don't have</span>
@@ -127,25 +155,42 @@ src="/js/documentation_options.js">
 <div class="viewcode-block" id="SQAMetric"><a class="viewcode-back" href="../../../../storage.html#ax.storage.sqa_store.sqa_classes.SQAMetric">[docs]</a><span class="k">class</span> <span class="nc">SQAMetric</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
     <span class="n">__tablename__</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"metric_v2"</span>
 
+    <span class="c1"># pyre-fixme[8]: Attribute has type `Optional[int]`; used as `Column[int]`.</span>
     <span class="n">experiment_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="s2">"experiment_v2.id"</span><span class="p">))</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `Optional[int]`; used as `Column[int]`.</span>
     <span class="n">generator_run_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="s2">"generator_run_v2.id"</span><span class="p">))</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `int`; used as `Column[int]`.</span>
     <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `Optional[bool]`; used as `Column[bool]`.</span>
     <span class="n">lower_is_better</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Boolean</span><span class="p">)</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `MetricIntent`; used as `Column[typing.Any]`.</span>
     <span class="n">intent</span><span class="p">:</span> <span class="n">MetricIntent</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">StringEnum</span><span class="p">(</span><span class="n">MetricIntent</span><span class="p">),</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `int`; used as `Column[int]`.</span>
     <span class="n">metric_type</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `str`; used as `Column[str]`.</span>
     <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="n">LONG_STRING_FIELD_LENGTH</span><span class="p">),</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `Optional[Dict[str, typing.Any]]`; used as</span>
+    <span class="c1">#  `Column[typing.Any]`.</span>
     <span class="n">properties</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">JSONEncodedTextDict</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="p">{})</span>
 
     <span class="c1"># Attributes for Objectives</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `Optional[bool]`; used as `Column[bool]`.</span>
     <span class="n">minimize</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Boolean</span><span class="p">)</span>
 
     <span class="c1"># Attributes for Outcome Constraints</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `Optional[ComparisonOp]`; used as</span>
+    <span class="c1">#  `Column[typing.Any]`.</span>
     <span class="n">op</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ComparisonOp</span><span class="p">]</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">(</span><span class="n">ComparisonOp</span><span class="p">))</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `Optional[float]`; used as</span>
+    <span class="c1">#  `Column[decimal.Decimal]`.</span>
     <span class="n">bound</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Float</span><span class="p">)</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `Optional[bool]`; used as `Column[bool]`.</span>
     <span class="n">relative</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Boolean</span><span class="p">)</span>
 
     <span class="c1"># Multi-type Experiment attributes</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `Optional[str]`; used as `Column[str]`.</span>
     <span class="n">trial_type</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="n">NAME_OR_TYPE_FIELD_LENGTH</span><span class="p">))</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `Optional[str]`; used as `Column[str]`.</span>
     <span class="n">canonical_name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="n">NAME_OR_TYPE_FIELD_LENGTH</span><span class="p">))</span>
 
     <span class="n">immutable_fields</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"name"</span><span class="p">]</span>
@@ -158,20 +203,28 @@ src="/js/documentation_options.js">
     <span class="c1"># join_depth argument: used for loading self-referential relationships</span>
     <span class="c1"># https://docs.sqlalchemy.org/en/13/orm/self_referential.html#configuring-self-referential-eager-loading</span>
     <span class="n">scalarized_objective_children_metrics</span> <span class="o">=</span> <span class="n">relationship</span><span class="p">(</span>
-        <span class="s2">"SQAMetric"</span><span class="p">,</span> <span class="n">cascade</span><span class="o">=</span><span class="s2">"all, delete-orphan"</span><span class="p">,</span> <span class="n">lazy</span><span class="o">=</span><span class="s2">"selectin"</span><span class="p">,</span> <span class="n">join_depth</span><span class="o">=</span><span class="mi">4</span>
+        <span class="s2">"SQAMetric"</span><span class="p">,</span> <span class="n">cascade</span><span class="o">=</span><span class="s2">"all, delete-orphan"</span><span class="p">,</span> <span class="n">lazy</span><span class="o">=</span><span class="s2">"selectin"</span><span class="p">,</span> <span class="n">join_depth</span><span class="o">=</span><span class="mi">5</span>
     <span class="p">)</span>
 
     <span class="c1"># Attribute only defined for the children of Scalarized Objective</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `Optional[float]`; used as</span>
+    <span class="c1">#  `Column[decimal.Decimal]`.</span>
     <span class="n">scalarized_objective_weight</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Float</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="SQAArm"><a class="viewcode-back" href="../../../../storage.html#ax.storage.sqa_store.sqa_classes.SQAArm">[docs]</a><span class="k">class</span> <span class="nc">SQAArm</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
     <span class="n">__tablename__</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"arm_v2"</span>
 
+    <span class="c1"># pyre-fixme[8]: Attribute has type `int`; used as `Column[int]`.</span>
     <span class="n">generator_run_id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="s2">"generator_run_v2.id"</span><span class="p">))</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `int`; used as `Column[int]`.</span>
     <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `Optional[str]`; used as `Column[str]`.</span>
     <span class="n">name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="n">NAME_OR_TYPE_FIELD_LENGTH</span><span class="p">))</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `Dict[str, typing.Union[None, bool, float,</span>
+    <span class="c1">#  int, str]]`; used as `Column[typing.Any]`.</span>
     <span class="n">parameters</span><span class="p">:</span> <span class="n">TParameterization</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">JSONEncodedTextDict</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `float`; used as `Column[decimal.Decimal]`.</span>
     <span class="n">weight</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Float</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
 
     <span class="n">immutable_fields</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"parameters"</span><span class="p">]</span>
@@ -181,12 +234,17 @@ src="/js/documentation_options.js">
 <div class="viewcode-block" id="SQAAbandonedArm"><a class="viewcode-back" href="../../../../storage.html#ax.storage.sqa_store.sqa_classes.SQAAbandonedArm">[docs]</a><span class="k">class</span> <span class="nc">SQAAbandonedArm</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
     <span class="n">__tablename__</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"abandoned_arm_v2"</span>
 
+    <span class="c1"># pyre-fixme[8]: Attribute has type `Optional[str]`; used as `Column[str]`.</span>
     <span class="n">abandoned_reason</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="n">LONG_STRING_FIELD_LENGTH</span><span class="p">))</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `int`; used as `Column[int]`.</span>
     <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `str`; used as `Column[str]`.</span>
     <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="n">NAME_OR_TYPE_FIELD_LENGTH</span><span class="p">),</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `datetime`; used as `Column[typing.Any]`.</span>
     <span class="n">time_abandoned</span><span class="p">:</span> <span class="n">datetime</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span>
         <span class="n">IntTimestamp</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span>
     <span class="p">)</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `int`; used as `Column[int]`.</span>
     <span class="n">trial_id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="s2">"trial_v2.id"</span><span class="p">))</span>
 
     <span class="n">immutable_fields</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"name"</span><span class="p">]</span>
@@ -196,27 +254,59 @@ src="/js/documentation_options.js">
 <div class="viewcode-block" id="SQAGeneratorRun"><a class="viewcode-back" href="../../../../storage.html#ax.storage.sqa_store.sqa_classes.SQAGeneratorRun">[docs]</a><span class="k">class</span> <span class="nc">SQAGeneratorRun</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
     <span class="n">__tablename__</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"generator_run_v2"</span>
 
+    <span class="c1"># pyre-fixme[8]: Attribute has type `Optional[str]`; used as `Column[str]`.</span>
     <span class="n">best_arm_name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="n">NAME_OR_TYPE_FIELD_LENGTH</span><span class="p">))</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `Optional[Dict[str, typing.Union[None, bool,</span>
+    <span class="c1">#  float, int, str]]]`; used as `Column[typing.Any]`.</span>
     <span class="n">best_arm_parameters</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">TParameterization</span><span class="p">]</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">JSONEncodedTextDict</span><span class="p">)</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `Optional[typing.Tuple[Dict[str, float],</span>
+    <span class="c1">#  Optional[Dict[str, Dict[str, float]]]]]`; used as `Column[typing.Any]`.</span>
     <span class="n">best_arm_predictions</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">TModelPredictArm</span><span class="p">]</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">JSONEncodedList</span><span class="p">)</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `Optional[int]`; used as `Column[int]`.</span>
     <span class="n">generator_run_type</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">)</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `int`; used as `Column[int]`.</span>
     <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `Optional[int]`; used as `Column[int]`.</span>
     <span class="n">index</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">)</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `Optional[typing.Tuple[Dict[str,</span>
+    <span class="c1">#  List[float]], Dict[str, Dict[str, List[float]]]]]`; used as</span>
+    <span class="c1">#  `Column[typing.Any]`.</span>
     <span class="n">model_predictions</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">TModelPredict</span><span class="p">]</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">JSONEncodedList</span><span class="p">)</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `datetime`; used as `Column[typing.Any]`.</span>
     <span class="n">time_created</span><span class="p">:</span> <span class="n">datetime</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">IntTimestamp</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">)</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `Optional[int]`; used as `Column[int]`.</span>
     <span class="n">trial_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="s2">"trial_v2.id"</span><span class="p">))</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `Optional[float]`; used as</span>
+    <span class="c1">#  `Column[decimal.Decimal]`.</span>
     <span class="n">weight</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Float</span><span class="p">)</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `Optional[float]`; used as</span>
+    <span class="c1">#  `Column[decimal.Decimal]`.</span>
     <span class="n">fit_time</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Float</span><span class="p">)</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `Optional[float]`; used as</span>
+    <span class="c1">#  `Column[decimal.Decimal]`.</span>
     <span class="n">gen_time</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Float</span><span class="p">)</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `Optional[str]`; used as `Column[str]`.</span>
     <span class="n">model_key</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="n">NAME_OR_TYPE_FIELD_LENGTH</span><span class="p">))</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `Optional[Dict[str, typing.Any]]`; used as</span>
+    <span class="c1">#  `Column[typing.Any]`.</span>
     <span class="n">model_kwargs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">JSONEncodedTextDict</span><span class="p">)</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `Optional[Dict[str, typing.Any]]`; used as</span>
+    <span class="c1">#  `Column[typing.Any]`.</span>
     <span class="n">bridge_kwargs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">JSONEncodedTextDict</span><span class="p">)</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `Optional[Dict[str, typing.Any]]`; used as</span>
+    <span class="c1">#  `Column[typing.Any]`.</span>
     <span class="n">gen_metadata</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">JSONEncodedTextDict</span><span class="p">)</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `Optional[Dict[str, typing.Any]]`; used as</span>
+    <span class="c1">#  `Column[typing.Any]`.</span>
     <span class="n">model_state_after_gen</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">JSONEncodedTextDict</span><span class="p">)</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `Optional[int]`; used as `Column[int]`.</span>
     <span class="n">generation_strategy_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span>
         <span class="n">Integer</span><span class="p">,</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="s2">"generation_strategy.id"</span><span class="p">)</span>
     <span class="p">)</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `Optional[int]`; used as `Column[int]`.</span>
     <span class="n">generation_step_index</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">)</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `Optional[Dict[str, typing.Any]]`; used as</span>
+    <span class="c1">#  `Column[typing.Any]`.</span>
     <span class="n">candidate_metadata_by_arm_signature</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span>
         <span class="n">JSONEncodedTextDict</span>
     <span class="p">)</span>
@@ -247,25 +337,39 @@ src="/js/documentation_options.js">
 <div class="viewcode-block" id="SQARunner"><a class="viewcode-back" href="../../../../storage.html#ax.storage.sqa_store.sqa_classes.SQARunner">[docs]</a><span class="k">class</span> <span class="nc">SQARunner</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
     <span class="n">__tablename__</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"runner"</span>
 
+    <span class="c1"># pyre-fixme[8]: Attribute has type `int`; used as `Column[int]`.</span>
     <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `Optional[int]`; used as `Column[int]`.</span>
     <span class="n">experiment_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="s2">"experiment_v2.id"</span><span class="p">))</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `Optional[Dict[str, typing.Any]]`; used as</span>
+    <span class="c1">#  `Column[typing.Any]`.</span>
     <span class="n">properties</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">JSONEncodedTextDict</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="p">{})</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `int`; used as `Column[int]`.</span>
     <span class="n">runner_type</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `Optional[int]`; used as `Column[int]`.</span>
     <span class="n">trial_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="s2">"trial_v2.id"</span><span class="p">))</span>
 
     <span class="c1"># Multi-type Experiment attributes</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `Optional[str]`; used as `Column[str]`.</span>
     <span class="n">trial_type</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="n">NAME_OR_TYPE_FIELD_LENGTH</span><span class="p">))</span></div>
 
 
 <div class="viewcode-block" id="SQAData"><a class="viewcode-back" href="../../../../storage.html#ax.storage.sqa_store.sqa_classes.SQAData">[docs]</a><span class="k">class</span> <span class="nc">SQAData</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
     <span class="n">__tablename__</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"data_v2"</span>
 
+    <span class="c1"># pyre-fixme[8]: Attribute has type `int`; used as `Column[int]`.</span>
     <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `str`; used as `Column[str]`.</span>
     <span class="n">data_json</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Text</span><span class="p">(</span><span class="n">LONGTEXT_BYTES</span><span class="p">),</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `Optional[str]`; used as `Column[str]`.</span>
     <span class="n">description</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="n">LONG_STRING_FIELD_LENGTH</span><span class="p">))</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `int`; used as `Column[int]`.</span>
     <span class="n">experiment_id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="s2">"experiment_v2.id"</span><span class="p">))</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `int`; used as `Column[int]`.</span>
     <span class="n">time_created</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">BigInteger</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `Optional[int]`; used as `Column[int]`.</span>
     <span class="n">trial_index</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">)</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `Optional[int]`; used as `Column[int]`.</span>
     <span class="n">generation_strategy_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span>
         <span class="n">Integer</span><span class="p">,</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="s2">"generation_strategy.id"</span><span class="p">)</span>
     <span class="p">)</span>
@@ -276,10 +380,16 @@ src="/js/documentation_options.js">
 <div class="viewcode-block" id="SQAGenerationStrategy"><a class="viewcode-back" href="../../../../storage.html#ax.storage.sqa_store.sqa_classes.SQAGenerationStrategy">[docs]</a><span class="k">class</span> <span class="nc">SQAGenerationStrategy</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
     <span class="n">__tablename__</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"generation_strategy"</span>
 
+    <span class="c1"># pyre-fixme[8]: Attribute has type `int`; used as `Column[int]`.</span>
     <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `str`; used as `Column[str]`.</span>
     <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="n">NAME_OR_TYPE_FIELD_LENGTH</span><span class="p">),</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `List[Dict[str, typing.Any]]`; used as</span>
+    <span class="c1">#  `Column[typing.Any]`.</span>
     <span class="n">steps</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">JSONEncodedList</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `int`; used as `Column[int]`.</span>
     <span class="n">curr_index</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `Optional[int]`; used as `Column[int]`.</span>
     <span class="n">experiment_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="s2">"experiment_v2.id"</span><span class="p">))</span>
 
     <span class="n">generator_runs</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">SQAGeneratorRun</span><span class="p">]</span> <span class="o">=</span> <span class="n">relationship</span><span class="p">(</span>
@@ -297,26 +407,50 @@ src="/js/documentation_options.js">
 <div class="viewcode-block" id="SQATrial"><a class="viewcode-back" href="../../../../storage.html#ax.storage.sqa_store.sqa_classes.SQATrial">[docs]</a><span class="k">class</span> <span class="nc">SQATrial</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
     <span class="n">__tablename__</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"trial_v2"</span>
 
+    <span class="c1"># pyre-fixme[8]: Attribute has type `Optional[str]`; used as `Column[str]`.</span>
     <span class="n">abandoned_reason</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="n">NAME_OR_TYPE_FIELD_LENGTH</span><span class="p">))</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `Optional[str]`; used as `Column[str]`.</span>
     <span class="n">deployed_name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="n">NAME_OR_TYPE_FIELD_LENGTH</span><span class="p">))</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `int`; used as `Column[int]`.</span>
     <span class="n">experiment_id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="s2">"experiment_v2.id"</span><span class="p">))</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `int`; used as `Column[int]`.</span>
     <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `int`; used as `Column[int]`.</span>
     <span class="n">index</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `bool`; used as `Column[bool]`.</span>
     <span class="n">is_batch</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="s2">"is_batched"</span><span class="p">,</span> <span class="n">Boolean</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `int`; used as `Column[int]`.</span>
     <span class="n">num_arms_created</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `Optional[bool]`; used as `Column[bool]`.</span>
     <span class="n">optimize_for_power</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Boolean</span><span class="p">)</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `Optional[int]`; used as `Column[bool]`.</span>
     <span class="n">ttl_seconds</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Boolean</span><span class="p">)</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `Optional[Dict[str, typing.Any]]`; used as</span>
+    <span class="c1">#  `Column[typing.Any]`.</span>
     <span class="n">run_metadata</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">JSONEncodedTextDict</span><span class="p">)</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `TrialStatus`; used as `Column[typing.Any]`.</span>
     <span class="n">status</span><span class="p">:</span> <span class="n">TrialStatus</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span>
         <span class="n">IntEnum</span><span class="p">(</span><span class="n">TrialStatus</span><span class="p">),</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">TrialStatus</span><span class="o">.</span><span class="n">CANDIDATE</span>
     <span class="p">)</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `Optional[str]`; used as `Column[str]`.</span>
     <span class="n">status_quo_name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="n">NAME_OR_TYPE_FIELD_LENGTH</span><span class="p">))</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `Optional[datetime]`; used as</span>
+    <span class="c1">#  `Column[typing.Any]`.</span>
     <span class="n">time_completed</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="p">]</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">IntTimestamp</span><span class="p">)</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `datetime`; used as `Column[typing.Any]`.</span>
     <span class="n">time_created</span><span class="p">:</span> <span class="n">datetime</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">IntTimestamp</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `Optional[datetime]`; used as</span>
+    <span class="c1">#  `Column[typing.Any]`.</span>
     <span class="n">time_staged</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="p">]</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">IntTimestamp</span><span class="p">)</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `Optional[datetime]`; used as</span>
+    <span class="c1">#  `Column[typing.Any]`.</span>
     <span class="n">time_run_started</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="p">]</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">IntTimestamp</span><span class="p">)</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `Optional[str]`; used as `Column[str]`.</span>
     <span class="n">trial_type</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="n">NAME_OR_TYPE_FIELD_LENGTH</span><span class="p">))</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `Optional[int]`; used as `Column[int]`.</span>
     <span class="n">generation_step_index</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">)</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `Optional[Dict[str, typing.Any]]`; used as</span>
+    <span class="c1">#  `Column[typing.Any]`.</span>
     <span class="n">properties</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">JSONEncodedTextDict</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="p">{})</span>
 
     <span class="c1"># relationships</span>
@@ -343,15 +477,27 @@ src="/js/documentation_options.js">
 <div class="viewcode-block" id="SQAExperiment"><a class="viewcode-back" href="../../../../storage.html#ax.storage.sqa_store.sqa_classes.SQAExperiment">[docs]</a><span class="k">class</span> <span class="nc">SQAExperiment</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
     <span class="n">__tablename__</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"experiment_v2"</span>
 
+    <span class="c1"># pyre-fixme[8]: Attribute has type `Optional[str]`; used as `Column[str]`.</span>
     <span class="n">description</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="n">LONG_STRING_FIELD_LENGTH</span><span class="p">))</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `Optional[int]`; used as `Column[int]`.</span>
     <span class="n">experiment_type</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">)</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `int`; used as `Column[int]`.</span>
     <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `bool`; used as `Column[bool]`.</span>
     <span class="n">is_test</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Boolean</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `str`; used as `Column[str]`.</span>
     <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="n">NAME_OR_TYPE_FIELD_LENGTH</span><span class="p">),</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `Optional[Dict[str, typing.Any]]`; used as</span>
+    <span class="c1">#  `Column[typing.Any]`.</span>
     <span class="n">properties</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">JSONEncodedTextDict</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="p">{})</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `Optional[str]`; used as `Column[str]`.</span>
     <span class="n">status_quo_name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="n">NAME_OR_TYPE_FIELD_LENGTH</span><span class="p">))</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `Optional[Dict[str, typing.Union[None, bool,</span>
+    <span class="c1">#  float, int, str]]]`; used as `Column[typing.Any]`.</span>
     <span class="n">status_quo_parameters</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">TParameterization</span><span class="p">]</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">JSONEncodedTextDict</span><span class="p">)</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `datetime`; used as `Column[typing.Any]`.</span>
     <span class="n">time_created</span><span class="p">:</span> <span class="n">datetime</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">IntTimestamp</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `Optional[str]`; used as `Column[str]`.</span>
     <span class="n">default_trial_type</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="n">NAME_OR_TYPE_FIELD_LENGTH</span><span class="p">))</span>
 
     <span class="c1"># relationships</span>

@@ -60,6 +60,7 @@ src="/js/documentation_options.js">
 
 <div class="viewcode-block" id="validate_parameter"><a class="viewcode-back" href="../../../../storage.html#ax.storage.sqa_store.validation.validate_parameter">[docs]</a><span class="nd">@event</span><span class="o">.</span><span class="n">listens_for</span><span class="p">(</span><span class="n">SQAParameter</span><span class="p">,</span> <span class="s2">"before_insert"</span><span class="p">)</span>
 <span class="nd">@event</span><span class="o">.</span><span class="n">listens_for</span><span class="p">(</span><span class="n">SQAParameter</span><span class="p">,</span> <span class="s2">"before_update"</span><span class="p">)</span>
+<span class="c1"># pyre-fixme[11]: Annotation `Mapper` is not defined as a type.</span>
 <span class="k">def</span> <span class="nf">validate_parameter</span><span class="p">(</span><span class="n">mapper</span><span class="p">:</span> <span class="n">Mapper</span><span class="p">,</span> <span class="n">connection</span><span class="p">:</span> <span class="n">Connection</span><span class="p">,</span> <span class="n">target</span><span class="p">:</span> <span class="n">SQABase</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="n">consistency_exactly_one</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">ONLY_ONE_FIELDS</span><span class="p">)</span></div>
 
