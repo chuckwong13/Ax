@@ -47,6 +47,7 @@ src="/js/documentation_options.js">
 <span class="p">)</span>
 <span class="kn">from</span> <span class="nn">ax.models.torch.utils</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">_get_X_pending_and_observed</span><span class="p">,</span>
+    <span class="n">_to_inequality_constraints</span><span class="p">,</span>
     <span class="n">normalize_indices</span><span class="p">,</span>
     <span class="n">subset_model</span><span class="p">,</span>
 <span class="p">)</span>
@@ -371,18 +372,6 @@ src="/js/documentation_options.js">
 
         <span class="n">bounds_</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">bounds</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
         <span class="n">bounds_</span> <span class="o">=</span> <span class="n">bounds_</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">linear_constraints</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">A</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">linear_constraints</span>
-            <span class="n">inequality_constraints</span> <span class="o">=</span> <span class="p">[]</span>
-            <span class="n">k</span><span class="p">,</span> <span class="n">d</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">shape</span>
-            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
-                <span class="n">indicies</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">nonzero</span><span class="p">()</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-                <span class="n">coefficients</span> <span class="o">=</span> <span class="o">-</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">indicies</span><span class="p">]</span>
-                <span class="n">rhs</span> <span class="o">=</span> <span class="o">-</span><span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
-                <span class="n">inequality_constraints</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">indicies</span><span class="p">,</span> <span class="n">coefficients</span><span class="p">,</span> <span class="n">rhs</span><span class="p">))</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">inequality_constraints</span> <span class="o">=</span> <span class="kc">None</span>
-
         <span class="n">acquisition_function</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">acqf_constructor</span><span class="p">(</span>  <span class="c1"># pyre-ignore: [28]</span>
             <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
             <span class="n">objective_weights</span><span class="o">=</span><span class="n">objective_weights</span><span class="p">,</span>
@@ -398,7 +387,9 @@ src="/js/documentation_options.js">
             <span class="n">acq_function</span><span class="o">=</span><span class="n">checked_cast</span><span class="p">(</span><span class="n">AcquisitionFunction</span><span class="p">,</span> <span class="n">acquisition_function</span><span class="p">),</span>
             <span class="n">bounds</span><span class="o">=</span><span class="n">bounds_</span><span class="p">,</span>
             <span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">,</span>
-            <span class="n">inequality_constraints</span><span class="o">=</span><span class="n">inequality_constraints</span><span class="p">,</span>
+            <span class="n">inequality_constraints</span><span class="o">=</span><span class="n">_to_inequality_constraints</span><span class="p">(</span>
+                <span class="n">linear_constraints</span><span class="o">=</span><span class="n">linear_constraints</span>
+            <span class="p">),</span>
             <span class="n">fixed_features</span><span class="o">=</span><span class="n">fixed_features</span><span class="p">,</span>
             <span class="n">rounding_func</span><span class="o">=</span><span class="n">botorch_rounding_func</span><span class="p">,</span>
             <span class="o">**</span><span class="n">optimizer_options</span><span class="p">,</span>

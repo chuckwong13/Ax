@@ -527,12 +527,6 @@ src="/js/documentation_options.js">
     <span class="n">use_random_scalarization</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"random_scalarization"</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
     <span class="n">random_weights</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="k">if</span> <span class="n">use_random_scalarization</span><span class="p">:</span>
-        <span class="c1"># Pareto Optimization incompatible with outcome constraints.</span>
-        <span class="k">if</span> <span class="n">outcome_constraints</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                <span class="s2">"Random scalarization for pareto frontier exploration "</span>
-                <span class="s2">"is incompatible with outcome constraints. Remove one."</span>
-            <span class="p">)</span>
         <span class="c1"># Set distribution and sample weights.</span>
         <span class="n">distribution</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"random_scalarization_distribution"</span><span class="p">,</span> <span class="n">SIMPLEX</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">distribution</span> <span class="o">==</span> <span class="n">SIMPLEX</span><span class="p">:</span>

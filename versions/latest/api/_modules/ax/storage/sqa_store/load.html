@@ -120,15 +120,18 @@ src="/js/documentation_options.js">
 <span class="sd">    1) Get SQLAlchemy object from DB.</span>
 <span class="sd">    2) Convert to corresponding Ax object.</span>
 <span class="sd">    """</span>
-    <span class="n">experiment_sqa</span> <span class="o">=</span> <span class="n">_get_experiment_sqa</span><span class="p">(</span><span class="n">experiment_name</span><span class="o">=</span><span class="n">experiment_name</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">experiment_sqa</span><span class="o">.</span><span class="n">generation_strategy</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">session_scope</span><span class="p">()</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
+        <span class="n">gs_sqa</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">SQAGenerationStrategy</span><span class="p">)</span>
+            <span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">SQAExperiment</span><span class="o">.</span><span class="n">generation_strategy</span><span class="p">)</span>
+            <span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">SQAExperiment</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">experiment_name</span><span class="p">)</span>
+            <span class="o">.</span><span class="n">one_or_none</span><span class="p">()</span>
+        <span class="p">)</span>
+    <span class="k">if</span> <span class="n">gs_sqa</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
             <span class="sa">f</span><span class="s2">"Experiment </span><span class="si">{</span><span class="n">experiment_name</span><span class="si">}</span><span class="s2"> does not have a generation strategy "</span>
             <span class="s2">"attached to it."</span>
         <span class="p">)</span>
-    <span class="n">gs_sqa</span> <span class="o">=</span> <span class="n">experiment_sqa</span><span class="o">.</span><span class="n">generation_strategy</span>
-    <span class="c1"># pyre-fixme[6]: Expected `SQAGenerationStrategy` for 1st param but got</span>
-    <span class="c1">#  `Optional[SQAGenerationStrategy]`.</span>
     <span class="k">return</span> <span class="n">decoder</span><span class="o">.</span><span class="n">generation_strategy_from_sqa</span><span class="p">(</span><span class="n">gs_sqa</span><span class="o">=</span><span class="n">gs_sqa</span><span class="p">)</span>
 </pre></div>
 </div>

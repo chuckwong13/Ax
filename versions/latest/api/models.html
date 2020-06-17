@@ -1850,6 +1850,29 @@ conditional on having observed candidates <cite>0,1,…,i-1</cite>.</p></li>
 <div class="section" id="module-ax.models.torch.utils">
 <span id="ax-models-torch-utils-module"></span><h3>ax.models.torch.utils module<a class="headerlink" href="#module-ax.models.torch.utils" title="Permalink to this headline">¶</a></h3>
 <dl class="function">
+<dt id="ax.models.torch.utils.get_botorch_objective">
+<code class="sig-prename descclassname">ax.models.torch.utils.</code><code class="sig-name descname">get_botorch_objective</code><span class="sig-paren">(</span><em class="sig-param">model</em>, <em class="sig-param">objective_weights</em>, <em class="sig-param">outcome_constraints=None</em>, <em class="sig-param">X_observed=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/models/torch/utils.html#get_botorch_objective"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.models.torch.utils.get_botorch_objective" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructs a BoTorch <cite>Objective</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">AcquisitionObjective</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="function">
+<dt id="ax.models.torch.utils.get_out_of_sample_best_point_acqf">
+<code class="sig-prename descclassname">ax.models.torch.utils.</code><code class="sig-name descname">get_out_of_sample_best_point_acqf</code><span class="sig-paren">(</span><em class="sig-param">model</em>, <em class="sig-param">Xs</em>, <em class="sig-param">X_observed</em>, <em class="sig-param">objective_weights</em>, <em class="sig-param">mc_samples=512</em>, <em class="sig-param">fixed_features=None</em>, <em class="sig-param">fidelity_features=None</em>, <em class="sig-param">target_fidelities=None</em>, <em class="sig-param">outcome_constraints=None</em>, <em class="sig-param">seed_inner=None</em>, <em class="sig-param">qmc=True</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/models/torch/utils.html#get_out_of_sample_best_point_acqf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.models.torch.utils.get_out_of_sample_best_point_acqf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Picks an appropriate acquisition function to find the best
+out-of-sample (not observed) point using the given surrogate model.</p>
+<p>NOTE: Typically the appropriate function is the posterior mean,
+but can differ to account for fidelities etc.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">AcquisitionFunction</span></code>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]]]</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="function">
 <dt id="ax.models.torch.utils.is_noiseless">
 <code class="sig-prename descclassname">ax.models.torch.utils.</code><code class="sig-name descname">is_noiseless</code><span class="sig-paren">(</span><em class="sig-param">model</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/models/torch/utils.html#is_noiseless"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.models.torch.utils.is_noiseless" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check if a given (single-task) botorch model is noiseless</p>

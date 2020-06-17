@@ -32,7 +32,7 @@ src="/js/documentation_options.js">
 <span class="c1"># This source code is licensed under the MIT license found in the</span>
 <span class="c1"># LICENSE file in the root directory of this source tree.</span>
 
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span>
 
 <span class="kn">import</span> <span class="nn">botorch.utils.sampling</span> <span class="k">as</span> <span class="nn">botorch_sampling</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -40,8 +40,23 @@ src="/js/documentation_options.js">
 <span class="kn">from</span> <span class="nn">ax.exceptions.model</span> <span class="kn">import</span> <span class="n">ModelError</span>
 <span class="kn">from</span> <span class="nn">ax.models.model_utils</span> <span class="kn">import</span> <span class="n">filter_constraints_and_fixed_features</span><span class="p">,</span> <span class="n">get_observed</span>
 <span class="kn">from</span> <span class="nn">ax.models.random.sobol</span> <span class="kn">import</span> <span class="n">SobolGenerator</span>
+<span class="kn">from</span> <span class="nn">botorch.acquisition.acquisition</span> <span class="kn">import</span> <span class="n">AcquisitionFunction</span>
+<span class="kn">from</span> <span class="nn">botorch.acquisition.analytic</span> <span class="kn">import</span> <span class="n">PosteriorMean</span>
+<span class="kn">from</span> <span class="nn">botorch.acquisition.fixed_feature</span> <span class="kn">import</span> <span class="n">FixedFeatureAcquisitionFunction</span>
+<span class="kn">from</span> <span class="nn">botorch.acquisition.monte_carlo</span> <span class="kn">import</span> <span class="n">qSimpleRegret</span>
+<span class="kn">from</span> <span class="nn">botorch.acquisition.objective</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">AcquisitionObjective</span><span class="p">,</span>
+    <span class="n">ConstrainedMCObjective</span><span class="p">,</span>
+    <span class="n">MCAcquisitionObjective</span><span class="p">,</span>
+    <span class="n">ScalarizedObjective</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">botorch.acquisition.utils</span> <span class="kn">import</span> <span class="n">get_infeasible_cost</span>
+<span class="kn">from</span> <span class="nn">botorch.exceptions.errors</span> <span class="kn">import</span> <span class="n">UnsupportedError</span>
 <span class="kn">from</span> <span class="nn">botorch.models</span> <span class="kn">import</span> <span class="n">ModelListGP</span><span class="p">,</span> <span class="n">SingleTaskGP</span>
 <span class="kn">from</span> <span class="nn">botorch.models.model</span> <span class="kn">import</span> <span class="n">Model</span>
+<span class="kn">from</span> <span class="nn">botorch.sampling.samplers</span> <span class="kn">import</span> <span class="n">IIDNormalSampler</span><span class="p">,</span> <span class="n">SobolQMCNormalSampler</span>
+<span class="kn">from</span> <span class="nn">botorch.utils.constraints</span> <span class="kn">import</span> <span class="n">get_outcome_constraint_transforms</span>
+<span class="kn">from</span> <span class="nn">botorch.utils.objective</span> <span class="kn">import</span> <span class="n">get_objective_weights_transform</span>
 <span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">Tensor</span>
 
 
@@ -302,6 +317,109 @@ src="/js/documentation_options.js">
         <span class="k">return</span> <span class="n">tensor_func</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">))</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
 
     <span class="k">return</span> <span class="n">array_func</span></div>
+
+
+<div class="viewcode-block" id="get_botorch_objective"><a class="viewcode-back" href="../../../../models.html#ax.models.torch.utils.get_botorch_objective">[docs]</a><span class="k">def</span> <span class="nf">get_botorch_objective</span><span class="p">(</span>
+    <span class="n">model</span><span class="p">:</span> <span class="n">Model</span><span class="p">,</span>
+    <span class="n">objective_weights</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">,</span>
+    <span class="n">outcome_constraints</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">Tensor</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">X_observed</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tensor</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AcquisitionObjective</span><span class="p">:</span>
+    <span class="sd">"""Constructs a BoTorch `Objective`."""</span>
+    <span class="k">if</span> <span class="n">X_observed</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">UnsupportedError</span><span class="p">(</span>
+            <span class="s2">"X_observed is required to construct a BoTorch Objective."</span>
+        <span class="p">)</span>
+    <span class="k">if</span> <span class="n">outcome_constraints</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">objective</span> <span class="o">=</span> <span class="n">ScalarizedObjective</span><span class="p">(</span><span class="n">weights</span><span class="o">=</span><span class="n">objective_weights</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">obj_tf</span> <span class="o">=</span> <span class="n">get_objective_weights_transform</span><span class="p">(</span><span class="n">objective_weights</span><span class="p">)</span>
+        <span class="n">con_tfs</span> <span class="o">=</span> <span class="n">get_outcome_constraint_transforms</span><span class="p">(</span><span class="n">outcome_constraints</span><span class="p">)</span>
+        <span class="n">inf_cost</span> <span class="o">=</span> <span class="n">get_infeasible_cost</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">X_observed</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="n">objective</span><span class="o">=</span><span class="n">obj_tf</span><span class="p">)</span>
+        <span class="n">objective</span> <span class="o">=</span> <span class="n">ConstrainedMCObjective</span><span class="p">(</span>
+            <span class="n">objective</span><span class="o">=</span><span class="n">obj_tf</span><span class="p">,</span> <span class="n">constraints</span><span class="o">=</span><span class="n">con_tfs</span> <span class="ow">or</span> <span class="p">[],</span> <span class="n">infeasible_cost</span><span class="o">=</span><span class="n">inf_cost</span>
+        <span class="p">)</span>
+    <span class="k">return</span> <span class="n">objective</span></div>
+
+
+<div class="viewcode-block" id="get_out_of_sample_best_point_acqf"><a class="viewcode-back" href="../../../../models.html#ax.models.torch.utils.get_out_of_sample_best_point_acqf">[docs]</a><span class="k">def</span> <span class="nf">get_out_of_sample_best_point_acqf</span><span class="p">(</span>
+    <span class="n">model</span><span class="p">:</span> <span class="n">Model</span><span class="p">,</span>
+    <span class="n">Xs</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Tensor</span><span class="p">],</span>
+    <span class="n">X_observed</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">,</span>
+    <span class="n">objective_weights</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">,</span>
+    <span class="n">mc_samples</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">512</span><span class="p">,</span>
+    <span class="n">fixed_features</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">fidelity_features</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">target_fidelities</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">outcome_constraints</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">Tensor</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">seed_inner</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">qmc</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">AcquisitionFunction</span><span class="p">,</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]]]:</span>
+    <span class="sd">"""Picks an appropriate acquisition function to find the best</span>
+<span class="sd">    out-of-sample (not observed) point using the given surrogate model.</span>
+
+<span class="sd">    NOTE: Typically the appropriate function is the posterior mean,</span>
+<span class="sd">    but can differ to account for fidelities etc.</span>
+<span class="sd">    """</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">model</span>
+
+    <span class="c1"># subset model only to the outcomes we need for the optimization</span>
+    <span class="k">if</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"subset_model"</span><span class="p">,</span> <span class="kc">True</span><span class="p">):</span>
+        <span class="n">model</span><span class="p">,</span> <span class="n">objective_weights</span><span class="p">,</span> <span class="n">outcome_constraints</span> <span class="o">=</span> <span class="n">subset_model</span><span class="p">(</span>
+            <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
+            <span class="n">objective_weights</span><span class="o">=</span><span class="n">objective_weights</span><span class="p">,</span>
+            <span class="n">outcome_constraints</span><span class="o">=</span><span class="n">outcome_constraints</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="n">fixed_features</span> <span class="o">=</span> <span class="n">fixed_features</span> <span class="ow">or</span> <span class="p">{}</span>
+    <span class="n">target_fidelities</span> <span class="o">=</span> <span class="n">target_fidelities</span> <span class="ow">or</span> <span class="p">{}</span>
+    <span class="n">objective</span> <span class="o">=</span> <span class="n">get_botorch_objective</span><span class="p">(</span>
+        <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
+        <span class="n">objective_weights</span><span class="o">=</span><span class="n">objective_weights</span><span class="p">,</span>
+        <span class="n">outcome_constraints</span><span class="o">=</span><span class="n">outcome_constraints</span><span class="p">,</span>
+        <span class="n">X_observed</span><span class="o">=</span><span class="n">X_observed</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">objective</span><span class="p">,</span> <span class="n">ScalarizedObjective</span><span class="p">):</span>
+        <span class="n">acq_function</span> <span class="o">=</span> <span class="n">PosteriorMean</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="n">objective</span><span class="o">=</span><span class="n">objective</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">objective</span><span class="p">,</span> <span class="n">MCAcquisitionObjective</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">qmc</span><span class="p">:</span>
+            <span class="n">sampler</span> <span class="o">=</span> <span class="n">SobolQMCNormalSampler</span><span class="p">(</span><span class="n">num_samples</span><span class="o">=</span><span class="n">mc_samples</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="n">seed_inner</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">sampler</span> <span class="o">=</span> <span class="n">IIDNormalSampler</span><span class="p">(</span><span class="n">num_samples</span><span class="o">=</span><span class="n">mc_samples</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="n">seed_inner</span><span class="p">)</span>
+        <span class="n">acq_function</span> <span class="o">=</span> <span class="n">qSimpleRegret</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="n">sampler</span><span class="o">=</span><span class="n">sampler</span><span class="p">,</span> <span class="n">objective</span><span class="o">=</span><span class="n">objective</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">UnsupportedError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">"Unknown objective type: </span><span class="si">{</span><span class="n">objective</span><span class="o">.</span><span class="vm">__class__</span><span class="si">}</span><span class="s2">"</span>  <span class="c1"># pragma: nocover</span>
+        <span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">fidelity_features</span><span class="p">:</span>
+        <span class="c1"># we need to optimize at the target fidelities</span>
+        <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">f</span> <span class="ow">in</span> <span class="n">fidelity_features</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">fixed_features</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">"Fixed features cannot also be fidelity features"</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">set</span><span class="p">(</span><span class="n">fidelity_features</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">set</span><span class="p">(</span><span class="n">target_fidelities</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+                <span class="s2">"Must provide a target fidelity for every fidelity feature"</span>
+            <span class="p">)</span>
+        <span class="c1"># make sure to not modify fixed_features in-place</span>
+        <span class="n">fixed_features</span> <span class="o">=</span> <span class="p">{</span><span class="o">**</span><span class="n">fixed_features</span><span class="p">,</span> <span class="o">**</span><span class="n">target_fidelities</span><span class="p">}</span>
+    <span class="k">elif</span> <span class="n">target_fidelities</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+            <span class="s2">"Must specify fidelity_features in fit() when using target fidelities"</span>
+        <span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">fixed_features</span><span class="p">:</span>
+        <span class="n">acq_function</span> <span class="o">=</span> <span class="n">FixedFeatureAcquisitionFunction</span><span class="p">(</span>
+            <span class="n">acq_function</span><span class="o">=</span><span class="n">acq_function</span><span class="p">,</span>
+            <span class="n">d</span><span class="o">=</span><span class="n">X_observed</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span>
+            <span class="n">columns</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">fixed_features</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span>
+            <span class="n">values</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">fixed_features</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span>
+        <span class="p">)</span>
+        <span class="n">non_fixed_idcs</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">Xs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span> <span class="k">if</span> <span class="n">i</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">fixed_features</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">non_fixed_idcs</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">return</span> <span class="n">acq_function</span><span class="p">,</span> <span class="n">non_fixed_idcs</span></div>
 </pre></div>
 </div>
 </div>

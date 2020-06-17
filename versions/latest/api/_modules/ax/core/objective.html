@@ -105,7 +105,11 @@ src="/js/documentation_options.js">
     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">return</span> <span class="s1">'Objective(metric_name="</span><span class="si">{}</span><span class="s1">", minimize=</span><span class="si">{}</span><span class="s1">)'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">metric</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">minimize</span>
-        <span class="p">)</span></div>
+        <span class="p">)</span>
+
+<div class="viewcode-block" id="Objective.get_unconstrainable_metrics"><a class="viewcode-back" href="../../../core.html#ax.Objective.get_unconstrainable_metrics">[docs]</a>    <span class="k">def</span> <span class="nf">get_unconstrainable_metrics</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Metric</span><span class="p">]:</span>
+        <span class="sd">"""Return a list of metrics that are incompatible with OutcomeConstraints."""</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">metrics</span></div></div>
 
 
 <span class="c1"># TODO (jej): Support sqa_store encoding. Currenlty only single metric obj supported.</span>
@@ -171,7 +175,11 @@ src="/js/documentation_options.js">
     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">return</span> <span class="s2">"MultiObjective(metric_names=</span><span class="si">{}</span><span class="s2">, minimize=</span><span class="si">{}</span><span class="s2">)"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
             <span class="p">[</span><span class="n">metric</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">metric</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">metrics</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">minimize</span>
-        <span class="p">)</span></div>
+        <span class="p">)</span>
+
+<div class="viewcode-block" id="MultiObjective.get_unconstrainable_metrics"><a class="viewcode-back" href="../../../core.html#ax.MultiObjective.get_unconstrainable_metrics">[docs]</a>    <span class="k">def</span> <span class="nf">get_unconstrainable_metrics</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Metric</span><span class="p">]:</span>
+        <span class="sd">"""Return a list of metrics that are incompatible with OutcomeConstraints."""</span>
+        <span class="k">return</span> <span class="p">[]</span></div></div>
 
 
 <div class="viewcode-block" id="ScalarizedObjective"><a class="viewcode-back" href="../../../core.html#ax.ScalarizedObjective">[docs]</a><span class="k">class</span> <span class="nc">ScalarizedObjective</span><span class="p">(</span><span class="n">MultiObjective</span><span class="p">):</span>

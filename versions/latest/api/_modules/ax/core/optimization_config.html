@@ -136,9 +136,9 @@ src="/js/documentation_options.js">
         <span class="n">constraint_metrics</span> <span class="o">=</span> <span class="p">[</span>
             <span class="n">constraint</span><span class="o">.</span><span class="n">metric</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">constraint</span> <span class="ow">in</span> <span class="n">outcome_constraints</span>
         <span class="p">]</span>
-        <span class="n">objective_metric_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">metric</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">metric</span> <span class="ow">in</span> <span class="n">objective</span><span class="o">.</span><span class="n">metrics</span><span class="p">]</span>
-        <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">objective_metric_names</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">constraint_metrics</span><span class="p">:</span>
+        <span class="n">unconstrainable_metrics</span> <span class="o">=</span> <span class="n">objective</span><span class="o">.</span><span class="n">get_unconstrainable_metrics</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">metric</span> <span class="ow">in</span> <span class="n">unconstrainable_metrics</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">metric</span><span class="o">.</span><span class="n">name</span> <span class="ow">in</span> <span class="n">constraint_metrics</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Cannot constrain on objective metric."</span><span class="p">)</span>
 
         <span class="k">def</span> <span class="nf">get_metric_name</span><span class="p">(</span><span class="n">oc</span><span class="p">:</span> <span class="n">OutcomeConstraint</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
