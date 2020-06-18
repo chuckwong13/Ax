@@ -378,7 +378,7 @@ function slice_config_to_trace(
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>[INFO 06-17 04:35:15] ipy_plotting: Injecting Plotly library into cell. Do not overwrite or delete cell.
+<pre>[INFO 06-18 04:36:28] ipy_plotting: Injecting Plotly library into cell. Do not overwrite or delete cell.
 </pre>
 </div>
 </div>
@@ -486,7 +486,7 @@ var n,a=t("./lib/build-log"),i=t("./lib/epsilon"),o=t("./lib/intersecter"),s=t("
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>[INFO 06-17 04:35:15] ax.service.ax_client: Starting optimization with verbose logging. To disable logging, set the `verbose_logging` argument to `False`. Note that float values in the logs are rounded to 2 decimal points.
+<pre>[INFO 06-18 04:36:28] ax.service.ax_client: Starting optimization with verbose logging. To disable logging, set the `verbose_logging` argument to `False`. Note that float values in the logs are rounded to 2 decimal points.
 </pre>
 </div>
 </div>
@@ -529,7 +529,7 @@ var n,a=t("./lib/build-log"),i=t("./lib/epsilon"),o=t("./lib/intersecter"),s=t("
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>[INFO 06-17 04:35:15] ax.modelbridge.dispatch_utils: Using Bayesian Optimization generation strategy: GenerationStrategy(name='Sobol+GPEI', steps=[Sobol for 5 trials, GPEI for subsequent trials]). Iterations after 5 will take longer to generate due to  model-fitting.
+<pre>[INFO 06-18 04:36:28] ax.modelbridge.dispatch_utils: Using Bayesian Optimization generation strategy: GenerationStrategy(name='Sobol+GPEI', steps=[Sobol for 5 trials, GPEI for subsequent trials]). Iterations after 5 will take longer to generate due to  model-fitting.
 </pre>
 </div>
 </div>
@@ -593,662 +593,370 @@ var n,a=t("./lib/build-log"),i=t("./lib/epsilon"),o=t("./lib/intersecter"),s=t("
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>2020-06-17 04:35:15,294	INFO resource_spec.py:212 -- Starting Ray with 4.35 GiB memory available for workers and up to 2.19 GiB for objects. You can adjust these settings with ray.init(memory=&lt;bytes&gt;, object_store_memory=&lt;bytes&gt;).
-2020-06-17 04:35:15,642	INFO services.py:1170 -- View the Ray dashboard at <span class="ansi-green-intense-fg ansi-bold">localhost:8265</span>
-[INFO 06-17 04:35:15] ax.service.ax_client: Generated new trial 0 with parameters {'lr': 0.0, 'momentum': 0.71}.
-[INFO 06-17 04:35:15] ax.service.ax_client: Generated new trial 1 with parameters {'lr': 0.17, 'momentum': 0.94}.
-[INFO 06-17 04:35:16] ax.service.ax_client: Generated new trial 2 with parameters {'lr': 0.01, 'momentum': 0.76}.
-[INFO 06-17 04:35:16] ax.service.ax_client: Generated new trial 3 with parameters {'lr': 0.02, 'momentum': 0.73}.
-[INFO 06-17 04:35:16] ax.service.ax_client: Generated new trial 4 with parameters {'lr': 0.0, 'momentum': 0.31}.
-[INFO 06-17 04:35:16] ax.service.ax_client: Generated new trial 5 with parameters {'lr': 0.0, 'momentum': 0.95}.
-[INFO 06-17 04:35:16] ax.service.ax_client: Generated new trial 6 with parameters {'lr': 0.0, 'momentum': 0.55}.
-[INFO 06-17 04:35:17] ax.service.ax_client: Generated new trial 7 with parameters {'lr': 0.0, 'momentum': 0.52}.
-[INFO 06-17 04:35:17] ax.service.ax_client: Generated new trial 8 with parameters {'lr': 0.0, 'momentum': 0.59}.
-[INFO 06-17 04:35:17] ax.service.ax_client: Generated new trial 9 with parameters {'lr': 0.0, 'momentum': 0.38}.
-[INFO 06-17 04:35:17] ax.service.ax_client: Generated new trial 10 with parameters {'lr': 0.03, 'momentum': 0.6}.
-[INFO 06-17 04:35:17] ax.service.ax_client: Generated new trial 11 with parameters {'lr': 0.06, 'momentum': 0.42}.
-[INFO 06-17 04:35:17] ax.service.ax_client: Generated new trial 12 with parameters {'lr': 0.0, 'momentum': 0.84}.
-[INFO 06-17 04:35:18] ax.service.ax_client: Generated new trial 13 with parameters {'lr': 0.0, 'momentum': 0.87}.
-[INFO 06-17 04:35:18] ax.service.ax_client: Generated new trial 14 with parameters {'lr': 0.0, 'momentum': 0.45}.
-[INFO 06-17 04:35:18] ax.service.ax_client: Generated new trial 15 with parameters {'lr': 0.03, 'momentum': 0.91}.
-[INFO 06-17 04:35:18] ax.service.ax_client: Generated new trial 16 with parameters {'lr': 0.0, 'momentum': 0.5}.
-[INFO 06-17 04:35:18] ax.service.ax_client: Generated new trial 17 with parameters {'lr': 0.0, 'momentum': 0.63}.
-[INFO 06-17 04:35:18] ax.service.ax_client: Generated new trial 18 with parameters {'lr': 0.0, 'momentum': 0.14}.
-[INFO 06-17 04:35:18] ax.service.ax_client: Generated new trial 19 with parameters {'lr': 0.12, 'momentum': 0.83}.
-[INFO 06-17 04:35:18] ax.service.ax_client: Generated new trial 20 with parameters {'lr': 0.04, 'momentum': 0.86}.
-[INFO 06-17 04:35:18] ax.service.ax_client: Generated new trial 21 with parameters {'lr': 0.02, 'momentum': 0.65}.
-[INFO 06-17 04:35:18] ax.service.ax_client: Generated new trial 22 with parameters {'lr': 0.0, 'momentum': 0.81}.
-[INFO 06-17 04:35:19] ax.service.ax_client: Generated new trial 23 with parameters {'lr': 0.22, 'momentum': 0.03}.
-[INFO 06-17 04:35:19] ax.service.ax_client: Generated new trial 24 with parameters {'lr': 0.0, 'momentum': 0.53}.
-[INFO 06-17 04:35:19] ax.service.ax_client: Generated new trial 25 with parameters {'lr': 0.0, 'momentum': 0.29}.
-[INFO 06-17 04:35:19] ax.service.ax_client: Generated new trial 26 with parameters {'lr': 0.0, 'momentum': 0.97}.
-[INFO 06-17 04:35:19] ax.service.ax_client: Generated new trial 27 with parameters {'lr': 0.0, 'momentum': 0.83}.
-[INFO 06-17 04:35:19] ax.service.ax_client: Generated new trial 28 with parameters {'lr': 0.05, 'momentum': 0.97}.
-[INFO 06-17 04:35:19] ax.service.ax_client: Generated new trial 29 with parameters {'lr': 0.4, 'momentum': 0.08}.
+<pre>2020-06-18 04:36:28,692	INFO resource_spec.py:212 -- Starting Ray with 4.35 GiB memory available for workers and up to 2.18 GiB for objects. You can adjust these settings with ray.init(memory=&lt;bytes&gt;, object_store_memory=&lt;bytes&gt;).
+2020-06-18 04:36:29,044	INFO services.py:1170 -- View the Ray dashboard at <span class="ansi-green-intense-fg ansi-bold">localhost:8265</span>
+[INFO 06-18 04:36:29] ax.service.ax_client: Generated new trial 0 with parameters {'lr': 0.23, 'momentum': 0.78}.
+[INFO 06-18 04:36:29] ax.service.ax_client: Generated new trial 1 with parameters {'lr': 0.0, 'momentum': 0.63}.
+[INFO 06-18 04:36:29] ax.service.ax_client: Generated new trial 2 with parameters {'lr': 0.09, 'momentum': 0.87}.
+[INFO 06-18 04:36:29] ax.service.ax_client: Generated new trial 3 with parameters {'lr': 0.17, 'momentum': 0.86}.
+[INFO 06-18 04:36:29] ax.service.ax_client: Generated new trial 4 with parameters {'lr': 0.0, 'momentum': 0.94}.
+[INFO 06-18 04:36:30] ax.service.ax_client: Generated new trial 5 with parameters {'lr': 0.0, 'momentum': 0.38}.
+[INFO 06-18 04:36:30] ax.service.ax_client: Generated new trial 6 with parameters {'lr': 0.01, 'momentum': 0.45}.
+[INFO 06-18 04:36:30] ax.service.ax_client: Generated new trial 7 with parameters {'lr': 0.0, 'momentum': 0.7}.
+[INFO 06-18 04:36:30] ax.service.ax_client: Generated new trial 8 with parameters {'lr': 0.0, 'momentum': 0.53}.
+[INFO 06-18 04:36:30] ax.service.ax_client: Generated new trial 9 with parameters {'lr': 0.0, 'momentum': 0.87}.
+[INFO 06-18 04:36:31] ax.service.ax_client: Generated new trial 10 with parameters {'lr': 0.0, 'momentum': 0.79}.
+[INFO 06-18 04:36:31] ax.service.ax_client: Generated new trial 11 with parameters {'lr': 0.01, 'momentum': 0.18}.
+[INFO 06-18 04:36:31] ax.service.ax_client: Generated new trial 12 with parameters {'lr': 0.0, 'momentum': 0.85}.
+[INFO 06-18 04:36:31] ax.service.ax_client: Generated new trial 13 with parameters {'lr': 0.0, 'momentum': 1.0}.
+[INFO 06-18 04:36:31] ax.service.ax_client: Generated new trial 14 with parameters {'lr': 0.0, 'momentum': 0.41}.
+[INFO 06-18 04:36:31] ax.service.ax_client: Generated new trial 15 with parameters {'lr': 0.0, 'momentum': 0.89}.
+[INFO 06-18 04:36:31] ax.service.ax_client: Generated new trial 16 with parameters {'lr': 0.04, 'momentum': 0.9}.
+[INFO 06-18 04:36:31] ax.service.ax_client: Generated new trial 17 with parameters {'lr': 0.0, 'momentum': 0.66}.
+[INFO 06-18 04:36:31] ax.service.ax_client: Generated new trial 18 with parameters {'lr': 0.0, 'momentum': 0.55}.
+[INFO 06-18 04:36:31] ax.service.ax_client: Generated new trial 19 with parameters {'lr': 0.0, 'momentum': 0.26}.
+[INFO 06-18 04:36:32] ax.service.ax_client: Generated new trial 20 with parameters {'lr': 0.04, 'momentum': 0.41}.
+[INFO 06-18 04:36:32] ax.service.ax_client: Generated new trial 21 with parameters {'lr': 0.0, 'momentum': 0.44}.
+[INFO 06-18 04:36:32] ax.service.ax_client: Generated new trial 22 with parameters {'lr': 0.0, 'momentum': 0.34}.
+[INFO 06-18 04:36:32] ax.service.ax_client: Generated new trial 23 with parameters {'lr': 0.0, 'momentum': 0.15}.
+[INFO 06-18 04:36:32] ax.service.ax_client: Generated new trial 24 with parameters {'lr': 0.0, 'momentum': 0.36}.
+[INFO 06-18 04:36:32] ax.service.ax_client: Generated new trial 25 with parameters {'lr': 0.29, 'momentum': 0.82}.
+[INFO 06-18 04:36:32] ax.service.ax_client: Generated new trial 26 with parameters {'lr': 0.1, 'momentum': 0.62}.
+[INFO 06-18 04:36:32] ax.service.ax_client: Generated new trial 27 with parameters {'lr': 0.0, 'momentum': 0.66}.
+[INFO 06-18 04:36:33] ax.service.ax_client: Generated new trial 28 with parameters {'lr': 0.0, 'momentum': 0.92}.
+[INFO 06-18 04:36:33] ax.service.ax_client: Generated new trial 29 with parameters {'lr': 0.0, 'momentum': 0.65}.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre><span class="ansi-cyan-fg">(pid=4351)</span> Downloading http://yann.lecun.com/exdb/mnist/train-images-idx3-ubyte.gz to /home/travis/.data/MNIST/raw/train-images-idx3-ubyte.gz
-<span class="ansi-cyan-fg">(pid=4351)</span> 2020-06-17 04:35:21,871	INFO trainable.py:217 -- Getting current IP.
-<span class="ansi-cyan-fg">(pid=4352)</span> 2020-06-17 04:35:21,900	INFO trainable.py:217 -- Getting current IP.
-<span class="ansi-cyan-fg">(pid=4352)</span> Downloading http://yann.lecun.com/exdb/mnist/train-images-idx3-ubyte.gz to /home/travis/.data/MNIST/raw/train-images-idx3-ubyte.gz
+<pre><span class="ansi-cyan-fg">(pid=4100)</span> Downloading http://yann.lecun.com/exdb/mnist/train-images-idx3-ubyte.gz to /home/travis/.data/MNIST/raw/train-images-idx3-ubyte.gz
+<span class="ansi-cyan-fg">(pid=4100)</span> 2020-06-18 04:36:35,283	INFO trainable.py:217 -- Getting current IP.
+<span class="ansi-cyan-fg">(pid=4099)</span> 2020-06-18 04:36:35,286	INFO trainable.py:217 -- Getting current IP.
+<span class="ansi-cyan-fg">(pid=4099)</span> Downloading http://yann.lecun.com/exdb/mnist/train-images-idx3-ubyte.gz to /home/travis/.data/MNIST/raw/train-images-idx3-ubyte.gz
 0.1%
-0.4%
 0.1%
-2.1%
-0.3%
-2.2%
-17.6%
-1.4%
-60.2%
-2.0%
-61.3%
-62.1%
-63.0%
-63.5%
-2.1%
-100.1%
-3.0%
-<span class="ansi-cyan-fg">(pid=4351)</span> Extracting /home/travis/.data/MNIST/raw/train-images-idx3-ubyte.gz to /home/travis/.data/MNIST/raw
-4.2%
-5.5%
-6.6%
-8.1%
-9.3%
-10.6%
-<span class="ansi-cyan-fg">(pid=4351)</span> Downloading http://yann.lecun.com/exdb/mnist/train-labels-idx1-ubyte.gz to /home/travis/.data/MNIST/raw/train-labels-idx1-ubyte.gz
-11.6%
-12.2%
-28.4%
-12.8%
-<span class="ansi-cyan-fg">(pid=4351)</span> Extracting /home/travis/.data/MNIST/raw/train-labels-idx1-ubyte.gz to /home/travis/.data/MNIST/raw
-<span class="ansi-cyan-fg">(pid=4351)</span> Downloading http://yann.lecun.com/exdb/mnist/t10k-images-idx3-ubyte.gz to /home/travis/.data/MNIST/raw/t10k-images-idx3-ubyte.gz
-113.5%
-13.6%
-14.3%
-0.5%
-14.6%
-5.5%
-15.8%
-35.8%
-16.4%
-36.8%
-16.5%
-38.3%
-16.7%
-39.7%
-<span class="ansi-cyan-fg">(pid=4351)</span> Extracting /home/travis/.data/MNIST/raw/t10k-images-idx3-ubyte.gz to /home/travis/.data/MNIST/raw
-100.4%
-17.4%
-<span class="ansi-cyan-fg">(pid=4351)</span> Downloading http://yann.lecun.com/exdb/mnist/t10k-labels-idx1-ubyte.gz to /home/travis/.data/MNIST/raw/t10k-labels-idx1-ubyte.gz
-18.1%
-19.2%
-<span class="ansi-cyan-fg">(pid=4351)</span> Extracting /home/travis/.data/MNIST/raw/t10k-labels-idx1-ubyte.gz to /home/travis/.data/MNIST/raw
-<span class="ansi-cyan-fg">(pid=4351)</span> Processing...
-180.4%/pytorch/torch/csrc/utils/tensor_numpy.cpp:141: UserWarning:
-<span class="ansi-cyan-fg">(pid=4351)</span> 
-<span class="ansi-cyan-fg">(pid=4351)</span> The given NumPy array is not writeable, and PyTorch does not support non-writeable tensors. This means you can write to the underlying (supposedly non-writeable) NumPy array using the tensor. You may want to copy the array to protect its data or make it writeable before converting it to a tensor. This type of warning will be suppressed for the rest of this program.
-<span class="ansi-cyan-fg">(pid=4351)</span> 
-19.8%
-<span class="ansi-cyan-fg">(pid=4351)</span> Done!
-20.4%
-20.5%
-21.0%
-21.7%
-22.4%
-23.0%
-23.7%
-24.5%
-25.5%
-26.4%
-27.4%
-28.3%
-29.3%
-29.4%
-29.5%
-30.5%
-31.5%
-32.2%
-33.0%
-34.0%
-35.0%
+3.1%
+2.5%
+31.7%
 35.9%
-36.9%
-38.1%
-39.3%
-39.9%
-41.0%
-42.0%
+32.0%
+36.0%
+36.4%
+37.0%
+37.6%
+32.2%
+37.7%
+32.9%
+33.0%
+33.8%
+33.9%
+34.3%
+38.2%
+34.7%
+34.8%
+35.4%
+38.3%
+38.8%
+35.6%
+35.7%
+39.2%
+35.9%
+39.8%
+36.4%
 43.1%
-43.7%
-44.9%
-45.5%
-46.6%
-47.5%
-48.2%
-48.7%
-49.3%
-50.0%
-50.8%
-51.5%
-52.4%
-53.1%
-54.0%
-54.3%
-55.0%
-55.4%
-55.7%
-56.1%
-56.5%
-57.0%
-57.5%
-57.9%
-58.4%
-58.9%
-59.4%
-59.8%
-60.2%
-60.7%
-61.2%
-61.7%
-61.7%
-62.0%
-62.6%
-63.1%
-63.7%
-64.2%
-64.9%
-65.3%
-66.2%
-66.6%
-67.2%
-67.9%
-68.5%
-68.6%
-69.3%
-70.0%
-70.1%
-70.9%
-71.7%
-72.4%
-73.1%
-73.8%
+39.6%
+43.3%
+44.0%
+44.1%
+44.2%
+69.6%
+74.4%
 74.5%
-75.0%
-75.5%
-75.8%
-76.3%
-76.6%
-76.9%
-77.3%
-77.9%
-78.4%
-78.8%
-79.5%
-79.8%
-80.0%
-80.2%
-80.7%
-81.1%
-81.7%
-82.3%
-82.9%
-83.0%
-83.1%
-83.7%
-84.2%
-84.9%
-85.3%
-85.7%
-86.2%
-86.6%
-86.7%
-87.2%
-87.9%
-88.5%
-89.1%
-89.3%
-89.9%
-90.7%
-91.5%
-92.0%
-92.6%
-93.3%
-94.1%
-94.5%
-95.5%
-96.1%
-96.9%
-97.4%
-98.0%
-98.4%
-98.9%
-99.3%
-99.8%
+70.1%
+74.6%
+70.5%
+99.1%
+99.2%
 100.1%
-<span class="ansi-cyan-fg">(pid=4352)</span> Extracting /home/travis/.data/MNIST/raw/train-images-idx3-ubyte.gz to /home/travis/.data/MNIST/raw
-<span class="ansi-cyan-fg">(pid=4352)</span> Using downloaded and verified file: /home/travis/.data/MNIST/raw/train-labels-idx1-ubyte.gz
-<span class="ansi-cyan-fg">(pid=4352)</span> Extracting /home/travis/.data/MNIST/raw/train-labels-idx1-ubyte.gz to /home/travis/.data/MNIST/raw
-<span class="ansi-cyan-fg">(pid=4352)</span> Using downloaded and verified file: /home/travis/.data/MNIST/raw/t10k-images-idx3-ubyte.gz
-<span class="ansi-cyan-fg">(pid=4352)</span> Extracting /home/travis/.data/MNIST/raw/t10k-images-idx3-ubyte.gz to /home/travis/.data/MNIST/raw
-<span class="ansi-cyan-fg">(pid=4352)</span> Using downloaded and verified file: /home/travis/.data/MNIST/raw/t10k-labels-idx1-ubyte.gz
-<span class="ansi-cyan-fg">(pid=4352)</span> Extracting /home/travis/.data/MNIST/raw/t10k-labels-idx1-ubyte.gz to /home/travis/.data/MNIST/raw
-<span class="ansi-cyan-fg">(pid=4352)</span> Processing...
-<span class="ansi-cyan-fg">(pid=4352)</span> /pytorch/torch/csrc/utils/tensor_numpy.cpp:141: UserWarning:
-<span class="ansi-cyan-fg">(pid=4352)</span> 
-<span class="ansi-cyan-fg">(pid=4352)</span> The given NumPy array is not writeable, and PyTorch does not support non-writeable tensors. This means you can write to the underlying (supposedly non-writeable) NumPy array using the tensor. You may want to copy the array to protect its data or make it writeable before converting it to a tensor. This type of warning will be suppressed for the rest of this program.
-<span class="ansi-cyan-fg">(pid=4352)</span> 
-<span class="ansi-cyan-fg">(pid=4352)</span> Done!
+100.0%
+100.1%
+<span class="ansi-cyan-fg">(pid=4100)</span> Extracting /home/travis/.data/MNIST/raw/train-images-idx3-ubyte.gz to /home/travis/.data/MNIST/raw
+<span class="ansi-cyan-fg">(pid=4099)</span> Extracting /home/travis/.data/MNIST/raw/train-images-idx3-ubyte.gz to /home/travis/.data/MNIST/raw
+<span class="ansi-cyan-fg">(pid=4100)</span> Downloading http://yann.lecun.com/exdb/mnist/train-labels-idx1-ubyte.gz to /home/travis/.data/MNIST/raw/train-labels-idx1-ubyte.gz
+<span class="ansi-cyan-fg">(pid=4099)</span> Downloading http://yann.lecun.com/exdb/mnist/train-labels-idx1-ubyte.gz to /home/travis/.data/MNIST/raw/train-labels-idx1-ubyte.gz
+<span class="ansi-cyan-fg">(pid=4100)</span> Extracting /home/travis/.data/MNIST/raw/train-labels-idx1-ubyte.gz to /home/travis/.data/MNIST/raw
+<span class="ansi-cyan-fg">(pid=4100)</span> Downloading http://yann.lecun.com/exdb/mnist/t10k-images-idx3-ubyte.gz to /home/travis/.data/MNIST/raw/t10k-images-idx3-ubyte.gz
+113.5%
+113.5%
+<span class="ansi-cyan-fg">(pid=4099)</span> Extracting /home/travis/.data/MNIST/raw/train-labels-idx1-ubyte.gz to /home/travis/.data/MNIST/raw
+<span class="ansi-cyan-fg">(pid=4099)</span> Downloading http://yann.lecun.com/exdb/mnist/t10k-images-idx3-ubyte.gz to /home/travis/.data/MNIST/raw/t10k-images-idx3-ubyte.gz
+2.5%
+4.5%
+37.3%
+100.4%
+39.7%
+41.2%
+<span class="ansi-cyan-fg">(pid=4100)</span> Extracting /home/travis/.data/MNIST/raw/t10k-images-idx3-ubyte.gz to /home/travis/.data/MNIST/raw
+100.4%
+<span class="ansi-cyan-fg">(pid=4099)</span> Extracting /home/travis/.data/MNIST/raw/t10k-images-idx3-ubyte.gz to /home/travis/.data/MNIST/raw
+<span class="ansi-cyan-fg">(pid=4100)</span> Downloading http://yann.lecun.com/exdb/mnist/t10k-labels-idx1-ubyte.gz to /home/travis/.data/MNIST/raw/t10k-labels-idx1-ubyte.gz
+<span class="ansi-cyan-fg">(pid=4099)</span> Downloading http://yann.lecun.com/exdb/mnist/t10k-labels-idx1-ubyte.gz to /home/travis/.data/MNIST/raw/t10k-labels-idx1-ubyte.gz
+<span class="ansi-cyan-fg">(pid=4100)</span> Extracting /home/travis/.data/MNIST/raw/t10k-labels-idx1-ubyte.gz to /home/travis/.data/MNIST/raw
+<span class="ansi-cyan-fg">(pid=4100)</span> Processing...
+180.4%
+180.4%/pytorch/torch/csrc/utils/tensor_numpy.cpp:141: UserWarning:
+<span class="ansi-cyan-fg">(pid=4099)</span> 
+<span class="ansi-cyan-fg">(pid=4099)</span> The given NumPy array is not writeable, and PyTorch does not support non-writeable tensors. This means you can write to the underlying (supposedly non-writeable) NumPy array using the tensor. You may want to copy the array to protect its data or make it writeable before converting it to a tensor. This type of warning will be suppressed for the rest of this program.
+<span class="ansi-cyan-fg">(pid=4099)</span> 
+<span class="ansi-cyan-fg">(pid=4099)</span> Extracting /home/travis/.data/MNIST/raw/t10k-labels-idx1-ubyte.gz to /home/travis/.data/MNIST/raw
+<span class="ansi-cyan-fg">(pid=4099)</span> Processing...
+<span class="ansi-cyan-fg">(pid=4100)</span> /pytorch/torch/csrc/utils/tensor_numpy.cpp:141: UserWarning:
+<span class="ansi-cyan-fg">(pid=4100)</span> 
+<span class="ansi-cyan-fg">(pid=4100)</span> The given NumPy array is not writeable, and PyTorch does not support non-writeable tensors. This means you can write to the underlying (supposedly non-writeable) NumPy array using the tensor. You may want to copy the array to protect its data or make it writeable before converting it to a tensor. This type of warning will be suppressed for the rest of this program.
+<span class="ansi-cyan-fg">(pid=4100)</span> 
+<span class="ansi-cyan-fg">(pid=4100)</span> Done!
+<span class="ansi-cyan-fg">(pid=4099)</span> Done!
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>[INFO 06-17 04:35:36] ax.service.ax_client: Completed trial 1 with data: {'mean_accuracy': (0.1, 0.0)}.
+<pre>[INFO 06-18 04:36:53] ax.service.ax_client: Completed trial 0 with data: {'mean_accuracy': (0.09, 0.0)}.
+[INFO 06-18 04:36:53] ax.service.ax_client: Completed trial 1 with data: {'mean_accuracy': (0.8, 0.0)}.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre><span class="ansi-cyan-fg">(pid=4418)</span> 2020-06-17 04:35:39,659	INFO trainable.py:217 -- Getting current IP.
+<pre><span class="ansi-cyan-fg">(pid=4168)</span> 2020-06-18 04:36:56,558	INFO trainable.py:217 -- Getting current IP.
+<span class="ansi-cyan-fg">(pid=4169)</span> 2020-06-18 04:36:56,939	INFO trainable.py:217 -- Getting current IP.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>[INFO 06-17 04:35:47] ax.service.ax_client: Completed trial 0 with data: {'mean_accuracy': (0.84, 0.0)}.
+<pre>[INFO 06-18 04:37:13] ax.service.ax_client: Completed trial 2 with data: {'mean_accuracy': (0.1, 0.0)}.
+[INFO 06-18 04:37:14] ax.service.ax_client: Completed trial 3 with data: {'mean_accuracy': (0.11, 0.0)}.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre><span class="ansi-cyan-fg">(pid=4435)</span> 2020-06-17 04:35:51,088	INFO trainable.py:217 -- Getting current IP.
+<pre><span class="ansi-cyan-fg">(pid=4177)</span> 2020-06-18 04:37:15,929	INFO trainable.py:217 -- Getting current IP.
+<span class="ansi-cyan-fg">(pid=4219)</span> 2020-06-18 04:37:17,210	INFO trainable.py:217 -- Getting current IP.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>[INFO 06-17 04:35:56] ax.service.ax_client: Completed trial 2 with data: {'mean_accuracy': (0.1, 0.0)}.
+<pre>[INFO 06-18 04:37:32] ax.service.ax_client: Completed trial 4 with data: {'mean_accuracy': (0.77, 0.0)}.
+[INFO 06-18 04:37:34] ax.service.ax_client: Completed trial 5 with data: {'mean_accuracy': (0.95, 0.0)}.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre><span class="ansi-cyan-fg">(pid=4451)</span> 2020-06-17 04:35:59,475	INFO trainable.py:217 -- Getting current IP.
+<pre><span class="ansi-cyan-fg">(pid=4238)</span> 2020-06-18 04:37:35,844	INFO trainable.py:217 -- Getting current IP.
+<span class="ansi-cyan-fg">(pid=4251)</span> 2020-06-18 04:37:37,452	INFO trainable.py:217 -- Getting current IP.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>[INFO 06-17 04:36:07] ax.service.ax_client: Completed trial 3 with data: {'mean_accuracy': (0.1, 0.0)}.
+<pre>[INFO 06-18 04:37:52] ax.service.ax_client: Completed trial 6 with data: {'mean_accuracy': (0.1, 0.0)}.
+[INFO 06-18 04:37:54] ax.service.ax_client: Completed trial 7 with data: {'mean_accuracy': (0.91, 0.0)}.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre><span class="ansi-cyan-fg">(pid=4474)</span> 2020-06-17 04:36:11,147	INFO trainable.py:217 -- Getting current IP.
+<pre><span class="ansi-cyan-fg">(pid=4271)</span> 2020-06-18 04:37:55,743	INFO trainable.py:217 -- Getting current IP.
+<span class="ansi-cyan-fg">(pid=4284)</span> 2020-06-18 04:37:57,981	INFO trainable.py:217 -- Getting current IP.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>[INFO 06-17 04:36:16] ax.service.ax_client: Completed trial 4 with data: {'mean_accuracy': (0.95, 0.0)}.
+<pre>[INFO 06-18 04:38:12] ax.service.ax_client: Completed trial 8 with data: {'mean_accuracy': (0.95, 0.0)}.
+[INFO 06-18 04:38:14] ax.service.ax_client: Completed trial 9 with data: {'mean_accuracy': (0.1, 0.0)}.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre><span class="ansi-cyan-fg">(pid=4490)</span> 2020-06-17 04:36:19,470	INFO trainable.py:217 -- Getting current IP.
+<pre><span class="ansi-cyan-fg">(pid=4303)</span> 2020-06-18 04:38:16,049	INFO trainable.py:217 -- Getting current IP.
+<span class="ansi-cyan-fg">(pid=4316)</span> 2020-06-18 04:38:17,760	INFO trainable.py:217 -- Getting current IP.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>[INFO 06-17 04:36:28] ax.service.ax_client: Completed trial 5 with data: {'mean_accuracy': (0.68, 0.0)}.
+<pre>[INFO 06-18 04:38:33] ax.service.ax_client: Completed trial 10 with data: {'mean_accuracy': (0.7, 0.0)}.
+[INFO 06-18 04:38:34] ax.service.ax_client: Completed trial 11 with data: {'mean_accuracy': (0.12, 0.0)}.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre><span class="ansi-cyan-fg">(pid=4506)</span> 2020-06-17 04:36:31,422	INFO trainable.py:217 -- Getting current IP.
+<pre><span class="ansi-cyan-fg">(pid=4341)</span> 2020-06-18 04:38:36,425	INFO trainable.py:217 -- Getting current IP.
+<span class="ansi-cyan-fg">(pid=4354)</span> 2020-06-18 04:38:37,928	INFO trainable.py:217 -- Getting current IP.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>[INFO 06-17 04:36:36] ax.service.ax_client: Completed trial 6 with data: {'mean_accuracy': (0.96, 0.0)}.
+<pre>[INFO 06-18 04:38:53] ax.service.ax_client: Completed trial 12 with data: {'mean_accuracy': (0.8, 0.0)}.
+[INFO 06-18 04:38:54] ax.service.ax_client: Completed trial 13 with data: {'mean_accuracy': (0.12, 0.0)}.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre><span class="ansi-cyan-fg">(pid=4522)</span> 2020-06-17 04:36:39,499	INFO trainable.py:217 -- Getting current IP.
+<pre><span class="ansi-cyan-fg">(pid=4375)</span> 2020-06-18 04:38:56,774	INFO trainable.py:217 -- Getting current IP.
+<span class="ansi-cyan-fg">(pid=4386)</span> 2020-06-18 04:38:57,798	INFO trainable.py:217 -- Getting current IP.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>[INFO 06-17 04:36:48] ax.service.ax_client: Completed trial 7 with data: {'mean_accuracy': (0.86, 0.0)}.
+<pre>[INFO 06-18 04:39:13] ax.service.ax_client: Completed trial 14 with data: {'mean_accuracy': (0.86, 0.0)}.
+[INFO 06-18 04:39:15] ax.service.ax_client: Completed trial 15 with data: {'mean_accuracy': (0.88, 0.0)}.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre><span class="ansi-cyan-fg">(pid=4538)</span> 2020-06-17 04:36:52,025	INFO trainable.py:217 -- Getting current IP.
+<pre><span class="ansi-cyan-fg">(pid=4430)</span> 2020-06-18 04:39:16,848	INFO trainable.py:217 -- Getting current IP.
+<span class="ansi-cyan-fg">(pid=4443)</span> 2020-06-18 04:39:18,075	INFO trainable.py:217 -- Getting current IP.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>[INFO 06-17 04:36:56] ax.service.ax_client: Completed trial 8 with data: {'mean_accuracy': (0.95, 0.0)}.
+<pre>[INFO 06-18 04:39:33] ax.service.ax_client: Completed trial 16 with data: {'mean_accuracy': (0.1, 0.0)}.
+[INFO 06-18 04:39:35] ax.service.ax_client: Completed trial 17 with data: {'mean_accuracy': (0.93, 0.0)}.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre><span class="ansi-cyan-fg">(pid=4554)</span> 2020-06-17 04:36:59,946	INFO trainable.py:217 -- Getting current IP.
+<pre><span class="ansi-cyan-fg">(pid=4463)</span> 2020-06-18 04:39:36,935	INFO trainable.py:217 -- Getting current IP.
+<span class="ansi-cyan-fg">(pid=4476)</span> 2020-06-18 04:39:38,240	INFO trainable.py:217 -- Getting current IP.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>[INFO 06-17 04:37:09] ax.service.ax_client: Completed trial 9 with data: {'mean_accuracy': (0.86, 0.0)}.
+<pre>[INFO 06-18 04:39:54] ax.service.ax_client: Completed trial 18 with data: {'mean_accuracy': (0.25, 0.0)}.
+[INFO 06-18 04:39:55] ax.service.ax_client: Completed trial 19 with data: {'mean_accuracy': (0.95, 0.0)}.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre><span class="ansi-cyan-fg">(pid=4577)</span> 2020-06-17 04:37:12,466	INFO trainable.py:217 -- Getting current IP.
+<pre><span class="ansi-cyan-fg">(pid=4501)</span> 2020-06-18 04:39:57,299	INFO trainable.py:217 -- Getting current IP.
+<span class="ansi-cyan-fg">(pid=4512)</span> 2020-06-18 04:39:58,193	INFO trainable.py:217 -- Getting current IP.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>[INFO 06-17 04:37:16] ax.service.ax_client: Completed trial 10 with data: {'mean_accuracy': (0.1, 0.0)}.
+<pre>[INFO 06-18 04:40:14] ax.service.ax_client: Completed trial 20 with data: {'mean_accuracy': (0.12, 0.0)}.
+[INFO 06-18 04:40:15] ax.service.ax_client: Completed trial 21 with data: {'mean_accuracy': (0.96, 0.0)}.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre><span class="ansi-cyan-fg">(pid=4593)</span> 2020-06-17 04:37:20,098	INFO trainable.py:217 -- Getting current IP.
+<pre><span class="ansi-cyan-fg">(pid=4533)</span> 2020-06-18 04:40:17,271	INFO trainable.py:217 -- Getting current IP.
+<span class="ansi-cyan-fg">(pid=4544)</span> 2020-06-18 04:40:18,292	INFO trainable.py:217 -- Getting current IP.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>[INFO 06-17 04:37:29] ax.service.ax_client: Completed trial 11 with data: {'mean_accuracy': (0.1, 0.0)}.
+<pre>[INFO 06-18 04:40:34] ax.service.ax_client: Completed trial 22 with data: {'mean_accuracy': (0.26, 0.0)}.
+[INFO 06-18 04:40:35] ax.service.ax_client: Completed trial 23 with data: {'mean_accuracy': (0.83, 0.0)}.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre><span class="ansi-cyan-fg">(pid=4609)</span> 2020-06-17 04:37:32,648	INFO trainable.py:217 -- Getting current IP.
+<pre><span class="ansi-cyan-fg">(pid=4566)</span> 2020-06-18 04:40:37,381	INFO trainable.py:217 -- Getting current IP.
+<span class="ansi-cyan-fg">(pid=4579)</span> 2020-06-18 04:40:38,737	INFO trainable.py:217 -- Getting current IP.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>[INFO 06-17 04:37:37] ax.service.ax_client: Completed trial 12 with data: {'mean_accuracy': (0.97, 0.0)}.
+<pre>[INFO 06-18 04:40:54] ax.service.ax_client: Completed trial 24 with data: {'mean_accuracy': (0.25, 0.0)}.
+[INFO 06-18 04:40:56] ax.service.ax_client: Completed trial 25 with data: {'mean_accuracy': (0.1, 0.0)}.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre><span class="ansi-cyan-fg">(pid=4625)</span> 2020-06-17 04:37:40,641	INFO trainable.py:217 -- Getting current IP.
+<pre><span class="ansi-cyan-fg">(pid=4600)</span> 2020-06-18 04:40:57,936	INFO trainable.py:217 -- Getting current IP.
+<span class="ansi-cyan-fg">(pid=4611)</span> 2020-06-18 04:40:58,740	INFO trainable.py:217 -- Getting current IP.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>[INFO 06-17 04:37:49] ax.service.ax_client: Completed trial 13 with data: {'mean_accuracy': (0.12, 0.0)}.
+<pre>[INFO 06-18 04:41:14] ax.service.ax_client: Completed trial 26 with data: {'mean_accuracy': (0.11, 0.0)}.
+[INFO 06-18 04:41:16] ax.service.ax_client: Completed trial 27 with data: {'mean_accuracy': (0.72, 0.0)}.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre><span class="ansi-cyan-fg">(pid=4641)</span> 2020-06-17 04:37:52,539	INFO trainable.py:217 -- Getting current IP.
+<pre><span class="ansi-cyan-fg">(pid=4632)</span> 2020-06-18 04:41:17,843	INFO trainable.py:217 -- Getting current IP.
+<span class="ansi-cyan-fg">(pid=4643)</span> 2020-06-18 04:41:19,048	INFO trainable.py:217 -- Getting current IP.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>[INFO 06-17 04:37:57] ax.service.ax_client: Completed trial 14 with data: {'mean_accuracy': (0.92, 0.0)}.
-</pre>
-</div>
-</div>
-<div class="output_area">
-<div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre><span class="ansi-cyan-fg">(pid=4678)</span> 2020-06-17 04:38:01,145	INFO trainable.py:217 -- Getting current IP.
-</pre>
-</div>
-</div>
-<div class="output_area">
-<div class="prompt"></div>
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>[INFO 06-17 04:38:09] ax.service.ax_client: Completed trial 15 with data: {'mean_accuracy': (0.1, 0.0)}.
-</pre>
-</div>
-</div>
-<div class="output_area">
-<div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre><span class="ansi-cyan-fg">(pid=4699)</span> 2020-06-17 04:38:12,806	INFO trainable.py:217 -- Getting current IP.
-</pre>
-</div>
-</div>
-<div class="output_area">
-<div class="prompt"></div>
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>[INFO 06-17 04:38:18] ax.service.ax_client: Completed trial 16 with data: {'mean_accuracy': (0.87, 0.0)}.
-</pre>
-</div>
-</div>
-<div class="output_area">
-<div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre><span class="ansi-cyan-fg">(pid=4716)</span> 2020-06-17 04:38:21,384	INFO trainable.py:217 -- Getting current IP.
-</pre>
-</div>
-</div>
-<div class="output_area">
-<div class="prompt"></div>
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>[INFO 06-17 04:38:30] ax.service.ax_client: Completed trial 17 with data: {'mean_accuracy': (0.29, 0.0)}.
-</pre>
-</div>
-</div>
-<div class="output_area">
-<div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre><span class="ansi-cyan-fg">(pid=4732)</span> 2020-06-17 04:38:33,640	INFO trainable.py:217 -- Getting current IP.
-</pre>
-</div>
-</div>
-<div class="output_area">
-<div class="prompt"></div>
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>[INFO 06-17 04:38:38] ax.service.ax_client: Completed trial 18 with data: {'mean_accuracy': (0.96, 0.0)}.
-</pre>
-</div>
-</div>
-<div class="output_area">
-<div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre><span class="ansi-cyan-fg">(pid=4748)</span> 2020-06-17 04:38:41,814	INFO trainable.py:217 -- Getting current IP.
-</pre>
-</div>
-</div>
-<div class="output_area">
-<div class="prompt"></div>
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>[INFO 06-17 04:38:50] ax.service.ax_client: Completed trial 19 with data: {'mean_accuracy': (0.09, 0.0)}.
-</pre>
-</div>
-</div>
-<div class="output_area">
-<div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre><span class="ansi-cyan-fg">(pid=4764)</span> 2020-06-17 04:38:53,958	INFO trainable.py:217 -- Getting current IP.
-</pre>
-</div>
-</div>
-<div class="output_area">
-<div class="prompt"></div>
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>[INFO 06-17 04:38:58] ax.service.ax_client: Completed trial 20 with data: {'mean_accuracy': (0.1, 0.0)}.
-</pre>
-</div>
-</div>
-<div class="output_area">
-<div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre><span class="ansi-cyan-fg">(pid=4781)</span> 2020-06-17 04:39:02,193	INFO trainable.py:217 -- Getting current IP.
-</pre>
-</div>
-</div>
-<div class="output_area">
-<div class="prompt"></div>
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>[INFO 06-17 04:39:10] ax.service.ax_client: Completed trial 21 with data: {'mean_accuracy': (0.1, 0.0)}.
-</pre>
-</div>
-</div>
-<div class="output_area">
-<div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre><span class="ansi-cyan-fg">(pid=4802)</span> 2020-06-17 04:39:14,071	INFO trainable.py:217 -- Getting current IP.
-</pre>
-</div>
-</div>
-<div class="output_area">
-<div class="prompt"></div>
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>[INFO 06-17 04:39:19] ax.service.ax_client: Completed trial 22 with data: {'mean_accuracy': (0.97, 0.0)}.
-</pre>
-</div>
-</div>
-<div class="output_area">
-<div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre><span class="ansi-cyan-fg">(pid=4819)</span> 2020-06-17 04:39:22,838	INFO trainable.py:217 -- Getting current IP.
-</pre>
-</div>
-</div>
-<div class="output_area">
-<div class="prompt"></div>
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>[INFO 06-17 04:39:31] ax.service.ax_client: Completed trial 23 with data: {'mean_accuracy': (0.1, 0.0)}.
-</pre>
-</div>
-</div>
-<div class="output_area">
-<div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre><span class="ansi-cyan-fg">(pid=4835)</span> 2020-06-17 04:39:34,560	INFO trainable.py:217 -- Getting current IP.
-</pre>
-</div>
-</div>
-<div class="output_area">
-<div class="prompt"></div>
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>[INFO 06-17 04:39:39] ax.service.ax_client: Completed trial 24 with data: {'mean_accuracy': (0.94, 0.0)}.
-</pre>
-</div>
-</div>
-<div class="output_area">
-<div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre><span class="ansi-cyan-fg">(pid=4851)</span> 2020-06-17 04:39:43,242	INFO trainable.py:217 -- Getting current IP.
-</pre>
-</div>
-</div>
-<div class="output_area">
-<div class="prompt"></div>
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>[INFO 06-17 04:39:51] ax.service.ax_client: Completed trial 25 with data: {'mean_accuracy': (0.89, 0.0)}.
-</pre>
-</div>
-</div>
-<div class="output_area">
-<div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre><span class="ansi-cyan-fg">(pid=4867)</span> 2020-06-17 04:39:55,040	INFO trainable.py:217 -- Getting current IP.
-</pre>
-</div>
-</div>
-<div class="output_area">
-<div class="prompt"></div>
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>[INFO 06-17 04:40:00] ax.service.ax_client: Completed trial 26 with data: {'mean_accuracy': (0.81, 0.0)}.
-</pre>
-</div>
-</div>
-<div class="output_area">
-<div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre><span class="ansi-cyan-fg">(pid=4883)</span> 2020-06-17 04:40:03,642	INFO trainable.py:217 -- Getting current IP.
-</pre>
-</div>
-</div>
-<div class="output_area">
-<div class="prompt"></div>
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>[INFO 06-17 04:40:12] ax.service.ax_client: Completed trial 27 with data: {'mean_accuracy': (0.93, 0.0)}.
-</pre>
-</div>
-</div>
-<div class="output_area">
-<div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre><span class="ansi-cyan-fg">(pid=4904)</span> 2020-06-17 04:40:16,017	INFO trainable.py:217 -- Getting current IP.
-</pre>
-</div>
-</div>
-<div class="output_area">
-<div class="prompt"></div>
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>[INFO 06-17 04:40:20] ax.service.ax_client: Completed trial 28 with data: {'mean_accuracy': (0.1, 0.0)}.
-[INFO 06-17 04:40:28] ax.service.ax_client: Completed trial 29 with data: {'mean_accuracy': (0.11, 0.0)}.
+<pre>[INFO 06-18 04:41:34] ax.service.ax_client: Completed trial 28 with data: {'mean_accuracy': (0.88, 0.0)}.
+[INFO 06-18 04:41:35] ax.service.ax_client: Completed trial 29 with data: {'mean_accuracy': (0.92, 0.0)}.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt output_prompt">Out[6]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;ray.tune.analysis.experiment_analysis.ExperimentAnalysis at 0x7fc0ed529b70&gt;</pre>
+<pre>&lt;ray.tune.analysis.experiment_analysis.ExperimentAnalysis at 0x7fe27c28cb00&gt;</pre>
 </div>
 </div>
 </div>
@@ -1277,7 +985,7 @@ var n,a=t("./lib/build-log"),i=t("./lib/epsilon"),o=t("./lib/intersecter"),s=t("
 <div class="output_area">
 <div class="prompt output_prompt">Out[7]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>{'lr': 0.0007434953472424679, 'momentum': 0.8411098588258028}</pre>
+<pre>{'lr': 0.0015372947822524985, 'momentum': 0.4417852936312556}</pre>
 </div>
 </div>
 </div>
@@ -1299,7 +1007,7 @@ var n,a=t("./lib/build-log"),i=t("./lib/epsilon"),o=t("./lib/intersecter"),s=t("
 <div class="output_area">
 <div class="prompt output_prompt">Out[8]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>{'mean_accuracy': 0.9725}</pre>
+<pre>{'mean_accuracy': 0.964}</pre>
 </div>
 </div>
 </div>
