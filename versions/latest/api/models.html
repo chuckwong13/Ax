@@ -1718,26 +1718,6 @@ dictionary. Otherwise, will fit the model.</p></li>
 </dl>
 </dd></dl>
 <dl class="function">
-<dt id="ax.models.torch.botorch_defaults.predict_from_model">
-<code class="sig-prename descclassname">ax.models.torch.botorch_defaults.</code><code class="sig-name descname">predict_from_model</code><span class="sig-paren">(</span><em class="sig-param">model</em>, <em class="sig-param">X</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/models/torch/botorch_defaults.html#predict_from_model"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.models.torch.botorch_defaults.predict_from_model" title="Permalink to this definition">¶</a></dt>
-<dd><p>Predicts outcomes given a model and input tensor.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>model</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code>) – A botorch Model.</p></li>
-<li><p><strong>X</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Tensor</span></code>) – A <cite>n x d</cite> tensor of input parameters.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>The predicted posterior mean as an <cite>n x o</cite>-dim tensor.
-Tensor: The predicted posterior covariance as a <cite>n x o x o</cite>-dim tensor.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>Tensor</p>
-</dd>
-</dl>
-</dd></dl>
-<dl class="function">
 <dt id="ax.models.torch.botorch_defaults.recommend_best_observed_point">
 <code class="sig-prename descclassname">ax.models.torch.botorch_defaults.</code><code class="sig-name descname">recommend_best_observed_point</code><span class="sig-paren">(</span><em class="sig-param">model</em>, <em class="sig-param">bounds</em>, <em class="sig-param">objective_weights</em>, <em class="sig-param">outcome_constraints=None</em>, <em class="sig-param">linear_constraints=None</em>, <em class="sig-param">fixed_features=None</em>, <em class="sig-param">model_gen_options=None</em>, <em class="sig-param">target_fidelities=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/models/torch/botorch_defaults.html#recommend_best_observed_point"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.models.torch.botorch_defaults.recommend_best_observed_point" title="Permalink to this definition">¶</a></dt>
 <dd><p>A wrapper around <cite>ax.models.model_utils.best_observed_point</cite> for TorchModel
@@ -1899,6 +1879,26 @@ but can differ to account for fidelities etc.</p>
 </dd>
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>A normalized list of indices such that each index is between <cite>0</cite> and <cite>d-1</cite>.</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="function">
+<dt id="ax.models.torch.utils.predict_from_model">
+<code class="sig-prename descclassname">ax.models.torch.utils.</code><code class="sig-name descname">predict_from_model</code><span class="sig-paren">(</span><em class="sig-param">model</em>, <em class="sig-param">X</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/models/torch/utils.html#predict_from_model"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.models.torch.utils.predict_from_model" title="Permalink to this definition">¶</a></dt>
+<dd><p>Predicts outcomes given a model and input tensor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code>) – A botorch Model.</p></li>
+<li><p><strong>X</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Tensor</span></code>) – A <cite>n x d</cite> tensor of input parameters.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The predicted posterior mean as an <cite>n x o</cite>-dim tensor.
+Tensor: The predicted posterior covariance as a <cite>n x o x o</cite>-dim tensor.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Tensor</p>
 </dd>
 </dl>
 </dd></dl>

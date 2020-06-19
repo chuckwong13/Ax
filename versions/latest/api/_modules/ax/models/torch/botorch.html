@@ -52,6 +52,7 @@ src="/js/documentation_options.js">
     <span class="n">subset_model</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="kn">from</span> <span class="nn">ax.models.torch_base</span> <span class="kn">import</span> <span class="n">TorchModel</span>
+<span class="kn">from</span> <span class="nn">ax.utils.common.constants</span> <span class="kn">import</span> <span class="n">Keys</span>
 <span class="kn">from</span> <span class="nn">ax.utils.common.docutils</span> <span class="kn">import</span> <span class="n">copy_doc</span>
 <span class="kn">from</span> <span class="nn">ax.utils.common.logger</span> <span class="kn">import</span> <span class="n">get_logger</span>
 <span class="kn">from</span> <span class="nn">ax.utils.common.typeutils</span> <span class="kn">import</span> <span class="n">checked_cast</span>
@@ -342,8 +343,8 @@ src="/js/documentation_options.js">
         <span class="n">target_fidelities</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">Tensor</span><span class="p">,</span> <span class="n">TGenMetadata</span><span class="p">,</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">TCandidateMetadata</span><span class="p">]]]:</span>
         <span class="n">options</span> <span class="o">=</span> <span class="n">model_gen_options</span> <span class="ow">or</span> <span class="p">{}</span>
-        <span class="n">acf_options</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"acquisition_function_kwargs"</span><span class="p">,</span> <span class="p">{})</span>
-        <span class="n">optimizer_options</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"optimizer_kwargs"</span><span class="p">,</span> <span class="p">{})</span>
+        <span class="n">acf_options</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">Keys</span><span class="o">.</span><span class="n">ACQF_KWARGS</span><span class="p">,</span> <span class="p">{})</span>
+        <span class="n">optimizer_options</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">Keys</span><span class="o">.</span><span class="n">OPTIMIZER_KWARGS</span><span class="p">,</span> <span class="p">{})</span>
 
         <span class="k">if</span> <span class="n">target_fidelities</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span>
@@ -363,7 +364,7 @@ src="/js/documentation_options.js">
         <span class="n">model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span>
 
         <span class="c1"># subset model only to the outcomes we need for the optimization</span>
-        <span class="k">if</span> <span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"subset_model"</span><span class="p">,</span> <span class="kc">True</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">Keys</span><span class="o">.</span><span class="n">SUBSET_MODEL</span><span class="p">,</span> <span class="kc">True</span><span class="p">):</span>
             <span class="n">model</span><span class="p">,</span> <span class="n">objective_weights</span><span class="p">,</span> <span class="n">outcome_constraints</span> <span class="o">=</span> <span class="n">subset_model</span><span class="p">(</span>
                 <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>  <span class="c1"># pyre-ignore [6]</span>
                 <span class="n">objective_weights</span><span class="o">=</span><span class="n">objective_weights</span><span class="p">,</span>
