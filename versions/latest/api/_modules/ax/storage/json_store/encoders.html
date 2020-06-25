@@ -59,7 +59,7 @@ src="/js/documentation_options.js">
 <span class="kn">from</span> <span class="nn">ax.modelbridge.transforms.base</span> <span class="kn">import</span> <span class="n">Transform</span>
 <span class="kn">from</span> <span class="nn">ax.runners.synthetic</span> <span class="kn">import</span> <span class="n">SyntheticRunner</span>
 <span class="kn">from</span> <span class="nn">ax.storage.transform_registry</span> <span class="kn">import</span> <span class="n">TRANSFORM_REGISTRY</span>
-<span class="kn">from</span> <span class="nn">ax.storage.utils</span> <span class="kn">import</span> <span class="n">get_object_properties</span>
+<span class="kn">from</span> <span class="nn">ax.utils.common.serialization</span> <span class="kn">import</span> <span class="n">serialize_init_args</span>
 
 
 <div class="viewcode-block" id="experiment_to_dict"><a class="viewcode-back" href="../../../../storage.html#ax.storage.json_store.encoders.experiment_to_dict">[docs]</a><span class="k">def</span> <span class="nf">experiment_to_dict</span><span class="p">(</span><span class="n">experiment</span><span class="p">:</span> <span class="n">Experiment</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
@@ -229,7 +229,7 @@ src="/js/documentation_options.js">
 
 <div class="viewcode-block" id="metric_to_dict"><a class="viewcode-back" href="../../../../storage.html#ax.storage.json_store.encoders.metric_to_dict">[docs]</a><span class="k">def</span> <span class="nf">metric_to_dict</span><span class="p">(</span><span class="n">metric</span><span class="p">:</span> <span class="n">Metric</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
     <span class="sd">"""Convert Ax metric to a dictionary."""</span>
-    <span class="n">properties</span> <span class="o">=</span> <span class="n">get_object_properties</span><span class="p">(</span><span class="nb">object</span><span class="o">=</span><span class="n">metric</span><span class="p">)</span>
+    <span class="n">properties</span> <span class="o">=</span> <span class="n">serialize_init_args</span><span class="p">(</span><span class="nb">object</span><span class="o">=</span><span class="n">metric</span><span class="p">)</span>
     <span class="n">properties</span><span class="p">[</span><span class="s2">"__type"</span><span class="p">]</span> <span class="o">=</span> <span class="n">metric</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
     <span class="k">return</span> <span class="n">properties</span></div>
 
@@ -314,7 +314,7 @@ src="/js/documentation_options.js">
 
 <div class="viewcode-block" id="runner_to_dict"><a class="viewcode-back" href="../../../../storage.html#ax.storage.json_store.encoders.runner_to_dict">[docs]</a><span class="k">def</span> <span class="nf">runner_to_dict</span><span class="p">(</span><span class="n">runner</span><span class="p">:</span> <span class="n">SyntheticRunner</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
     <span class="sd">"""Convert Ax synthetic runner to a dictionary."""</span>
-    <span class="n">properties</span> <span class="o">=</span> <span class="n">get_object_properties</span><span class="p">(</span><span class="nb">object</span><span class="o">=</span><span class="n">runner</span><span class="p">)</span>
+    <span class="n">properties</span> <span class="o">=</span> <span class="n">serialize_init_args</span><span class="p">(</span><span class="nb">object</span><span class="o">=</span><span class="n">runner</span><span class="p">)</span>
     <span class="n">properties</span><span class="p">[</span><span class="s2">"__type"</span><span class="p">]</span> <span class="o">=</span> <span class="n">runner</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
     <span class="k">return</span> <span class="n">properties</span></div>
 
@@ -393,7 +393,7 @@ src="/js/documentation_options.js">
             <span class="s2">"optimal_value"</span><span class="p">:</span> <span class="n">benchmark_problem</span><span class="o">.</span><span class="n">optimal_value</span><span class="p">,</span>
         <span class="p">}</span>
     <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">benchmark_problem</span><span class="p">,</span> <span class="n">BenchmarkProblem</span><span class="p">):</span>
-        <span class="n">properties</span> <span class="o">=</span> <span class="n">get_object_properties</span><span class="p">(</span><span class="nb">object</span><span class="o">=</span><span class="n">benchmark_problem</span><span class="p">)</span>
+        <span class="n">properties</span> <span class="o">=</span> <span class="n">serialize_init_args</span><span class="p">(</span><span class="nb">object</span><span class="o">=</span><span class="n">benchmark_problem</span><span class="p">)</span>
         <span class="n">properties</span><span class="p">[</span><span class="s2">"__type"</span><span class="p">]</span> <span class="o">=</span> <span class="n">benchmark_problem</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
         <span class="k">return</span> <span class="n">properties</span>
     <span class="k">else</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>

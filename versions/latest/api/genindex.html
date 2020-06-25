@@ -607,6 +607,8 @@ src="/js/documentation_options.js">
 <td style="width: 33%; vertical-align: top;"><ul>
 <li><a href="core.html#ax.core.utils.best_feasible_objective">best_feasible_objective() (in module ax.core.utils)</a>
 </li>
+<li><a href="models.html#ax.models.model_utils.best_in_sample_point">best_in_sample_point() (in module ax.models.model_utils)</a>
+</li>
 <li><a href="models.html#ax.models.model_utils.best_observed_point">best_observed_point() (in module ax.models.model_utils)</a>
 </li>
 <li><a href="models.html#ax.models.discrete_base.DiscreteModel.best_point">best_point() (ax.models.discrete_base.DiscreteModel method)</a>
@@ -1031,12 +1033,12 @@ src="/js/documentation_options.js">
 </li>
 <li><a href="storage.html#ax.storage.sqa_store.sqa_classes.SQATrial.deployed_name">deployed_name (ax.storage.sqa_store.sqa_classes.SQATrial attribute)</a>
 </li>
-</ul></td>
-<td style="width: 33%; vertical-align: top;"><ul>
 <li><a href="core.html#ax.core.base_trial.BaseTrial.deployed_name">deployed_name() (ax.core.base_trial.BaseTrial property)</a>
 </li>
 <li><a href="modelbridge.html#ax.modelbridge.transforms.derelativize.Derelativize">Derelativize (class in ax.modelbridge.transforms.derelativize)</a>
 </li>
+</ul></td>
+<td style="width: 33%; vertical-align: top;"><ul>
 <li><a href="core.html#ax.core.data.Data.description">description (ax.core.data.Data attribute)</a>
 <ul>
 <li><a href="core.html#ax.core.multi_type_experiment.MultiTypeExperiment.description">(ax.core.multi_type_experiment.MultiTypeExperiment attribute)</a>
@@ -1046,6 +1048,15 @@ src="/js/documentation_options.js">
 <li><a href="storage.html#ax.storage.sqa_store.sqa_classes.SQAData.description">(ax.storage.sqa_store.sqa_classes.SQAData attribute)</a>
 </li>
 <li><a href="storage.html#ax.storage.sqa_store.sqa_classes.SQAExperiment.description">(ax.storage.sqa_store.sqa_classes.SQAExperiment attribute)</a>
+</li>
+</ul></li>
+<li><a href="core.html#ax.core.metric.Metric.deserialize_init_args">deserialize_init_args() (ax.core.metric.Metric class method)</a>
+<ul>
+<li><a href="core.html#ax.core.runner.Runner.deserialize_init_args">(ax.core.runner.Runner class method)</a>
+</li>
+<li><a href="ax.html#ax.Metric.deserialize_init_args">(ax.Metric class method)</a>
+</li>
+<li><a href="ax.html#ax.Runner.deserialize_init_args">(ax.Runner class method)</a>
 </li>
 </ul></li>
 <li><a href="models.html#ax.models.base.Model.deserialize_state">deserialize_state() (ax.models.base.Model class method)</a>
@@ -1159,8 +1170,6 @@ src="/js/documentation_options.js">
 <li><a href="core.html#ax.core.experiment.Experiment">(class in ax.core.experiment)</a>
 </li>
 </ul></li>
-</ul></td>
-<td style="width: 33%; vertical-align: top;"><ul>
 <li><a href="ax.html#ax.BatchTrial.experiment">experiment() (ax.BatchTrial property)</a>
 <ul>
 <li><a href="core.html#ax.core.base_trial.BaseTrial.experiment">(ax.core.base_trial.BaseTrial property)</a>
@@ -1172,6 +1181,8 @@ src="/js/documentation_options.js">
 <li><a href="service.html#ax.service.ax_client.AxClient.experiment">(ax.service.ax_client.AxClient property)</a>
 </li>
 </ul></li>
+</ul></td>
+<td style="width: 33%; vertical-align: top;"><ul>
 <li><a href="storage.html#ax.storage.json_store.decoder.experiment_from_json">experiment_from_json() (in module ax.storage.json_store.decoder)</a>
 </li>
 <li><a href="storage.html#ax.storage.sqa_store.decoder.Decoder.experiment_from_sqa">experiment_from_sqa() (ax.storage.sqa_store.decoder.Decoder method)</a>
@@ -1209,6 +1220,8 @@ src="/js/documentation_options.js">
 <li><a href="exceptions.html#ax.exceptions.core.ExperimentNotReadyError">ExperimentNotReadyError</a>
 </li>
 <li><a href="core.html#ax.core.generator_run.extract_arm_predictions">extract_arm_predictions() (in module ax.core.generator_run)</a>
+</li>
+<li><a href="utils.html#ax.utils.common.serialization.extract_init_args">extract_init_args() (in module ax.utils.common.serialization)</a>
 </li>
 <li><a href="modelbridge.html#ax.modelbridge.array.extract_objective_weights">extract_objective_weights() (in module ax.modelbridge.array)</a>
 </li>
@@ -1588,10 +1601,10 @@ src="/js/documentation_options.js">
 </li>
 <li><a href="utils.html#ax.utils.testing.core_stubs.get_experiment_with_batch_trial">get_experiment_with_batch_trial() (in module ax.utils.testing.core_stubs)</a>
 </li>
-<li><a href="utils.html#ax.utils.testing.core_stubs.get_experiment_with_data">get_experiment_with_data() (in module ax.utils.testing.core_stubs)</a>
-</li>
 </ul></td>
 <td style="width: 33%; vertical-align: top;"><ul>
+<li><a href="utils.html#ax.utils.testing.core_stubs.get_experiment_with_data">get_experiment_with_data() (in module ax.utils.testing.core_stubs)</a>
+</li>
 <li><a href="utils.html#ax.utils.testing.core_stubs.get_experiment_with_multi_objective">get_experiment_with_multi_objective() (in module ax.utils.testing.core_stubs)</a>
 </li>
 <li><a href="utils.html#ax.utils.testing.core_stubs.get_experiment_with_repeated_arms">get_experiment_with_repeated_arms() (in module ax.utils.testing.core_stubs)</a>
@@ -1634,8 +1647,6 @@ src="/js/documentation_options.js">
 </li>
 <li><a href="utils.html#ax.utils.testing.core_stubs.get_hartmann_metric">get_hartmann_metric() (in module ax.utils.testing.core_stubs)</a>
 </li>
-<li><a href="storage.html#ax.storage.sqa_store.decoder.Decoder.get_init_args_from_properties">get_init_args_from_properties() (ax.storage.sqa_store.decoder.Decoder method)</a>
-</li>
 <li><a href="utils.html#ax.utils.common.logger.get_logger">get_logger() (in module ax.utils.common.logger)</a>
 </li>
 <li><a href="service.html#ax.service.ax_client.AxClient.get_max_parallelism">get_max_parallelism() (ax.service.ax_client.AxClient method)</a>
@@ -1677,8 +1688,6 @@ src="/js/documentation_options.js">
 <li><a href="models.html#ax.models.torch.botorch_defaults.get_NEI">get_NEI() (in module ax.models.torch.botorch_defaults)</a>
 </li>
 <li><a href="service.html#ax.service.ax_client.AxClient.get_next_trial">get_next_trial() (ax.service.ax_client.AxClient method)</a>
-</li>
-<li><a href="storage.html#ax.storage.utils.get_object_properties">get_object_properties() (in module ax.storage.utils)</a>
 </li>
 <li><a href="utils.html#ax.utils.testing.core_stubs.get_objective">get_objective() (in module ax.utils.testing.core_stubs)</a>
 </li>
@@ -2760,6 +2769,8 @@ src="/js/documentation_options.js">
 </li>
 <li><a href="modelbridge.html#ax.modelbridge.modelbridge_utils.pending_observations_as_array">pending_observations_as_array() (in module ax.modelbridge.modelbridge_utils)</a>
 </li>
+<li><a href="models.html#ax.models.torch.utils.pick_best_out_of_sample_point_acqf_class">pick_best_out_of_sample_point_acqf_class() (in module ax.models.torch.utils)</a>
+</li>
 <li><a href="plot.html#ax.plot.color.COLORS.PINK">PINK (ax.plot.color.COLORS attribute)</a>
 </li>
 <li><a href="plot.html#ax.plot.bandit_rollout.plot_bandit_rollout">plot_bandit_rollout() (in module ax.plot.bandit_rollout)</a>
@@ -2859,6 +2870,8 @@ src="/js/documentation_options.js">
 <li><a href="core.html#ax.core.observation.ObservationFeatures.random_split">random_split (ax.core.observation.ObservationFeatures attribute)</a>
 </li>
 <li><a href="models.html#ax.models.numpy.randomforest.RandomForest">RandomForest (class in ax.models.numpy.randomforest)</a>
+</li>
+<li><a href="models.html#ax.models.torch.utils.randomize_objective_weights">randomize_objective_weights() (in module ax.models.torch.utils)</a>
 </li>
 <li><a href="modelbridge.html#ax.modelbridge.transforms.rounding.randomized_onehot_round">randomized_onehot_round() (in module ax.modelbridge.transforms.rounding)</a>
 </li>
@@ -3006,10 +3019,6 @@ src="/js/documentation_options.js">
 <td style="width: 33%; vertical-align: top;"><ul>
 <li><a href="utils.html#ax.utils.common.equality.same_elements">same_elements() (in module ax.utils.common.equality)</a>
 </li>
-<li><a href="models.html#ax.models.torch.utils.sample_hypersphere_positive_quadrant">sample_hypersphere_positive_quadrant() (in module ax.models.torch.utils)</a>
-</li>
-<li><a href="models.html#ax.models.torch.utils.sample_simplex">sample_simplex() (in module ax.models.torch.utils)</a>
-</li>
 <li><a href="service.html#ax.service.ax_client.AxClient.save">save() (ax.service.ax_client.AxClient static method)</a>
 <ul>
 <li><a href="ax.html#ax.save">(in module ax)</a>
@@ -3053,6 +3062,8 @@ src="/js/documentation_options.js">
 <li><a href="core.html#ax.core.objective.ScalarizedObjective">ScalarizedObjective (class in ax.core.objective)</a>
 </li>
 <li><a href="models.html#ax.models.torch.botorch_defaults.scipy_optimizer">scipy_optimizer() (in module ax.models.torch.botorch_defaults)</a>
+</li>
+<li><a href="models.html#ax.models.torch.botorch_defaults.scipy_optimizer_list">scipy_optimizer_list() (in module ax.models.torch.botorch_defaults)</a>
 </li>
 <li><a href="models.html#ax.models.random.base.RandomModel.scramble">scramble (ax.models.random.base.RandomModel attribute)</a>
 <ul>
@@ -3106,6 +3117,17 @@ src="/js/documentation_options.js">
 </li>
 <li><a href="core.html#ax.core.observation.separate_observations">separate_observations() (in module ax.core.observation)</a>
 </li>
+<li><a href="core.html#ax.core.metric.Metric.serialize_init_args">serialize_init_args() (ax.core.metric.Metric class method)</a>
+<ul>
+<li><a href="core.html#ax.core.runner.Runner.serialize_init_args">(ax.core.runner.Runner class method)</a>
+</li>
+<li><a href="ax.html#ax.Metric.serialize_init_args">(ax.Metric class method)</a>
+</li>
+<li><a href="ax.html#ax.Runner.serialize_init_args">(ax.Runner class method)</a>
+</li>
+<li><a href="utils.html#ax.utils.common.serialization.serialize_init_args">(in module ax.utils.common.serialization)</a>
+</li>
+</ul></li>
 <li><a href="models.html#ax.models.base.Model.serialize_state">serialize_state() (ax.models.base.Model class method)</a>
 </li>
 <li><a href="storage.html#ax.storage.sqa_store.db.session_scope">session_scope() (in module ax.storage.sqa_store.db)</a>
@@ -3140,12 +3162,12 @@ src="/js/documentation_options.js">
 </li>
 <li><a href="storage.html#ax.storage.json_store.decoder.simple_benchmark_problem_from_json">simple_benchmark_problem_from_json() (in module ax.storage.json_store.decoder)</a>
 </li>
+</ul></td>
+<td style="width: 33%; vertical-align: top;"><ul>
 <li><a href="storage.html#ax.storage.json_store.decoder.simple_experiment_from_json">simple_experiment_from_json() (in module ax.storage.json_store.decoder)</a>
 </li>
 <li><a href="storage.html#ax.storage.json_store.encoders.simple_experiment_to_dict">simple_experiment_to_dict() (in module ax.storage.json_store.encoders)</a>
 </li>
-</ul></td>
-<td style="width: 33%; vertical-align: top;"><ul>
 <li><a href="benchmark.html#ax.benchmark.benchmark_problem.SimpleBenchmarkProblem">SimpleBenchmarkProblem (class in ax.benchmark.benchmark_problem)</a>
 </li>
 <li><a href="ax.html#ax.SimpleExperiment">SimpleExperiment (class in ax)</a>

@@ -32,9 +32,10 @@ src="/js/documentation_options.js">
 <span class="c1"># This source code is licensed under the MIT license found in the</span>
 <span class="c1"># LICENSE file in the root directory of this source tree.</span>
 
+<span class="kn">import</span> <span class="nn">inspect</span>
 <span class="kn">import</span> <span class="nn">pydoc</span>
 <span class="kn">from</span> <span class="nn">types</span> <span class="kn">import</span> <span class="n">FunctionType</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Type</span>
 
 
 <span class="c1"># https://stackoverflow.com/a/39235373</span>
@@ -85,6 +86,53 @@ src="/js/documentation_options.js">
 <div class="viewcode-block" id="callable_from_reference"><a class="viewcode-back" href="../../../../utils.html#ax.utils.common.serialization.callable_from_reference">[docs]</a><span class="k">def</span> <span class="nf">callable_from_reference</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">:</span>
     <span class="sd">"""Retrieves a callable by its path."""</span>
     <span class="k">return</span> <span class="n">pydoc</span><span class="o">.</span><span class="n">locate</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>  <span class="c1"># pyre-ignore[7]</span></div>
+
+
+<div class="viewcode-block" id="serialize_init_args"><a class="viewcode-back" href="../../../../utils.html#ax.utils.common.serialization.serialize_init_args">[docs]</a><span class="k">def</span> <span class="nf">serialize_init_args</span><span class="p">(</span>
+    <span class="nb">object</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">exclude_fields</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+    <span class="sd">"""Given an object, return a dictionary of the arguments that are</span>
+<span class="sd">    needed by its constructor.</span>
+<span class="sd">    """</span>
+    <span class="n">properties</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">exclude_args</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"self"</span><span class="p">,</span> <span class="s2">"args"</span><span class="p">,</span> <span class="s2">"kwargs"</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">exclude_fields</span> <span class="ow">or</span> <span class="p">[])</span>
+    <span class="n">signature</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">signature</span><span class="p">(</span><span class="nb">object</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="fm">__init__</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="n">signature</span><span class="o">.</span><span class="n">parameters</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">arg</span> <span class="ow">in</span> <span class="n">exclude_args</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="nb">object</span><span class="p">,</span> <span class="n">arg</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="nb">object</span><span class="o">.</span><span class="vm">__class__</span><span class="si">}</span><span class="s2"> is missing a value for </span><span class="si">{</span><span class="n">arg</span><span class="si">}</span><span class="s2">, "</span>
+                <span class="sa">f</span><span class="s2">"which is needed by its constructor."</span>
+            <span class="p">)</span>
+        <span class="n">properties</span><span class="p">[</span><span class="n">arg</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+    <span class="k">return</span> <span class="n">properties</span></div>
+
+
+<div class="viewcode-block" id="extract_init_args"><a class="viewcode-back" href="../../../../utils.html#ax.utils.common.serialization.extract_init_args">[docs]</a><span class="k">def</span> <span class="nf">extract_init_args</span><span class="p">(</span><span class="n">args</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">class_</span><span class="p">:</span> <span class="n">Type</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+    <span class="sd">"""Given a dictionary, extract the arguments required for the</span>
+<span class="sd">    given class's constructor.</span>
+<span class="sd">    """</span>
+    <span class="n">init_args</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">signature</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">signature</span><span class="p">(</span><span class="n">class_</span><span class="o">.</span><span class="fm">__init__</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">arg</span><span class="p">,</span> <span class="n">info</span> <span class="ow">in</span> <span class="n">signature</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">arg</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">"self"</span><span class="p">,</span> <span class="s2">"args"</span><span class="p">,</span> <span class="s2">"kwargs"</span><span class="p">]:</span>
+            <span class="k">continue</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># Only necessary to raise an exception if there is no default</span>
+            <span class="c1"># value for this argument</span>
+            <span class="k">if</span> <span class="n">info</span><span class="o">.</span><span class="n">default</span> <span class="ow">is</span> <span class="n">inspect</span><span class="o">.</span><span class="n">Parameter</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">"Cannot decode because required argument </span><span class="si">{</span><span class="n">arg</span><span class="si">}</span><span class="s2"> is missing."</span>
+                <span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># Constructor will use default value</span>
+                <span class="k">continue</span>  <span class="c1"># pragma: no cover</span>
+        <span class="n">init_args</span><span class="p">[</span><span class="n">arg</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+    <span class="k">return</span> <span class="n">init_args</span></div>
 </pre></div>
 </div>
 </div>

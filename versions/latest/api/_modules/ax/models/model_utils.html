@@ -32,12 +32,15 @@ src="/js/documentation_options.js">
 <span class="c1"># This source code is licensed under the MIT license found in the</span>
 <span class="c1"># LICENSE file in the root directory of this source tree.</span>
 
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+
 <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Set</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">torch</span>
 <span class="kn">from</span> <span class="nn">ax.core.types</span> <span class="kn">import</span> <span class="n">TConfig</span><span class="p">,</span> <span class="n">TParamCounter</span>
+<span class="kn">from</span> <span class="nn">ax.models.numpy_base</span> <span class="kn">import</span> <span class="n">NumpyModel</span>
 <span class="kn">from</span> <span class="nn">ax.models.torch_base</span> <span class="kn">import</span> <span class="n">TorchModel</span>
 
 
@@ -252,7 +255,7 @@ src="/js/documentation_options.js">
 
 
 <div class="viewcode-block" id="best_observed_point"><a class="viewcode-back" href="../../../models.html#ax.models.model_utils.best_observed_point">[docs]</a><span class="k">def</span> <span class="nf">best_observed_point</span><span class="p">(</span>
-    <span class="n">model</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="s2">"models.numpy_base.NumpyModel"</span><span class="p">,</span> <span class="s2">"models.torch_base.TorchModel"</span><span class="p">],</span>
+    <span class="n">model</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">NumpyModel</span><span class="p">,</span> <span class="n">TorchModel</span><span class="p">],</span>
     <span class="n">bounds</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]],</span>
     <span class="n">objective_weights</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tensoray</span><span class="p">],</span>
     <span class="n">outcome_constraints</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">Tensoray</span><span class="p">,</span> <span class="n">Tensoray</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -310,6 +313,80 @@ src="/js/documentation_options.js">
 <span class="sd">    """</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">"Xs"</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Model must store training data Xs, but </span><span class="si">{</span><span class="n">model</span><span class="si">}</span><span class="s2"> does not."</span><span class="p">)</span>
+    <span class="n">best_point_and_value</span> <span class="o">=</span> <span class="n">best_in_sample_point</span><span class="p">(</span>
+        <span class="n">Xs</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">Xs</span><span class="p">,</span>  <span class="c1"># pyre-ignore[16]: Presence of attr. checked above.</span>
+        <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
+        <span class="n">bounds</span><span class="o">=</span><span class="n">bounds</span><span class="p">,</span>
+        <span class="n">objective_weights</span><span class="o">=</span><span class="n">objective_weights</span><span class="p">,</span>
+        <span class="n">outcome_constraints</span><span class="o">=</span><span class="n">outcome_constraints</span><span class="p">,</span>
+        <span class="n">linear_constraints</span><span class="o">=</span><span class="n">linear_constraints</span><span class="p">,</span>
+        <span class="n">fixed_features</span><span class="o">=</span><span class="n">fixed_features</span><span class="p">,</span>
+        <span class="n">options</span><span class="o">=</span><span class="n">options</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="kc">None</span> <span class="k">if</span> <span class="n">best_point_and_value</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">best_point_and_value</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="best_in_sample_point"><a class="viewcode-back" href="../../../models.html#ax.models.model_utils.best_in_sample_point">[docs]</a><span class="k">def</span> <span class="nf">best_in_sample_point</span><span class="p">(</span>
+    <span class="n">Xs</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">],</span> <span class="n">List</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]],</span>
+    <span class="n">model</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">NumpyModel</span><span class="p">,</span> <span class="n">TorchModel</span><span class="p">],</span>
+    <span class="n">bounds</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]],</span>
+    <span class="n">objective_weights</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tensoray</span><span class="p">],</span>
+    <span class="n">outcome_constraints</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">Tensoray</span><span class="p">,</span> <span class="n">Tensoray</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">linear_constraints</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">Tensoray</span><span class="p">,</span> <span class="n">Tensoray</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">fixed_features</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">options</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">TConfig</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]]:</span>
+    <span class="sd">"""Select the best point that has been observed.</span>
+
+<span class="sd">    Implements two approaches to selecting the best point.</span>
+
+<span class="sd">    For both approaches, only points that satisfy parameter space constraints</span>
+<span class="sd">    (bounds, linear_constraints, fixed_features) will be returned. Points must</span>
+<span class="sd">    also be observed for all objective and constraint outcomes. Returned</span>
+<span class="sd">    points may violate outcome constraints, depending on the method below.</span>
+
+<span class="sd">    1: Select the point that maximizes the expected utility</span>
+<span class="sd">    (objective_weights^T posterior_objective_means - baseline) * Prob(feasible)</span>
+<span class="sd">    Here baseline should be selected so that at least one point has positive</span>
+<span class="sd">    utility. It can be specified in the options dict, otherwise</span>
+<span class="sd">    min (objective_weights^T posterior_objective_means)</span>
+<span class="sd">    will be used, where the min is over observed points.</span>
+
+<span class="sd">    2: Select the best-objective point that is feasible with at least</span>
+<span class="sd">    probability p.</span>
+
+<span class="sd">    The following quantities may be specified in the options dict:</span>
+
+<span class="sd">    - best_point_method: 'max_utility' (default) or 'feasible_threshold'</span>
+<span class="sd">      to select between the two approaches described above.</span>
+<span class="sd">    - utility_baseline: Value for the baseline used in max_utility approach. If</span>
+<span class="sd">      not provided, defaults to min objective value.</span>
+<span class="sd">    - probability_threshold: Threshold for the feasible_threshold approach.</span>
+<span class="sd">      Defaults to p=0.95.</span>
+<span class="sd">    - feasibility_mc_samples: Number of MC samples used for estimating the</span>
+<span class="sd">      probability of feasibility (defaults 10k).</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        Xs: Training data for the points, among which to select the best.</span>
+<span class="sd">        model: Numpy or Torch model.</span>
+<span class="sd">        bounds: A list of (lower, upper) tuples for each feature.</span>
+<span class="sd">        objective_weights: The objective is to maximize a weighted sum of</span>
+<span class="sd">            the columns of f(x). These are the weights.</span>
+<span class="sd">        outcome_constraints: A tuple of (A, b). For k outcome constraints</span>
+<span class="sd">            and m outputs at f(x), A is (k x m) and b is (k x 1) such that</span>
+<span class="sd">            A f(x) &lt;= b.</span>
+<span class="sd">        linear_constraints: A tuple of (A, b). For k linear constraints on</span>
+<span class="sd">            d-dimensional x, A is (k x d) and b is (k x 1) such that</span>
+<span class="sd">            A x &lt;= b.</span>
+<span class="sd">        fixed_features: A map {feature_index: value} for features that</span>
+<span class="sd">            should be fixed to a particular value in the best point.</span>
+<span class="sd">        options: A config dictionary with settings described above.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        A two-element tuple or None if no feasible point exist. In tuple:</span>
+<span class="sd">        - d-array of the best point,</span>
+<span class="sd">        - utility at the best point.</span>
+<span class="sd">    """</span>
     <span class="c1"># Parse options</span>
     <span class="k">if</span> <span class="n">options</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">options</span> <span class="o">=</span> <span class="p">{}</span>
@@ -330,8 +407,7 @@ src="/js/documentation_options.js">
         <span class="k">return</span> <span class="kc">None</span>  <span class="c1"># pragma: no cover</span>
     <span class="n">objective_weights_np</span> <span class="o">=</span> <span class="n">as_array</span><span class="p">(</span><span class="n">objective_weights</span><span class="p">)</span>
     <span class="n">X_obs</span> <span class="o">=</span> <span class="n">get_observed</span><span class="p">(</span>
-        <span class="c1"># pyre-fixme[16]: attribute must exist, otherwise error raised above</span>
-        <span class="n">Xs</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">Xs</span><span class="p">,</span>
+        <span class="n">Xs</span><span class="o">=</span><span class="n">Xs</span><span class="p">,</span>
         <span class="n">objective_weights</span><span class="o">=</span><span class="n">objective_weights</span><span class="p">,</span>
         <span class="n">outcome_constraints</span><span class="o">=</span><span class="n">outcome_constraints</span><span class="p">,</span>
     <span class="p">)</span>
@@ -345,9 +421,9 @@ src="/js/documentation_options.js">
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">X_obs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="c1"># No feasible points</span>
         <span class="k">return</span> <span class="kc">None</span>
-    <span class="c1"># Predict objective and P(feas) at these points</span>
-    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">TorchModel</span><span class="p">):</span>
-        <span class="n">X_obs</span> <span class="o">=</span> <span class="n">X_obs</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span>
+    <span class="c1"># Predict objective and P(feas) at these points for Torch models.</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">Xs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">):</span>
+        <span class="n">X_obs</span> <span class="o">=</span> <span class="n">X_obs</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span>
     <span class="n">f</span><span class="p">,</span> <span class="n">cov</span> <span class="o">=</span> <span class="n">as_array</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_obs</span><span class="p">))</span>
     <span class="n">obj</span> <span class="o">=</span> <span class="n">objective_weights_np</span> <span class="o">@</span> <span class="n">f</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>  <span class="c1"># pyre-ignore</span>
     <span class="n">pfeas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
@@ -372,7 +448,7 @@ src="/js/documentation_options.js">
     <span class="k">if</span> <span class="n">utility</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">Inf</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">None</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">X_obs</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:]</span></div>
+        <span class="k">return</span> <span class="n">X_obs</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:],</span> <span class="n">utility</span><span class="p">[</span><span class="n">i</span><span class="p">]</span></div>
 
 
 <div class="viewcode-block" id="as_array"><a class="viewcode-back" href="../../../models.html#ax.models.model_utils.as_array">[docs]</a><span class="k">def</span> <span class="nf">as_array</span><span class="p">(</span>

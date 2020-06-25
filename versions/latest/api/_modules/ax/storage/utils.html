@@ -33,10 +33,7 @@ src="/js/documentation_options.js">
 <span class="c1"># LICENSE file in the root directory of this source tree.</span>
 
 <span class="kn">import</span> <span class="nn">enum</span>
-<span class="kn">import</span> <span class="nn">inspect</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">NamedTuple</span><span class="p">,</span> <span class="n">Optional</span>
-
-<span class="kn">from</span> <span class="nn">ax.core.base</span> <span class="kn">import</span> <span class="n">Base</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">NamedTuple</span>
 
 
 <div class="viewcode-block" id="DomainType"><a class="viewcode-back" href="../../../storage.html#ax.storage.utils.DomainType">[docs]</a><span class="k">class</span> <span class="nc">DomainType</span><span class="p">(</span><span class="n">enum</span><span class="o">.</span><span class="n">Enum</span><span class="p">):</span>
@@ -81,29 +78,6 @@ src="/js/documentation_options.js">
     <span class="k">if</span> <span class="n">text</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">prefix</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">text</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">prefix</span><span class="p">)</span> <span class="p">:]</span>
     <span class="k">return</span> <span class="n">text</span></div>
-
-
-<div class="viewcode-block" id="get_object_properties"><a class="viewcode-back" href="../../../storage.html#ax.storage.utils.get_object_properties">[docs]</a><span class="k">def</span> <span class="nf">get_object_properties</span><span class="p">(</span>
-    <span class="nb">object</span><span class="p">:</span> <span class="n">Base</span><span class="p">,</span> <span class="n">exclude_fields</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
-    <span class="sd">"""Given an Ax object, return a dictionary of the attributes that are</span>
-<span class="sd">    needed by its constructor, and which we therefore need to store.</span>
-<span class="sd">    """</span>
-    <span class="n">properties</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="n">exclude_args</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"self"</span><span class="p">,</span> <span class="s2">"args"</span><span class="p">,</span> <span class="s2">"kwargs"</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">exclude_fields</span> <span class="ow">or</span> <span class="p">[])</span>
-    <span class="n">signature</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">signature</span><span class="p">(</span><span class="nb">object</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="fm">__init__</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="n">signature</span><span class="o">.</span><span class="n">parameters</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">arg</span> <span class="ow">in</span> <span class="n">exclude_args</span><span class="p">:</span>
-            <span class="k">continue</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">value</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="nb">object</span><span class="p">,</span> <span class="n">arg</span><span class="p">)</span>
-        <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="nb">object</span><span class="o">.</span><span class="vm">__class__</span><span class="si">}</span><span class="s2"> is missing a value for </span><span class="si">{</span><span class="n">arg</span><span class="si">}</span><span class="s2">, "</span>
-                <span class="sa">f</span><span class="s2">"which is needed by its constructor."</span>
-            <span class="p">)</span>
-        <span class="n">properties</span><span class="p">[</span><span class="n">arg</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
-    <span class="k">return</span> <span class="n">properties</span></div>
 </pre></div>
 </div>
 </div>

@@ -62,7 +62,8 @@ src="/js/documentation_options.js">
     <span class="n">metrics</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Metric</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">key_components</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DataFrame</span><span class="p">:</span>
-    <span class="sd">"""Transforms an experiment to a DataFrame. Only supports SimpleExperiments.</span>
+    <span class="sd">"""Transforms an experiment to a DataFrame. Only supports Experiment and</span>
+<span class="sd">    SimpleExperiment.</span>
 
 <span class="sd">    Transforms an Experiment into a dataframe with rows keyed by trial_index</span>
 <span class="sd">    and arm_name, metrics pivoted into one row.</span>

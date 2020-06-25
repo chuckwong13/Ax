@@ -920,7 +920,8 @@ break in [0, 1] and stringified RGBA color.</p>
 <span class="target" id="module-ax.plot.exp_utils"></span><dl class="function">
 <dt id="ax.plot.exp_utils.exp_to_df">
 <code class="sig-prename descclassname">ax.plot.exp_utils.</code><code class="sig-name descname">exp_to_df</code><span class="sig-paren">(</span><em class="sig-param">exp</em>, <em class="sig-param">metrics=None</em>, <em class="sig-param">key_components=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/plot/exp_utils.html#exp_to_df"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.plot.exp_utils.exp_to_df" title="Permalink to this definition">¶</a></dt>
-<dd><p>Transforms an experiment to a DataFrame. Only supports SimpleExperiments.</p>
+<dd><p>Transforms an experiment to a DataFrame. Only supports Experiment and
+SimpleExperiment.</p>
 <p>Transforms an Experiment into a dataframe with rows keyed by trial_index
 and arm_name, metrics pivoted into one row.</p>
 <dl class="field-list simple">

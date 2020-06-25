@@ -212,12 +212,34 @@ Adds timestamps to logger messages.</p>
 </dl>
 </dd></dl>
 <dl class="function">
+<dt id="ax.utils.common.serialization.extract_init_args">
+<code class="sig-prename descclassname">ax.utils.common.serialization.</code><code class="sig-name descname">extract_init_args</code><span class="sig-paren">(</span><em class="sig-param">args</em>, <em class="sig-param">class_</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/utils/common/serialization.html#extract_init_args"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.utils.common.serialization.extract_init_args" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a dictionary, extract the arguments required for the
+given class’s constructor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="function">
 <dt id="ax.utils.common.serialization.named_tuple_to_dict">
 <code class="sig-prename descclassname">ax.utils.common.serialization.</code><code class="sig-name descname">named_tuple_to_dict</code><span class="sig-paren">(</span><em class="sig-param">data</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/utils/common/serialization.html#named_tuple_to_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.utils.common.serialization.named_tuple_to_dict" title="Permalink to this definition">¶</a></dt>
 <dd><p>Recursively convert NamedTuples to dictionaries.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="function">
+<dt id="ax.utils.common.serialization.serialize_init_args">
+<code class="sig-prename descclassname">ax.utils.common.serialization.</code><code class="sig-name descname">serialize_init_args</code><span class="sig-paren">(</span><em class="sig-param">object</em>, <em class="sig-param">exclude_fields=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/utils/common/serialization.html#serialize_init_args"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.utils.common.serialization.serialize_init_args" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given an object, return a dictionary of the arguments that are
+needed by its constructor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</p>
 </dd>
 </dl>
 </dd></dl>
