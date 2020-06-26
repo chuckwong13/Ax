@@ -728,13 +728,18 @@ src="/js/documentation_options.js">
                 <span class="n">trial</span><span class="o">.</span><span class="n">runner</span> <span class="o">=</span> <span class="n">runner</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">runner</span> <span class="o">=</span> <span class="n">runner</span></div>
 
-    <span class="k">def</span> <span class="nf">_attach_trial</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">trial</span><span class="p">:</span> <span class="n">BaseTrial</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">_attach_trial</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">trial</span><span class="p">:</span> <span class="n">BaseTrial</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
         <span class="sd">"""Attach a trial to this experiment.</span>
 
 <span class="sd">        Should only be called within the trial constructor.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            trial: The trial to be attached.</span>
+<span class="sd">            index: If specified, the trial's index will be set accordingly.</span>
+<span class="sd">                This should generally not be specified, as the index</span>
+<span class="sd">                will be automatically determined based on the number</span>
+<span class="sd">                of existing trials. This is only used for the purpose</span>
+<span class="sd">                of loading from storage.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            The index of the trial within the experiment's trial list.</span>
@@ -747,7 +752,15 @@ src="/js/documentation_options.js">
             <span class="k">if</span> <span class="n">existing_trial</span> <span class="ow">is</span> <span class="n">trial</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"BatchTrial already attached to experiment."</span><span class="p">)</span>
 
-        <span class="n">index</span> <span class="o">=</span> <span class="mi">0</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_trials</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="nb">max</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_trials</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">index</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">index</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_trials</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>  <span class="c1"># pragma: no cover</span>
+                <span class="sa">f</span><span class="s2">"Trial index </span><span class="si">{</span><span class="n">index</span><span class="si">}</span><span class="s2"> already exists on the experiment. Overwriting."</span>
+            <span class="p">)</span>
+        <span class="n">index</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">index</span>
+            <span class="k">if</span> <span class="n">index</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+            <span class="k">else</span> <span class="p">(</span><span class="mi">0</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_trials</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="nb">max</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_trials</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_trials</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">trial</span>
         <span class="k">return</span> <span class="n">index</span>
 

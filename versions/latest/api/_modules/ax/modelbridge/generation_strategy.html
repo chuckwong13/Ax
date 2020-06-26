@@ -535,7 +535,9 @@ src="/js/documentation_options.js">
         <span class="c1"># underlying model's `update`.</span>
         <span class="n">newly_completed_trials</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_find_trials_completed_since_last_gen</span><span class="p">()</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">newly_completed_trials</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">"There were no newly completed trials since last model update."</span><span class="p">)</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
+                <span class="s2">"There were no newly completed trials since last model update."</span>
+            <span class="p">)</span>
             <span class="k">return</span>
         <span class="k">if</span> <span class="n">data</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">new_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">experiment</span><span class="o">.</span><span class="n">fetch_trials_data</span><span class="p">(</span>

@@ -2263,11 +2263,30 @@ src="/js/documentation_options.js">
             <span class="ow">and</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">direction</span> <span class="ow">is</span> <span class="n">MANYTOMANY</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">direction</span> <span class="ow">is</span> <span class="n">MANYTOONE</span><span class="p">)</span>
         <span class="p">):</span>
             <span class="k">raise</span> <span class="n">sa_exc</span><span class="o">.</span><span class="n">ArgumentError</span><span class="p">(</span>
-                <span class="s2">"On </span><span class="si">%s</span><span class="s2">, delete-orphan cascade is not supported "</span>
-                <span class="s2">"on a many-to-many or many-to-one relationship "</span>
-                <span class="s2">"when single_parent is not set.   Set "</span>
-                <span class="s2">"single_parent=True on the relationship()."</span> <span class="o">%</span> <span class="bp">self</span>
+                <span class="s2">"For </span><span class="si">%(direction)s</span><span class="s2"> relationship </span><span class="si">%(rel)s</span><span class="s2">, delete-orphan "</span>
+                <span class="s2">"cascade is normally "</span>
+                <span class="s1">'configured only on the "one" side of a one-to-many '</span>
+                <span class="s2">"relationship, "</span>
+                <span class="s1">'and not on the "many" side of a many-to-one or many-to-many '</span>
+                <span class="s2">"relationship.  "</span>
+                <span class="s2">"To force this relationship to allow a particular "</span>
+                <span class="s1">'"</span><span class="si">%(relatedcls)s</span><span class="s1">" object to be referred towards by only '</span>
+                <span class="s1">'a single "</span><span class="si">%(clsname)s</span><span class="s1">" object at a time via the '</span>
+                <span class="s2">"</span><span class="si">%(rel)s</span><span class="s2"> relationship, which "</span>
+                <span class="s2">"would allow "</span>
+                <span class="s2">"delete-orphan cascade to take place in this direction, set "</span>
+                <span class="s2">"the single_parent=True flag."</span>
+                <span class="o">%</span> <span class="p">{</span>
+                    <span class="s2">"rel"</span><span class="p">:</span> <span class="bp">self</span><span class="p">,</span>
+                    <span class="s2">"direction"</span><span class="p">:</span> <span class="s2">"many-to-one"</span>
+                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">direction</span> <span class="ow">is</span> <span class="n">MANYTOONE</span>
+                    <span class="k">else</span> <span class="s2">"many-to-many"</span><span class="p">,</span>
+                    <span class="s2">"clsname"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">class_</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+                    <span class="s2">"relatedcls"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">mapper</span><span class="o">.</span><span class="n">class_</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+                <span class="p">},</span>
+                <span class="n">code</span><span class="o">=</span><span class="s2">"bbf0"</span><span class="p">,</span>
             <span class="p">)</span>
+
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">direction</span> <span class="ow">is</span> <span class="n">MANYTOONE</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">passive_deletes</span><span class="p">:</span>
             <span class="n">util</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
                 <span class="s2">"On </span><span class="si">%s</span><span class="s2">, 'passive_deletes' is normally configured "</span>

@@ -121,7 +121,7 @@ automatically set upon addition to a trial).</p>
 </dd></dl>
 <dl class="class">
 <dt id="ax.BatchTrial">
-<em class="property">class </em><code class="sig-prename descclassname">ax.</code><code class="sig-name descname">BatchTrial</code><span class="sig-paren">(</span><em class="sig-param">experiment</em>, <em class="sig-param">generator_run=None</em>, <em class="sig-param">trial_type=None</em>, <em class="sig-param">optimize_for_power=False</em>, <em class="sig-param">ttl_seconds=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/core/batch_trial.html#BatchTrial"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.BatchTrial" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">ax.</code><code class="sig-name descname">BatchTrial</code><span class="sig-paren">(</span><em class="sig-param">experiment</em>, <em class="sig-param">generator_run=None</em>, <em class="sig-param">trial_type=None</em>, <em class="sig-param">optimize_for_power=False</em>, <em class="sig-param">ttl_seconds=None</em>, <em class="sig-param">index=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/core/batch_trial.html#BatchTrial"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.BatchTrial" title="Permalink to this definition">¶</a></dt>
 <dd><p>Batched trial that has multiple attached arms, meant to be
 <em>deployed and evaluated together</em>, and possibly arm weights, which are
 a measure of how much of the total resources allocated to evaluating
@@ -152,6 +152,10 @@ trial is completed before then. Meant to be used to detect
 ‘dead’ trials, for which the evaluation process might have
 crashed etc., and which should be considered failed after
 their ‘time to live’ has passed.</p></li>
+<li><p><strong>index</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]) – If specified, the trial’s index will be set accordingly.
+This should generally not be specified, as in the index will be
+automatically determined based on the number of existing trials.
+This is only used for the purpose of loading from storage.</p></li>
 </ul>
 </dd>
 </dl>
@@ -2171,7 +2175,7 @@ We do this by re-applying the original bound weighting.</p>
 </dd></dl>
 <dl class="class">
 <dt id="ax.Trial">
-<em class="property">class </em><code class="sig-prename descclassname">ax.</code><code class="sig-name descname">Trial</code><span class="sig-paren">(</span><em class="sig-param">experiment</em>, <em class="sig-param">generator_run=None</em>, <em class="sig-param">trial_type=None</em>, <em class="sig-param">ttl_seconds=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/core/trial.html#Trial"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.Trial" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">ax.</code><code class="sig-name descname">Trial</code><span class="sig-paren">(</span><em class="sig-param">experiment</em>, <em class="sig-param">generator_run=None</em>, <em class="sig-param">trial_type=None</em>, <em class="sig-param">ttl_seconds=None</em>, <em class="sig-param">index=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/core/trial.html#Trial"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.Trial" title="Permalink to this definition">¶</a></dt>
 <dd><p>Trial that only has one attached arm and no arm weights.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -2189,6 +2193,10 @@ trial is completed before then. Meant to be used to detect
 ‘dead’ trials, for which the evaluation process might have
 crashed etc., and which should be considered failed after
 their ‘time to live’ has passed.</p></li>
+<li><p><strong>index</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]) – If specified, the trial’s index will be set accordingly.
+This should generally not be specified, as in the index will be
+automatically determined based on the number of existing trials.
+This is only used for the purpose of loading from storage.</p></li>
 </ul>
 </dd>
 </dl>

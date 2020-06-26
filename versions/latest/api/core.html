@@ -138,7 +138,7 @@ automatically set upon addition to a trial).</p>
 <span id="basetrial"></span><h3><cite>BaseTrial</cite><a class="headerlink" href="#module-ax.core.base_trial" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="ax.core.base_trial.BaseTrial">
-<em class="property">class </em><code class="sig-prename descclassname">ax.core.base_trial.</code><code class="sig-name descname">BaseTrial</code><span class="sig-paren">(</span><em class="sig-param">experiment</em>, <em class="sig-param">trial_type=None</em>, <em class="sig-param">ttl_seconds=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/core/base_trial.html#BaseTrial"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.core.base_trial.BaseTrial" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">ax.core.base_trial.</code><code class="sig-name descname">BaseTrial</code><span class="sig-paren">(</span><em class="sig-param">experiment</em>, <em class="sig-param">trial_type=None</em>, <em class="sig-param">ttl_seconds=None</em>, <em class="sig-param">index=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/core/base_trial.html#BaseTrial"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.core.base_trial.BaseTrial" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/abc.html#abc.ABC" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></a>, <a class="reference internal" href="#ax.core.base.Base" title="ax.core.base.Base"><code class="xref py py-class docutils literal notranslate"><span class="pre">ax.core.base.Base</span></code></a></p>
 <p>Base class for representing trials.</p>
 <p>Trials are containers for arms that are deployed together. There are
@@ -155,6 +155,10 @@ trial is completed before then. Meant to be used to detect
 ‘dead’ trials, for which the evaluation process might have
 crashed etc., and which should be considered failed after
 their ‘time to live’ has passed.</p></li>
+<li><p><strong>index</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]) – If specified, the trial’s index will be set accordingly.
+This should generally not be specified, as in the index will be
+automatically determined based on the number of existing trials.
+This is only used for the purpose of loading from storage.</p></li>
 </ul>
 </dd>
 </dl>
@@ -686,7 +690,7 @@ a BatchTrial.</p>
 </dd></dl>
 <dl class="class">
 <dt id="ax.core.batch_trial.BatchTrial">
-<em class="property">class </em><code class="sig-prename descclassname">ax.core.batch_trial.</code><code class="sig-name descname">BatchTrial</code><span class="sig-paren">(</span><em class="sig-param">experiment</em>, <em class="sig-param">generator_run=None</em>, <em class="sig-param">trial_type=None</em>, <em class="sig-param">optimize_for_power=False</em>, <em class="sig-param">ttl_seconds=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/core/batch_trial.html#BatchTrial"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.core.batch_trial.BatchTrial" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">ax.core.batch_trial.</code><code class="sig-name descname">BatchTrial</code><span class="sig-paren">(</span><em class="sig-param">experiment</em>, <em class="sig-param">generator_run=None</em>, <em class="sig-param">trial_type=None</em>, <em class="sig-param">optimize_for_power=False</em>, <em class="sig-param">ttl_seconds=None</em>, <em class="sig-param">index=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/core/batch_trial.html#BatchTrial"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.core.batch_trial.BatchTrial" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#ax.core.base_trial.BaseTrial" title="ax.core.base_trial.BaseTrial"><code class="xref py py-class docutils literal notranslate"><span class="pre">ax.core.base_trial.BaseTrial</span></code></a></p>
 <p>Batched trial that has multiple attached arms, meant to be
 <em>deployed and evaluated together</em>, and possibly arm weights, which are
@@ -718,6 +722,10 @@ trial is completed before then. Meant to be used to detect
 ‘dead’ trials, for which the evaluation process might have
 crashed etc., and which should be considered failed after
 their ‘time to live’ has passed.</p></li>
+<li><p><strong>index</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]) – If specified, the trial’s index will be set accordingly.
+This should generally not be specified, as in the index will be
+automatically determined based on the number of existing trials.
+This is only used for the purpose of loading from storage.</p></li>
 </ul>
 </dd>
 </dl>
@@ -3700,7 +3708,7 @@ The evaluation function must be manually set before use.</p>
 <span id="trial"></span><h3><cite>Trial</cite><a class="headerlink" href="#module-ax.core.trial" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="ax.core.trial.Trial">
-<em class="property">class </em><code class="sig-prename descclassname">ax.core.trial.</code><code class="sig-name descname">Trial</code><span class="sig-paren">(</span><em class="sig-param">experiment</em>, <em class="sig-param">generator_run=None</em>, <em class="sig-param">trial_type=None</em>, <em class="sig-param">ttl_seconds=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/core/trial.html#Trial"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.core.trial.Trial" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">ax.core.trial.</code><code class="sig-name descname">Trial</code><span class="sig-paren">(</span><em class="sig-param">experiment</em>, <em class="sig-param">generator_run=None</em>, <em class="sig-param">trial_type=None</em>, <em class="sig-param">ttl_seconds=None</em>, <em class="sig-param">index=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/core/trial.html#Trial"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.core.trial.Trial" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#ax.core.base_trial.BaseTrial" title="ax.core.base_trial.BaseTrial"><code class="xref py py-class docutils literal notranslate"><span class="pre">ax.core.base_trial.BaseTrial</span></code></a></p>
 <p>Trial that only has one attached arm and no arm weights.</p>
 <dl class="field-list simple">
@@ -3719,6 +3727,10 @@ trial is completed before then. Meant to be used to detect
 ‘dead’ trials, for which the evaluation process might have
 crashed etc., and which should be considered failed after
 their ‘time to live’ has passed.</p></li>
+<li><p><strong>index</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]) – If specified, the trial’s index will be set accordingly.
+This should generally not be specified, as in the index will be
+automatically determined based on the number of existing trials.
+This is only used for the purpose of loading from storage.</p></li>
 </ul>
 </dd>
 </dl>
