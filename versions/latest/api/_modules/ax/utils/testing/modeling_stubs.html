@@ -172,6 +172,10 @@ src="/js/documentation_options.js">
     <span class="n">gs</span> <span class="o">=</span> <span class="n">choose_generation_strategy</span><span class="p">(</span><span class="n">search_space</span><span class="o">=</span><span class="n">get_search_space</span><span class="p">())</span>
     <span class="k">if</span> <span class="n">with_experiment</span><span class="p">:</span>
         <span class="n">gs</span><span class="o">.</span><span class="n">_experiment</span> <span class="o">=</span> <span class="n">get_experiment</span><span class="p">()</span>
+    <span class="n">fake_func</span> <span class="o">=</span> <span class="n">get_experiment</span>
+    <span class="c1"># pyre-ignore[16]: testing hack to test serialization of callable kwargs</span>
+    <span class="c1"># in generation steps.</span>
+    <span class="n">gs</span><span class="o">.</span><span class="n">_steps</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">model_kwargs</span><span class="p">[</span><span class="s2">"model_constructor"</span><span class="p">]</span> <span class="o">=</span> <span class="n">fake_func</span>
     <span class="k">return</span> <span class="n">gs</span></div>
 
 

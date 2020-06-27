@@ -59,7 +59,7 @@ src="/js/documentation_options.js">
 <span class="p">)</span>
 <span class="kn">from</span> <span class="nn">ax.exceptions.storage</span> <span class="kn">import</span> <span class="n">JSONDecodeError</span>
 <span class="kn">from</span> <span class="nn">ax.modelbridge.generation_strategy</span> <span class="kn">import</span> <span class="n">GenerationStep</span><span class="p">,</span> <span class="n">GenerationStrategy</span>
-<span class="kn">from</span> <span class="nn">ax.modelbridge.registry</span> <span class="kn">import</span> <span class="n">Models</span>
+<span class="kn">from</span> <span class="nn">ax.modelbridge.registry</span> <span class="kn">import</span> <span class="n">Models</span><span class="p">,</span> <span class="n">_decode_callables_from_references</span>
 <span class="kn">from</span> <span class="nn">ax.modelbridge.transforms.base</span> <span class="kn">import</span> <span class="n">Transform</span>
 <span class="kn">from</span> <span class="nn">ax.storage.json_store.decoders</span> <span class="kn">import</span> <span class="n">batch_trial_from_json</span><span class="p">,</span> <span class="n">trial_from_json</span>
 <span class="kn">from</span> <span class="nn">ax.storage.json_store.registry</span> <span class="kn">import</span> <span class="n">DECODER_REGISTRY</span>
@@ -121,6 +121,8 @@ src="/js/documentation_options.js">
             <span class="k">return</span> <span class="n">_class</span><span class="p">[</span><span class="n">object_json</span><span class="p">[</span><span class="s2">"name"</span><span class="p">]]</span>
         <span class="k">elif</span> <span class="n">_class</span> <span class="o">==</span> <span class="n">GeneratorRun</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">generator_run_from_json</span><span class="p">(</span><span class="n">object_json</span><span class="o">=</span><span class="n">object_json</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">_class</span> <span class="o">==</span> <span class="n">GenerationStep</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">generation_step_from_json</span><span class="p">(</span><span class="n">generation_step_json</span><span class="o">=</span><span class="n">object_json</span><span class="p">)</span>
         <span class="k">elif</span> <span class="n">_class</span> <span class="o">==</span> <span class="n">GenerationStrategy</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">generation_strategy_from_json</span><span class="p">(</span><span class="n">generation_strategy_json</span><span class="o">=</span><span class="n">object_json</span><span class="p">)</span>
         <span class="k">elif</span> <span class="n">_class</span> <span class="o">==</span> <span class="n">SimpleExperiment</span><span class="p">:</span>
@@ -326,6 +328,27 @@ src="/js/documentation_options.js">
     <span class="k">if</span> <span class="n">index_in_registry</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">REVERSE_TRANSFORM_REGISTRY</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Unknown transform '</span><span class="si">{</span><span class="n">object_json</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">'transform_type'</span><span class="p">)</span><span class="si">}</span><span class="s2">'"</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">REVERSE_TRANSFORM_REGISTRY</span><span class="p">[</span><span class="n">index_in_registry</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="generation_step_from_json"><a class="viewcode-back" href="../../../../storage.html#ax.storage.json_store.decoder.generation_step_from_json">[docs]</a><span class="k">def</span> <span class="nf">generation_step_from_json</span><span class="p">(</span><span class="n">generation_step_json</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">GenerationStep</span><span class="p">:</span>
+    <span class="sd">"""Load generation step from JSON."""</span>
+    <span class="k">return</span> <span class="n">GenerationStep</span><span class="p">(</span>
+        <span class="n">model</span><span class="o">=</span><span class="n">object_from_json</span><span class="p">(</span><span class="n">generation_step_json</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">"model"</span><span class="p">)),</span>
+        <span class="n">num_trials</span><span class="o">=</span><span class="n">generation_step_json</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">"num_trials"</span><span class="p">),</span>
+        <span class="n">min_trials_observed</span><span class="o">=</span><span class="n">generation_step_json</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">"min_trials_observed"</span><span class="p">),</span>
+        <span class="n">max_parallelism</span><span class="o">=</span><span class="n">generation_step_json</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">"max_parallelism"</span><span class="p">),</span>
+        <span class="n">use_update</span><span class="o">=</span><span class="n">generation_step_json</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">"use_update"</span><span class="p">),</span>
+        <span class="n">enforce_num_trials</span><span class="o">=</span><span class="n">generation_step_json</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">"enforce_num_trials"</span><span class="p">),</span>
+        <span class="n">model_kwargs</span><span class="o">=</span><span class="n">_decode_callables_from_references</span><span class="p">(</span>
+            <span class="n">object_from_json</span><span class="p">(</span><span class="n">generation_step_json</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">"model_kwargs"</span><span class="p">))</span>
+        <span class="p">)</span>
+        <span class="ow">or</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">model_gen_kwargs</span><span class="o">=</span><span class="n">_decode_callables_from_references</span><span class="p">(</span>
+            <span class="n">object_from_json</span><span class="p">(</span><span class="n">generation_step_json</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">"model_gen_kwargs"</span><span class="p">))</span>
+        <span class="p">)</span>
+        <span class="ow">or</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">index</span><span class="o">=</span><span class="n">generation_step_json</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">"index"</span><span class="p">),</span>
+    <span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="generation_strategy_from_json"><a class="viewcode-back" href="../../../../storage.html#ax.storage.json_store.decoder.generation_strategy_from_json">[docs]</a><span class="k">def</span> <span class="nf">generation_strategy_from_json</span><span class="p">(</span>

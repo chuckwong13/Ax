@@ -55,7 +55,8 @@ src="/js/documentation_options.js">
 <span class="kn">from</span> <span class="nn">ax.core.search_space</span> <span class="kn">import</span> <span class="n">SearchSpace</span>
 <span class="kn">from</span> <span class="nn">ax.core.simple_experiment</span> <span class="kn">import</span> <span class="n">SimpleExperiment</span>
 <span class="kn">from</span> <span class="nn">ax.core.trial</span> <span class="kn">import</span> <span class="n">Trial</span>
-<span class="kn">from</span> <span class="nn">ax.modelbridge.generation_strategy</span> <span class="kn">import</span> <span class="n">GenerationStrategy</span>
+<span class="kn">from</span> <span class="nn">ax.modelbridge.generation_strategy</span> <span class="kn">import</span> <span class="n">GenerationStep</span><span class="p">,</span> <span class="n">GenerationStrategy</span>
+<span class="kn">from</span> <span class="nn">ax.modelbridge.registry</span> <span class="kn">import</span> <span class="n">_encode_callables_as_references</span>
 <span class="kn">from</span> <span class="nn">ax.modelbridge.transforms.base</span> <span class="kn">import</span> <span class="n">Transform</span>
 <span class="kn">from</span> <span class="nn">ax.runners.synthetic</span> <span class="kn">import</span> <span class="n">SyntheticRunner</span>
 <span class="kn">from</span> <span class="nn">ax.storage.transform_registry</span> <span class="kn">import</span> <span class="n">TRANSFORM_REGISTRY</span>
@@ -337,9 +338,31 @@ src="/js/documentation_options.js">
     <span class="p">}</span></div>
 
 
+<div class="viewcode-block" id="generation_step_to_dict"><a class="viewcode-back" href="../../../../storage.html#ax.storage.json_store.encoders.generation_step_to_dict">[docs]</a><span class="k">def</span> <span class="nf">generation_step_to_dict</span><span class="p">(</span><span class="n">generation_step</span><span class="p">:</span> <span class="n">GenerationStep</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+    <span class="sd">"""Converts Ax generation step to a dictionary."""</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="c1"># pyre-fixme[16]: `GenerationStep` has no attribute `__name__`.</span>
+        <span class="s2">"__type"</span><span class="p">:</span> <span class="n">generation_step</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+        <span class="s2">"model"</span><span class="p">:</span> <span class="n">generation_step</span><span class="o">.</span><span class="n">model</span><span class="p">,</span>
+        <span class="s2">"num_trials"</span><span class="p">:</span> <span class="n">generation_step</span><span class="o">.</span><span class="n">num_trials</span><span class="p">,</span>
+        <span class="s2">"min_trials_observed"</span><span class="p">:</span> <span class="n">generation_step</span><span class="o">.</span><span class="n">min_trials_observed</span><span class="p">,</span>
+        <span class="s2">"max_parallelism"</span><span class="p">:</span> <span class="n">generation_step</span><span class="o">.</span><span class="n">max_parallelism</span><span class="p">,</span>
+        <span class="s2">"use_update"</span><span class="p">:</span> <span class="n">generation_step</span><span class="o">.</span><span class="n">use_update</span><span class="p">,</span>
+        <span class="s2">"enforce_num_trials"</span><span class="p">:</span> <span class="n">generation_step</span><span class="o">.</span><span class="n">enforce_num_trials</span><span class="p">,</span>
+        <span class="s2">"model_kwargs"</span><span class="p">:</span> <span class="n">_encode_callables_as_references</span><span class="p">(</span>
+            <span class="n">generation_step</span><span class="o">.</span><span class="n">model_kwargs</span> <span class="ow">or</span> <span class="p">{}</span>
+        <span class="p">),</span>
+        <span class="s2">"model_gen_kwargs"</span><span class="p">:</span> <span class="n">_encode_callables_as_references</span><span class="p">(</span>
+            <span class="n">generation_step</span><span class="o">.</span><span class="n">model_gen_kwargs</span> <span class="ow">or</span> <span class="p">{}</span>
+        <span class="p">),</span>
+        <span class="s2">"index"</span><span class="p">:</span> <span class="n">generation_step</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
+    <span class="p">}</span></div>
+
+
 <div class="viewcode-block" id="generation_strategy_to_dict"><a class="viewcode-back" href="../../../../storage.html#ax.storage.json_store.encoders.generation_strategy_to_dict">[docs]</a><span class="k">def</span> <span class="nf">generation_strategy_to_dict</span><span class="p">(</span>
     <span class="n">generation_strategy</span><span class="p">:</span> <span class="n">GenerationStrategy</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+    <span class="sd">"""Converts Ax generation strategy to a dictionary."""</span>
     <span class="k">if</span> <span class="n">generation_strategy</span><span class="o">.</span><span class="n">uses_non_registered_models</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>  <span class="c1"># pragma: no cover</span>
             <span class="s2">"Generation strategies that use custom models provided through "</span>
