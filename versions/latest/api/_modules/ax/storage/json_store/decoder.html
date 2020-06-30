@@ -41,6 +41,7 @@ src="/js/documentation_options.js">
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">torch</span>
 <span class="kn">from</span> <span class="nn">ax.benchmark.benchmark_problem</span> <span class="kn">import</span> <span class="n">SimpleBenchmarkProblem</span>
 <span class="kn">from</span> <span class="nn">ax.core.base_trial</span> <span class="kn">import</span> <span class="n">BaseTrial</span>
 <span class="kn">from</span> <span class="nn">ax.core.data</span> <span class="kn">import</span> <span class="n">Data</span>  <span class="c1"># noqa F401</span>
@@ -100,6 +101,17 @@ src="/js/documentation_options.js">
             <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_json</span><span class="p">(</span><span class="n">object_json</span><span class="p">[</span><span class="s2">"value"</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
         <span class="k">elif</span> <span class="n">_type</span> <span class="o">==</span> <span class="s2">"ndarray"</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">object_json</span><span class="p">[</span><span class="s2">"value"</span><span class="p">])</span>
+        <span class="k">elif</span> <span class="n">_type</span> <span class="o">==</span> <span class="s2">"Tensor"</span><span class="p">:</span>
+            <span class="n">device</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">object_from_json</span><span class="p">(</span><span class="n">object_json</span><span class="p">[</span><span class="s2">"device"</span><span class="p">])</span>
+                <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span>
+                <span class="k">else</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s2">"cpu"</span><span class="p">)</span>
+            <span class="p">)</span>
+            <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span>
+                <span class="n">object_json</span><span class="p">[</span><span class="s2">"value"</span><span class="p">],</span>
+                <span class="n">dtype</span><span class="o">=</span><span class="n">object_from_json</span><span class="p">(</span><span class="n">object_json</span><span class="p">[</span><span class="s2">"dtype"</span><span class="p">]),</span>
+                <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">,</span>
+            <span class="p">)</span>
         <span class="k">elif</span> <span class="n">_type</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">"torch"</span><span class="p">):</span>
             <span class="c1"># Torch types will be encoded as "torch_&lt;type_name&gt;", so we drop prefix</span>
             <span class="k">return</span> <span class="n">torch_type_from_str</span><span class="p">(</span>

@@ -178,13 +178,25 @@ the arguments and will raise an error if repeat keywords are found.</p>
 <span id="logger"></span><h3>Logger<a class="headerlink" href="#module-ax.utils.common.logger" title="Permalink to this headline">¶</a></h3>
 <dl class="function">
 <dt id="ax.utils.common.logger.get_logger">
-<code class="sig-prename descclassname">ax.utils.common.logger.</code><code class="sig-name descname">get_logger</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">filepath=None</em>, <em class="sig-param">level=20</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/utils/common/logger.html#get_logger"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.utils.common.logger.get_logger" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">ax.utils.common.logger.</code><code class="sig-name descname">get_logger</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">filepath=None</em>, <em class="sig-param">level=20</em>, <em class="sig-param">output_name=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/utils/common/logger.html#get_logger"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.utils.common.logger.get_logger" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get an Axlogger.</p>
-<p>Sets default level to INFO, instead of WARNING.
-Adds timestamps to logger messages.</p>
+<p>Sets default level to INFO, instead of WARNING. Adds timestamps to logger messages.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/logging.html#logging.Logger" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Logger</span></code></a></p>
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – The name of the logger.</p></li>
+<li><p><strong>filepath</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]) – Location of the file to log output to. If the file exists, output
+will be appended. If it does not exist, a new file will be created.</p></li>
+<li><p><strong>level</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – The log level.</p></li>
+<li><p><strong>output_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]) – The name of the logger to appear in the logged output. Useful to
+abbreviate long logger names.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/logging.html#logging.Logger" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Logger</span></code></a></p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The logging.Logger object.</p>
 </dd>
 </dl>
 </dd></dl>
