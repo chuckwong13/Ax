@@ -46,9 +46,7 @@ src="/js/documentation_options.js">
     <span class="sd">"""Initialize plotting in notebooks, either in online or offline mode."""</span>
     <span class="n">display_bundle</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"text/html"</span><span class="p">:</span> <span class="n">_wrap_js</span><span class="p">(</span><span class="n">_js_requires</span><span class="p">(</span><span class="n">offline</span><span class="o">=</span><span class="n">offline</span><span class="p">))}</span>
     <span class="n">display</span><span class="p">(</span><span class="n">display_bundle</span><span class="p">,</span> <span class="n">raw</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
-        <span class="s2">"Injecting Plotly library into cell. "</span> <span class="s2">"Do not overwrite or delete cell."</span>
-    <span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">"Injecting Plotly library into cell. Do not overwrite or delete cell."</span><span class="p">)</span>
     <span class="n">init_notebook_mode</span><span class="p">()</span></div>
 
 
