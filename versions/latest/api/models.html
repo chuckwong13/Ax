@@ -1927,11 +1927,30 @@ conditional on having observed candidates <cite>0,1,…,i-1</cite>.</p></li>
 <span id="ax-models-torch-utils-module"></span><h3>ax.models.torch.utils module<a class="headerlink" href="#module-ax.models.torch.utils" title="Permalink to this headline">¶</a></h3>
 <dl class="function">
 <dt id="ax.models.torch.utils.get_botorch_objective">
-<code class="sig-prename descclassname">ax.models.torch.utils.</code><code class="sig-name descname">get_botorch_objective</code><span class="sig-paren">(</span><em class="sig-param">model</em>, <em class="sig-param">objective_weights</em>, <em class="sig-param">outcome_constraints=None</em>, <em class="sig-param">X_observed=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/models/torch/utils.html#get_botorch_objective"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.models.torch.utils.get_botorch_objective" title="Permalink to this definition">¶</a></dt>
-<dd><p>Constructs a BoTorch <cite>Objective</cite>.</p>
+<code class="sig-prename descclassname">ax.models.torch.utils.</code><code class="sig-name descname">get_botorch_objective</code><span class="sig-paren">(</span><em class="sig-param">model</em>, <em class="sig-param">objective_weights</em>, <em class="sig-param">use_scalarized_objective=True</em>, <em class="sig-param">outcome_constraints=None</em>, <em class="sig-param">X_observed=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/models/torch/utils.html#get_botorch_objective"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.models.torch.utils.get_botorch_objective" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructs a BoTorch <cite>AcquisitionObjective</cite> object.</p>
 <dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code>) – A BoTorch Model</p></li>
+<li><p><strong>objective_weights</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Tensor</span></code>) – The objective is to maximize a weighted sum of
+the columns of f(x). These are the weights.</p></li>
+<li><p><strong>use_scalarized_objective</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>) – A boolean parameter that defaults to True,
+specifying whether ScalarizedObjective should be used.
+NOTE: when using outcome_constraints, use_scalarized_objective
+will be ignored.</p></li>
+<li><p><strong>outcome_constraints</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Tensor</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Tensor</span></code>]]) – A tuple of (A, b). For k outcome constraints
+and m outputs at f(x), A is (k x m) and b is (k x 1) such that
+A f(x) &lt;= b. (Not used by single task models)</p></li>
+<li><p><strong>X_observed</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Tensor</span></code>]) – Observed points that are feasible and appear in the
+objective or the constraints. None if there are no such points.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><cite>ScalarizedObjective</cite>, <cite>LinearMCOObjective</cite>, <cite>ConstrainedMCObjective</cite>.</p>
+</dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">AcquisitionObjective</span></code></p>
+<dd class="field-odd"><p>A BoTorch <cite>AcquisitionObjective</cite> object. It will be one of</p>
 </dd>
 </dl>
 </dd></dl>

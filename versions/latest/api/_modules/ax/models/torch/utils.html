@@ -40,6 +40,7 @@ src="/js/documentation_options.js">
 <span class="kn">from</span> <span class="nn">ax.models.model_utils</span> <span class="kn">import</span> <span class="n">filter_constraints_and_fixed_features</span><span class="p">,</span> <span class="n">get_observed</span>
 <span class="kn">from</span> <span class="nn">ax.models.random.sobol</span> <span class="kn">import</span> <span class="n">SobolGenerator</span>
 <span class="kn">from</span> <span class="nn">ax.utils.common.constants</span> <span class="kn">import</span> <span class="n">Keys</span>
+<span class="kn">from</span> <span class="nn">ax.utils.common.logger</span> <span class="kn">import</span> <span class="n">get_logger</span>
 <span class="kn">from</span> <span class="nn">botorch.acquisition.acquisition</span> <span class="kn">import</span> <span class="n">AcquisitionFunction</span>
 <span class="kn">from</span> <span class="nn">botorch.acquisition.analytic</span> <span class="kn">import</span> <span class="n">PosteriorMean</span>
 <span class="kn">from</span> <span class="nn">botorch.acquisition.fixed_feature</span> <span class="kn">import</span> <span class="n">FixedFeatureAcquisitionFunction</span>
@@ -47,6 +48,7 @@ src="/js/documentation_options.js">
 <span class="kn">from</span> <span class="nn">botorch.acquisition.objective</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">AcquisitionObjective</span><span class="p">,</span>
     <span class="n">ConstrainedMCObjective</span><span class="p">,</span>
+    <span class="n">LinearMCObjective</span><span class="p">,</span>
     <span class="n">MCAcquisitionObjective</span><span class="p">,</span>
     <span class="n">ScalarizedObjective</span><span class="p">,</span>
 <span class="p">)</span>
@@ -59,6 +61,9 @@ src="/js/documentation_options.js">
 <span class="kn">from</span> <span class="nn">botorch.utils.objective</span> <span class="kn">import</span> <span class="n">get_objective_weights_transform</span>
 <span class="kn">from</span> <span class="nn">botorch.utils.sampling</span> <span class="kn">import</span> <span class="n">sample_hypersphere</span><span class="p">,</span> <span class="n">sample_simplex</span>
 <span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">Tensor</span>
+
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">get_logger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
 
 <span class="n">NOISELESS_MODELS</span> <span class="o">=</span> <span class="p">{</span><span class="n">SingleTaskGP</span><span class="p">}</span>
@@ -311,24 +316,50 @@ src="/js/documentation_options.js">
 <div class="viewcode-block" id="get_botorch_objective"><a class="viewcode-back" href="../../../../models.html#ax.models.torch.utils.get_botorch_objective">[docs]</a><span class="k">def</span> <span class="nf">get_botorch_objective</span><span class="p">(</span>
     <span class="n">model</span><span class="p">:</span> <span class="n">Model</span><span class="p">,</span>
     <span class="n">objective_weights</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">,</span>
+    <span class="n">use_scalarized_objective</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
     <span class="n">outcome_constraints</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">Tensor</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">X_observed</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tensor</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AcquisitionObjective</span><span class="p">:</span>
-    <span class="sd">"""Constructs a BoTorch `Objective`."""</span>
+    <span class="sd">"""Constructs a BoTorch `AcquisitionObjective` object.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        model: A BoTorch Model</span>
+<span class="sd">        objective_weights: The objective is to maximize a weighted sum of</span>
+<span class="sd">            the columns of f(x). These are the weights.</span>
+<span class="sd">        use_scalarized_objective: A boolean parameter that defaults to True,</span>
+<span class="sd">            specifying whether ScalarizedObjective should be used.</span>
+<span class="sd">            NOTE: when using outcome_constraints, use_scalarized_objective</span>
+<span class="sd">            will be ignored.</span>
+<span class="sd">        outcome_constraints: A tuple of (A, b). For k outcome constraints</span>
+<span class="sd">            and m outputs at f(x), A is (k x m) and b is (k x 1) such that</span>
+<span class="sd">            A f(x) &lt;= b. (Not used by single task models)</span>
+<span class="sd">        X_observed: Observed points that are feasible and appear in the</span>
+<span class="sd">            objective or the constraints. None if there are no such points.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        A BoTorch `AcquisitionObjective` object. It will be one of:</span>
+<span class="sd">        `ScalarizedObjective`, `LinearMCOObjective`, `ConstrainedMCObjective`.</span>
+<span class="sd">    """</span>
     <span class="k">if</span> <span class="n">X_observed</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">raise</span> <span class="n">UnsupportedError</span><span class="p">(</span>
             <span class="s2">"X_observed is required to construct a BoTorch Objective."</span>
         <span class="p">)</span>
-    <span class="k">if</span> <span class="n">outcome_constraints</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">objective</span> <span class="o">=</span> <span class="n">ScalarizedObjective</span><span class="p">(</span><span class="n">weights</span><span class="o">=</span><span class="n">objective_weights</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">outcome_constraints</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">use_scalarized_objective</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+                <span class="s2">"Currently cannot use ScalarizedObjective when there are outcome "</span>
+                <span class="s2">"constraints. Ignoring (default) kwarg `use_scalarized_objective`"</span>
+                <span class="s2">"= True. Creating ConstrainedMCObjective."</span>
+            <span class="p">)</span>
         <span class="n">obj_tf</span> <span class="o">=</span> <span class="n">get_objective_weights_transform</span><span class="p">(</span><span class="n">objective_weights</span><span class="p">)</span>
         <span class="n">con_tfs</span> <span class="o">=</span> <span class="n">get_outcome_constraint_transforms</span><span class="p">(</span><span class="n">outcome_constraints</span><span class="p">)</span>
         <span class="n">inf_cost</span> <span class="o">=</span> <span class="n">get_infeasible_cost</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">X_observed</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="n">objective</span><span class="o">=</span><span class="n">obj_tf</span><span class="p">)</span>
-        <span class="n">objective</span> <span class="o">=</span> <span class="n">ConstrainedMCObjective</span><span class="p">(</span>
+        <span class="k">return</span> <span class="n">ConstrainedMCObjective</span><span class="p">(</span>
             <span class="n">objective</span><span class="o">=</span><span class="n">obj_tf</span><span class="p">,</span> <span class="n">constraints</span><span class="o">=</span><span class="n">con_tfs</span> <span class="ow">or</span> <span class="p">[],</span> <span class="n">infeasible_cost</span><span class="o">=</span><span class="n">inf_cost</span>
         <span class="p">)</span>
-    <span class="k">return</span> <span class="n">objective</span></div>
+    <span class="k">if</span> <span class="n">use_scalarized_objective</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">ScalarizedObjective</span><span class="p">(</span><span class="n">weights</span><span class="o">=</span><span class="n">objective_weights</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">LinearMCObjective</span><span class="p">(</span><span class="n">weights</span><span class="o">=</span><span class="n">objective_weights</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="get_out_of_sample_best_point_acqf"><a class="viewcode-back" href="../../../../models.html#ax.models.torch.utils.get_out_of_sample_best_point_acqf">[docs]</a><span class="k">def</span> <span class="nf">get_out_of_sample_best_point_acqf</span><span class="p">(</span>

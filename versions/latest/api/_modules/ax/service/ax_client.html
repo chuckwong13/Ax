@@ -541,12 +541,14 @@ src="/js/documentation_options.js">
                 <span class="p">[</span>
                     <span class="n">checked_cast</span><span class="p">(</span><span class="n">Trial</span><span class="p">,</span> <span class="n">trial</span><span class="p">)</span><span class="o">.</span><span class="n">objective_mean</span>
                     <span class="k">for</span> <span class="n">trial</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">experiment</span><span class="o">.</span><span class="n">trials</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+                    <span class="k">if</span> <span class="n">trial</span><span class="o">.</span><span class="n">status</span><span class="o">.</span><span class="n">is_completed</span>
                 <span class="p">]</span>
             <span class="p">]</span>
         <span class="p">)</span>
         <span class="n">hover_labels</span> <span class="o">=</span> <span class="p">[</span>
             <span class="n">_format_dict</span><span class="p">(</span><span class="n">not_none</span><span class="p">(</span><span class="n">checked_cast</span><span class="p">(</span><span class="n">Trial</span><span class="p">,</span> <span class="n">trial</span><span class="p">)</span><span class="o">.</span><span class="n">arm</span><span class="p">)</span><span class="o">.</span><span class="n">parameters</span><span class="p">)</span>
             <span class="k">for</span> <span class="n">trial</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">experiment</span><span class="o">.</span><span class="n">trials</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">trial</span><span class="o">.</span><span class="n">status</span><span class="o">.</span><span class="n">is_completed</span>
         <span class="p">]</span>
         <span class="k">return</span> <span class="n">optimization_trace_single_method</span><span class="p">(</span>
             <span class="n">y</span><span class="o">=</span><span class="p">(</span>

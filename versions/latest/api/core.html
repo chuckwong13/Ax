@@ -288,6 +288,16 @@ defined on the experiment.</p></li>
 </dl>
 </dd></dl>
 <dl class="method">
+<dt id="ax.core.base_trial.BaseTrial.generator_runs">
+<em class="property">abstract property </em><code class="sig-name descname">generator_runs</code><a class="headerlink" href="#ax.core.base_trial.BaseTrial.generator_runs" title="Permalink to this definition">¶</a></dt>
+<dd><p>All generator runs associated with this trial.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference internal" href="#ax.core.generator_run.GeneratorRun" title="ax.core.generator_run.GeneratorRun"><code class="xref py py-class docutils literal notranslate"><span class="pre">GeneratorRun</span></code></a>]</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="method">
 <dt id="ax.core.base_trial.BaseTrial.index">
 <em class="property">property </em><code class="sig-name descname">index</code><a class="headerlink" href="#ax.core.base_trial.BaseTrial.index" title="Permalink to this definition">¶</a></dt>
 <dd><p>The index of this trial within the experiment’s trial list.</p>
@@ -823,6 +833,16 @@ each generator run that is attached to the trial.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference internal" href="#ax.core.batch_trial.GeneratorRunStruct" title="ax.core.batch_trial.GeneratorRunStruct"><code class="xref py py-class docutils literal notranslate"><span class="pre">GeneratorRunStruct</span></code></a>]</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="method">
+<dt id="ax.core.batch_trial.BatchTrial.generator_runs">
+<em class="property">property </em><code class="sig-name descname">generator_runs</code><a class="headerlink" href="#ax.core.batch_trial.BatchTrial.generator_runs" title="Permalink to this definition">¶</a></dt>
+<dd><p>All generator runs associated with this trial.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference internal" href="#ax.core.generator_run.GeneratorRun" title="ax.core.generator_run.GeneratorRun"><code class="xref py py-class docutils literal notranslate"><span class="pre">GeneratorRun</span></code></a>]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -3805,6 +3825,16 @@ else None.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference internal" href="#ax.core.generator_run.GeneratorRun" title="ax.core.generator_run.GeneratorRun"><code class="xref py py-class docutils literal notranslate"><span class="pre">GeneratorRun</span></code></a>]</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="method">
+<dt id="ax.core.trial.Trial.generator_runs">
+<em class="property">property </em><code class="sig-name descname">generator_runs</code><a class="headerlink" href="#ax.core.trial.Trial.generator_runs" title="Permalink to this definition">¶</a></dt>
+<dd><p>All generator runs associated with this trial.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference internal" href="#ax.core.generator_run.GeneratorRun" title="ax.core.generator_run.GeneratorRun"><code class="xref py py-class docutils literal notranslate"><span class="pre">GeneratorRun</span></code></a>]</p>
 </dd>
 </dl>
 </dd></dl>
