@@ -500,7 +500,9 @@ src="/js/documentation_options.js">
             <span class="n">model_state</span> <span class="o">=</span> <span class="n">not_none</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">)</span><span class="o">.</span><span class="n">_deserialize_model_state</span><span class="p">(</span>
                 <span class="n">serialized_model_state</span>
             <span class="p">)</span>
-            <span class="n">model_kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">model_state</span><span class="p">)</span>
+            <span class="c1"># We don't want to update `model_kwargs` on the `GenerationStep`,</span>
+            <span class="c1"># just to add to them for the purpose of this function.</span>
+            <span class="n">model_kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="o">**</span><span class="n">model_kwargs</span><span class="p">,</span> <span class="o">**</span><span class="n">model_state</span><span class="p">}</span>
 
         <span class="c1"># TODO[T65857344]: move from fetching all data to using cached data</span>
         <span class="k">if</span> <span class="n">data</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>

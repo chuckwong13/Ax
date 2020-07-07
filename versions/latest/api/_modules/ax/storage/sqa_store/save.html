@@ -190,10 +190,10 @@ src="/js/documentation_options.js">
 
 <span class="k">def</span> <span class="nf">_save_new_trial</span><span class="p">(</span><span class="n">experiment</span><span class="p">:</span> <span class="n">Experiment</span><span class="p">,</span> <span class="n">trial</span><span class="p">:</span> <span class="n">BaseTrial</span><span class="p">,</span> <span class="n">encoder</span><span class="p">:</span> <span class="n">Encoder</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="sd">"""Add new trial to the experiment."""</span>
-    <span class="n">save_new_trials</span><span class="p">(</span><span class="n">experiment</span><span class="o">=</span><span class="n">experiment</span><span class="p">,</span> <span class="n">trials</span><span class="o">=</span><span class="p">[</span><span class="n">trial</span><span class="p">],</span> <span class="n">encoder</span><span class="o">=</span><span class="n">encoder</span><span class="p">)</span>
+    <span class="n">_save_new_trials</span><span class="p">(</span><span class="n">experiment</span><span class="o">=</span><span class="n">experiment</span><span class="p">,</span> <span class="n">trials</span><span class="o">=</span><span class="p">[</span><span class="n">trial</span><span class="p">],</span> <span class="n">encoder</span><span class="o">=</span><span class="n">encoder</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="save_new_trials"><a class="viewcode-back" href="../../../../storage.html#ax.storage.sqa_store.save.save_new_trials">[docs]</a><span class="k">def</span> <span class="nf">save_new_trials</span><span class="p">(</span>
+<span class="k">def</span> <span class="nf">_save_new_trials</span><span class="p">(</span>
     <span class="n">experiment</span><span class="p">:</span> <span class="n">Experiment</span><span class="p">,</span> <span class="n">trials</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">BaseTrial</span><span class="p">],</span> <span class="n">encoder</span><span class="p">:</span> <span class="n">Encoder</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="sd">"""Add new trials to the experiment."""</span>
@@ -216,7 +216,7 @@ src="/js/documentation_options.js">
             <span class="n">new_sqa_trial</span> <span class="o">=</span> <span class="n">encoder</span><span class="o">.</span><span class="n">trial_to_sqa</span><span class="p">(</span><span class="n">trial</span><span class="p">)</span>
             <span class="n">new_sqa_trial</span><span class="o">.</span><span class="n">experiment_id</span> <span class="o">=</span> <span class="n">experiment_id</span>
             <span class="n">session</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">new_sqa_trial</span><span class="p">)</span>
-            <span class="n">existing_trial_indices</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">trial</span><span class="o">.</span><span class="n">index</span><span class="p">)</span></div>
+            <span class="n">existing_trial_indices</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">trial</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="update_trial"><a class="viewcode-back" href="../../../../storage.html#ax.storage.sqa_store.save.update_trial">[docs]</a><span class="k">def</span> <span class="nf">update_trial</span><span class="p">(</span>
@@ -230,10 +230,10 @@ src="/js/documentation_options.js">
 
 <span class="k">def</span> <span class="nf">_update_trial</span><span class="p">(</span><span class="n">experiment</span><span class="p">:</span> <span class="n">Experiment</span><span class="p">,</span> <span class="n">trial</span><span class="p">:</span> <span class="n">BaseTrial</span><span class="p">,</span> <span class="n">encoder</span><span class="p">:</span> <span class="n">Encoder</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="sd">"""Update trial and attach data."""</span>
-    <span class="n">update_trials</span><span class="p">(</span><span class="n">experiment</span><span class="o">=</span><span class="n">experiment</span><span class="p">,</span> <span class="n">trials</span><span class="o">=</span><span class="p">[</span><span class="n">trial</span><span class="p">],</span> <span class="n">encoder</span><span class="o">=</span><span class="n">encoder</span><span class="p">)</span>
+    <span class="n">_update_trials</span><span class="p">(</span><span class="n">experiment</span><span class="o">=</span><span class="n">experiment</span><span class="p">,</span> <span class="n">trials</span><span class="o">=</span><span class="p">[</span><span class="n">trial</span><span class="p">],</span> <span class="n">encoder</span><span class="o">=</span><span class="n">encoder</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="update_trials"><a class="viewcode-back" href="../../../../storage.html#ax.storage.sqa_store.save.update_trials">[docs]</a><span class="k">def</span> <span class="nf">update_trials</span><span class="p">(</span>
+<span class="k">def</span> <span class="nf">_update_trials</span><span class="p">(</span>
     <span class="n">experiment</span><span class="p">:</span> <span class="n">Experiment</span><span class="p">,</span> <span class="n">trials</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">BaseTrial</span><span class="p">],</span> <span class="n">encoder</span><span class="p">:</span> <span class="n">Encoder</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="sd">"""Update trials and attach data."""</span>
@@ -270,7 +270,7 @@ src="/js/documentation_options.js">
                     <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">trial_index</span><span class="o">=</span><span class="n">trial</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">timestamp</span><span class="o">=</span><span class="n">ts</span>
                 <span class="p">)</span>
                 <span class="n">sqa_data</span><span class="o">.</span><span class="n">experiment_id</span> <span class="o">=</span> <span class="n">experiment_id</span>
-                <span class="n">session</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">sqa_data</span><span class="p">)</span></div>
+                <span class="n">session</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">sqa_data</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="update_generation_strategy"><a class="viewcode-back" href="../../../../storage.html#ax.storage.sqa_store.save.update_generation_strategy">[docs]</a><span class="k">def</span> <span class="nf">update_generation_strategy</span><span class="p">(</span>
