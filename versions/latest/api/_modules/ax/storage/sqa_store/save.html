@@ -238,11 +238,11 @@ src="/js/documentation_options.js">
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="sd">"""Update trials and attach data."""</span>
     <span class="n">trial_sqa_class</span> <span class="o">=</span> <span class="n">encoder</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">class_to_sqa_class</span><span class="p">[</span><span class="n">Trial</span><span class="p">]</span>
+    <span class="n">trial_indices</span> <span class="o">=</span> <span class="p">[</span><span class="n">trial</span><span class="o">.</span><span class="n">index</span> <span class="k">for</span> <span class="n">trial</span> <span class="ow">in</span> <span class="n">trials</span><span class="p">]</span>
     <span class="k">with</span> <span class="n">session_scope</span><span class="p">()</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
         <span class="n">experiment_id</span> <span class="o">=</span> <span class="n">_get_experiment_id</span><span class="p">(</span>
             <span class="n">experiment</span><span class="o">=</span><span class="n">experiment</span><span class="p">,</span> <span class="n">encoder</span><span class="o">=</span><span class="n">encoder</span><span class="p">,</span> <span class="n">session</span><span class="o">=</span><span class="n">session</span>
         <span class="p">)</span>
-        <span class="n">trial_indices</span> <span class="o">=</span> <span class="p">[</span><span class="n">trial</span><span class="o">.</span><span class="n">index</span> <span class="k">for</span> <span class="n">trial</span> <span class="ow">in</span> <span class="n">trials</span><span class="p">]</span>
         <span class="n">existing_trials</span> <span class="o">=</span> <span class="p">(</span>
             <span class="n">session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">trial_sqa_class</span><span class="p">)</span>
             <span class="o">.</span><span class="n">filter_by</span><span class="p">(</span><span class="n">experiment_id</span><span class="o">=</span><span class="n">experiment_id</span><span class="p">)</span>

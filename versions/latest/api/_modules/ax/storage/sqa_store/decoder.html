@@ -756,6 +756,7 @@ src="/js/documentation_options.js">
             <span class="bp">self</span><span class="o">.</span><span class="n">runner_from_sqa</span><span class="p">(</span><span class="n">trial_sqa</span><span class="o">.</span><span class="n">runner</span><span class="p">)</span> <span class="k">if</span> <span class="n">trial_sqa</span><span class="o">.</span><span class="n">runner</span> <span class="k">else</span> <span class="kc">None</span>
         <span class="p">)</span>
         <span class="n">trial</span><span class="o">.</span><span class="n">_generation_step_index</span> <span class="o">=</span> <span class="n">trial_sqa</span><span class="o">.</span><span class="n">generation_step_index</span>
+        <span class="n">trial</span><span class="o">.</span><span class="n">_properties</span> <span class="o">=</span> <span class="n">trial_sqa</span><span class="o">.</span><span class="n">properties</span> <span class="ow">or</span> <span class="p">{}</span>
         <span class="k">return</span> <span class="n">trial</span></div>
 
 <div class="viewcode-block" id="Decoder.data_from_sqa"><a class="viewcode-back" href="../../../../storage.html#ax.storage.sqa_store.decoder.Decoder.data_from_sqa">[docs]</a>    <span class="k">def</span> <span class="nf">data_from_sqa</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_sqa</span><span class="p">:</span> <span class="n">SQAData</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Data</span><span class="p">:</span>
