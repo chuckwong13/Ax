@@ -241,7 +241,7 @@ def train(
                 optimizer.step()
                 scheduler.step()
 
-                logs[prefix + 'log loss'] = loss.item()
+                logs['loss'] = loss.item()
             liveloss.update(logs)
             liveloss.send()
     return net
