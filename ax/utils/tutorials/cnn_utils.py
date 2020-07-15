@@ -14,6 +14,7 @@ import torch.optim as optim
 import torchvision
 import torchvision.transforms as transforms
 from torch.utils.data import DataLoader, Dataset, Subset
+from livelossplot import PlotLosses
 
 
 class CNN(nn.Module):
@@ -188,6 +189,7 @@ def split_dataset(
 def train(
     net: torch.nn.Module,
     train_loader: DataLoader,
+    valid_loader: DataLoader,
     parameters: Dict[str, float],
     dtype: torch.dtype,
     device: torch.device,
@@ -229,20 +231,46 @@ def train(
     # Train Network
     # pyre-fixme[6]: Expected `int` for 1st param but got `float`.
     for _ in range(num_epochs):
-        for inputs, labels in train_loader:
-            # move data to proper dtype and device
-            inputs = inputs.to(dtype=dtype, device=device)
-            labels = labels.to(device=device)
+        logs = {}
+        for phase in ['train', 'validation']:
+            if phase == 'train':
+                model.train()
+            else:
+                model.eval()
+                
+            running_loss = 0.0
+            running_corrects = 0
+            
+            for inputs, labels in train_loader:
+                # move data to proper dtype and device
+                inputs = inputs.to(dtype=dtype, device=device)
+                labels = labels.to(device=device)
 
-            # zero the parameter gradients
-            optimizer.zero_grad()
+                # zero the parameter gradients
+                optimizer.zero_grad()
 
-            # forward + backward + optimize
-            outputs = net(inputs)
-            loss = criterion(outputs, labels)
-            loss.backward()
-            optimizer.step()
-            scheduler.step()
+                # forward + backward + optimize
+                outputs = net(inputs)
+                loss = criterion(outputs, labels)
+                loss.backward()
+                optimizer.step()
+                scheduler.step()
+      
+                _, preds = torch.max(outputs, 1)
+                running_loss += loss.detach() * inputs.size(0)
+                running_corrects += torch.sum(preds == labels.data)
+                
+            epoch_loss = running_loss / len(dataloaders[phase].dataset)
+            epoch_acc = running_corrects.float() / len(dataloaders[phase].dataset)
+            prefix = ''
+            if phase == 'validation':
+                prefix = 'val_'
+
+            logs[prefix + 'log loss'] = epoch_loss.item()
+            logs[prefix + 'accuracy'] = epoch_acc.item()
+         
+        liveloss.update(logs)
+        liveloss.send()
     return net
 
 
