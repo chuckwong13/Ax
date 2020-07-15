@@ -77,6 +77,7 @@ src="/js/documentation_options.js">
         <span class="n">description</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">is_test</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">experiment_type</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">properties</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">"""Inits Experiment.</span>
 
@@ -92,6 +93,7 @@ src="/js/documentation_options.js">
 <span class="sd">            description: Description of the experiment.</span>
 <span class="sd">            is_test: Convenience metadata tracker for the user to mark test experiments.</span>
 <span class="sd">            experiment_type: The class of experiments this one belongs to.</span>
+<span class="sd">            properties: Dictionary of this experiment's properties.</span>
 <span class="sd">        """</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_default_trial_type</span> <span class="o">=</span> <span class="n">default_trial_type</span>
@@ -119,6 +121,7 @@ src="/js/documentation_options.js">
             <span class="n">description</span><span class="o">=</span><span class="n">description</span><span class="p">,</span>
             <span class="n">is_test</span><span class="o">=</span><span class="n">is_test</span><span class="p">,</span>
             <span class="n">experiment_type</span><span class="o">=</span><span class="n">experiment_type</span><span class="p">,</span>
+            <span class="n">properties</span><span class="o">=</span><span class="n">properties</span><span class="p">,</span>
         <span class="p">)</span>
 
 <div class="viewcode-block" id="MultiTypeExperiment.add_trial_type"><a class="viewcode-back" href="../../../core.html#ax.core.multi_type_experiment.MultiTypeExperiment.add_trial_type">[docs]</a>    <span class="k">def</span> <span class="nf">add_trial_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">trial_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">runner</span><span class="p">:</span> <span class="n">Runner</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"MultiTypeExperiment"</span><span class="p">:</span>

@@ -77,6 +77,7 @@ src="/js/documentation_options.js">
 <span class="p">)</span>
 <span class="kn">from</span> <span class="nn">ax.storage.sqa_store.sqa_config</span> <span class="kn">import</span> <span class="n">SQAConfig</span>
 <span class="kn">from</span> <span class="nn">ax.storage.utils</span> <span class="kn">import</span> <span class="n">DomainType</span><span class="p">,</span> <span class="n">MetricIntent</span><span class="p">,</span> <span class="n">ParameterConstraintType</span>
+<span class="kn">from</span> <span class="nn">ax.utils.common.constants</span> <span class="kn">import</span> <span class="n">Keys</span>
 <span class="kn">from</span> <span class="nn">ax.utils.common.equality</span> <span class="kn">import</span> <span class="n">datetime_equals</span>
 <span class="kn">from</span> <span class="nn">ax.utils.common.typeutils</span> <span class="kn">import</span> <span class="n">not_none</span>
 
@@ -174,9 +175,9 @@ src="/js/documentation_options.js">
             <span class="n">value</span><span class="o">=</span><span class="n">experiment</span><span class="o">.</span><span class="n">experiment_type</span><span class="p">,</span> <span class="n">enum</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">experiment_type_enum</span>
         <span class="p">)</span>
 
-        <span class="n">properties</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">properties</span> <span class="o">=</span> <span class="n">experiment</span><span class="o">.</span><span class="n">_properties</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">experiment</span><span class="p">,</span> <span class="n">MultiTypeExperiment</span><span class="p">):</span>
-            <span class="n">properties</span><span class="p">[</span><span class="s2">"subclass"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"MultiTypeExperiment"</span>
+            <span class="n">properties</span><span class="p">[</span><span class="n">Keys</span><span class="o">.</span><span class="n">SUBCLASS</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"MultiTypeExperiment"</span>
             <span class="n">runners</span> <span class="o">=</span> <span class="p">[</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">runner_to_sqa</span><span class="p">(</span><span class="n">runner</span><span class="p">,</span> <span class="n">trial_type</span><span class="p">)</span>
                 <span class="k">for</span> <span class="n">trial_type</span><span class="p">,</span> <span class="n">runner</span> <span class="ow">in</span> <span class="n">experiment</span><span class="o">.</span><span class="n">_trial_type_to_runner</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
@@ -197,7 +198,7 @@ src="/js/documentation_options.js">
             <span class="p">)</span>
 
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">experiment</span><span class="p">,</span> <span class="n">SimpleExperiment</span><span class="p">):</span>
-            <span class="n">properties</span><span class="p">[</span><span class="s2">"subclass"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"SimpleExperiment"</span>
+            <span class="n">properties</span><span class="p">[</span><span class="n">Keys</span><span class="o">.</span><span class="n">SUBCLASS</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"SimpleExperiment"</span>
 
         <span class="c1"># pyre-fixme: Expected `Base` for 1st...yping.Type[Experiment]`.</span>
         <span class="n">experiment_class</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">SQAExperiment</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">class_to_sqa_class</span><span class="p">[</span>
