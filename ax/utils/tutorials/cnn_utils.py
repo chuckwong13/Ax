@@ -189,7 +189,6 @@ def split_dataset(
 def train(
     net: torch.nn.Module,
     train_loader: DataLoader,
-    valid_loader: DataLoader,
     parameters: Dict[str, float],
     dtype: torch.dtype,
     device: torch.device,
@@ -210,6 +209,7 @@ def train(
     Returns:
         nn.Module: trained CNN.
     """
+    liveloss = PlotLosses()
     # Initialize network
     net.to(dtype=dtype, device=device)  # pyre-ignore [28]
     net.train()
@@ -230,17 +230,8 @@ def train(
 
     # Train Network
     # pyre-fixme[6]: Expected `int` for 1st param but got `float`.
-    for _ in range(num_epochs):
-        logs = {}
-        for phase in ['train', 'validation']:
-            if phase == 'train':
-                model.train()
-            else:
-                model.eval()
-                
-            running_loss = 0.0
-            running_corrects = 0
-            
+    for epoch in range(num_epochs):
+            logs = {}
             for inputs, labels in train_loader:
                 # move data to proper dtype and device
                 inputs = inputs.to(dtype=dtype, device=device)
@@ -255,22 +246,10 @@ def train(
                 loss.backward()
                 optimizer.step()
                 scheduler.step()
-      
-                _, preds = torch.max(outputs, 1)
-                running_loss += loss.detach() * inputs.size(0)
-                running_corrects += torch.sum(preds == labels.data)
-                
-            epoch_loss = running_loss / len(dataloaders[phase].dataset)
-            epoch_acc = running_corrects.float() / len(dataloaders[phase].dataset)
-            prefix = ''
-            if phase == 'validation':
-                prefix = 'val_'
 
-            logs[prefix + 'log loss'] = epoch_loss.item()
-            logs[prefix + 'accuracy'] = epoch_acc.item()
-         
-        liveloss.update(logs)
-        liveloss.send()
+                logs[prefix + 'log loss'] = loss.item()
+            liveloss.update(logs)
+            liveloss.send()
     return net
 
 
