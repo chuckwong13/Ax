@@ -85,6 +85,60 @@ def load_mnist(
         downsample_pct_test=downsample_pct_test,
     )
 
+def load_usps(
+    downsample_pct: float = 0.5,
+    train_pct: float = 0.8,
+    data_path: str = "./data",
+    batch_size: int = 128,
+    num_workers: int = 0,
+    deterministic_partitions: bool = False,
+    downsample_pct_test: Optional[float] = None,
+) -> Tuple[DataLoader, DataLoader, DataLoader]:
+    """
+    Load MNIST dataset (download if necessary) and split data into training,
+        validation, and test sets.
+
+    Args:
+        downsample_pct: the proportion of the dataset to use for training,
+            validation, and test
+        train_pct: the proportion of the downsampled data to use for training
+        data_path: Root directory of dataset where `MNIST/processed/training.pt`
+            and `MNIST/processed/test.pt` exist.
+        batch_size: how many samples per batch to load
+        num_workers: number of workers (subprocesses) for loading data
+        deterministic_partitions: whether to partition data in a deterministic
+            fashion
+        downsample_pct_test: the proportion of the dataset to use for test, default
+            to be equal to downsample_pct
+
+    Returns:
+        DataLoader: training data
+        DataLoader: validation data
+        DataLoader: test data
+    """
+    # Specify transforms
+    transform = transforms.Compose(
+        [transforms.ToTensor(), transforms.Normalize((0.1307,), (0.3081,))]
+    )
+    # Load training set
+    train_valid_set = torchvision.datasets.USPS(
+        root=data_path, train=True, download=True, transform=transform
+    )
+    # Load test set
+    test_set = torchvision.datasets.USPS(
+        root=data_path, train=False, download=True, transform=transform
+    )
+    return get_partition_data_loaders(
+        train_valid_set=train_valid_set,
+        test_set=test_set,
+        downsample_pct=downsample_pct,
+        train_pct=train_pct,
+        batch_size=batch_size,
+        num_workers=num_workers,
+        deterministic_partitions=deterministic_partitions,
+        downsample_pct_test=downsample_pct_test,
+    )
+
 
 def get_partition_data_loaders(
     train_valid_set: Dataset,
