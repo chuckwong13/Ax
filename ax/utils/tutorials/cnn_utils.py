@@ -257,7 +257,7 @@ def train(
     Returns:
         nn.Module: trained CNN.
     """
-    liveloss = PlotLosses()
+#     liveloss = PlotLosses()
     # Initialize network
     net.to(dtype=dtype, device=device)  # pyre-ignore [28]
     net.train()
@@ -295,9 +295,9 @@ def train(
                 optimizer.step()
                 scheduler.step()
 
-                logs['loss'] = loss.item()
-            liveloss.update(logs)
-            liveloss.send()
+#                 logs['loss'] = loss.item()
+#             liveloss.update(logs)
+#             liveloss.send()
     return net
 
 
