@@ -281,10 +281,17 @@ def train(
     net.train()
     # Define loss and optimizer
     criterion = nn.NLLLoss(reduction="sum")
-    optimizer = optim.SGD(
+#     optimizer = optim.SGD(
+#         net.parameters(),
+#         lr=parameters.get("lr", 0.001),
+#         momentum=parameters.get("momentum", 0.0),
+#         weight_decay=parameters.get("weight_decay", 0.0),
+#     )
+    optimizer = optim.Adam(
         net.parameters(),
         lr=parameters.get("lr", 0.001),
-        momentum=parameters.get("momentum", 0.0),
+        betas=parameters.get("betas",(0.9, 0.999)),
+        eps=parameters.get("eps",(1e-8)),
         weight_decay=parameters.get("weight_decay", 0.0),
     )
     scheduler = optim.lr_scheduler.StepLR(
