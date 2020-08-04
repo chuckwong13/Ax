@@ -136,7 +136,7 @@ def load_usps(
     """
     # Specify transforms
     transform = transforms.Compose(
-        [transforms.ToTensor(), transforms.Normalize(mean=(0.5,0.5,0.5),std=(0.5,0.5,0.5))]
+        [transforms.ToTensor(), transforms.Normalize(mean=(0.5,),std=(0.5,))]
     )
     # Load training set
     train_valid_set = torchvision.datasets.USPS(
