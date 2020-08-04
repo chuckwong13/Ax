@@ -8,7 +8,7 @@ import torch.optim as optim
 import torchvision
 import torchvision.transforms as transforms
 from torch.utils.data import DataLoader, Dataset, Subset
-from misc import config as cfg
+from scipy.misc import config as cfg
 from livelossplot import PlotLosses
 
 
