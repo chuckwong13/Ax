@@ -8,7 +8,6 @@ import torch.optim as optim
 import torchvision
 import torchvision.transforms as transforms
 from torch.utils.data import DataLoader, Dataset, Subset
-from scipy.misc import config as cfg
 from livelossplot import PlotLosses
 
 
@@ -137,7 +136,7 @@ def load_usps(
     """
     # Specify transforms
     transform = transforms.Compose(
-        [transforms.ToTensor(), transforms.Normalize(mean=cfg.data_set_mean,std=cfg.dataset_std)]
+        [transforms.ToTensor(), transforms.Normalize(mean=(0.5,0.5,0.5),std=(0.5,0.5,0.5)]
     )
     # Load training set
     train_valid_set = torchvision.datasets.USPS(
