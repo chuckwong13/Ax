@@ -304,10 +304,13 @@ def train(
 #         momentum=parameters.get("momentum", 0.0),
 #         weight_decay=parameters.get("weight_decay", 0.0),
 #     )
+    beta1 = parameters.get("beta1",0.9)
+    beta2 = parameters.get("beta2",0.999)
+    
     optimizer = optim.Adam(
         net.parameters(),
         lr=parameters.get("lr", 0.001),
-        betas=parameters.get("betas",(0.9, 0.999)),
+        betas=(beta1,beta2),
         eps=parameters.get("eps",(1e-8)),
         weight_decay=parameters.get("weight_decay", 0.0),
     )
