@@ -319,7 +319,7 @@ def train(
         step_size=int(parameters.get("step_size", 30)),
         gamma=parameters.get("gamma", 1.0),  # default is no learning rate decay
     )
-    num_epochs = parameters.get("num_epochs", 1)
+    num_epochs = parameters.get("num_epochs", 10)
 
     # Train Network
     # pyre-fixme[6]: Expected `int` for 1st param but got `float`.
