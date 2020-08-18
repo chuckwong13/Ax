@@ -323,7 +323,7 @@ def train(
 
     # Train Network
     # pyre-fixme[6]: Expected `int` for 1st param but got `float`.
-    logs = {}
+    logs = []
     for epoch in range(num_epochs):
             for inputs, labels in train_loader:
                 # move data to proper dtype and device
@@ -339,7 +339,7 @@ def train(
                 loss.backward()
                 optimizer.step()
                 scheduler.step()
-                logs['loss'] = loss.item()
+                logs.append(loss.item())
 #             liveloss.update(logs)
 #             liveloss.send()
     return net,logs
